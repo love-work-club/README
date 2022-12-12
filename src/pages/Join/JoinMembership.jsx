@@ -8,7 +8,7 @@ import {TitleText} from '../../commons/style/TitleTextStyle'
 export default function JoinMembership() {
     return (
         <StyledForm>
-            <TitleText>이메일로 회원가입</TitleText>
+            <TitleText style={{marginBottom: '40px'}}>이메일로 회원가입</TitleText>
             <StyledLabel htmlFor="userMail">이메일</StyledLabel><br />
             <StyledInput type="text" id='userMail' placeholder="이메일 주소를 입력해 주세요" required />
             <ErrorMessage>* 이미 가입된 주소입니다.</ErrorMessage><br />
