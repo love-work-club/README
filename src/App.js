@@ -1,11 +1,11 @@
-import JoinMembership from './JoinMembership';
-import ProfileSetting from './ProfileSetting';
+import JoinMembership from './pages/Join/JoinMembership';
+import ProfileSetting from './pages/Join/ProfileSetting';
 
 function App() {
   return (
     <div>
-      <ProfileSetting />
       <JoinMembership />
+      <ProfileSetting />
     </div>
   );
 }
