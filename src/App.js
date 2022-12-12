@@ -1,5 +1,11 @@
+import JoinMembership from './JoinMembership';
+
 function App() {
-    return <div>hello world</div>;
+  return (
+    <div>
+      <JoinMembership />
+    </div>
+  );
 }
 
 export default App;
