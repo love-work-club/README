@@ -1,14 +1,22 @@
 import React from 'react'
+import styled from 'styled-components';
 import {ErrorMessage, StyledInput, StyledLabel} from '../../commons/style/InputStyle'
 import {TitleText, SubTitleText} from '../../commons/style/TitleTextStyle'
 import {FullBtn, ImgUploadBtn} from '../../commons/style/Buttons'
-import profileImg from './profileImg.png'
-import uploadBtn from './uploadBtn.png'
+import profileImg from '../../assets/profileImg.png'
+import uploadBtn from '../../assets/uploadBtn.png'
 
+
+const ProfileSettingForm = styled.form`
+  width: 390px;
+  height: 844px;
+  margin: 0 auto;
+  text-align: center;
+`
 
 export default function ProfileSetting() {
   return (
-    <div>
+    <ProfileSettingForm>
       <TitleText class="profile">프로필 설정</TitleText>
       <SubTitleText>나중에 언제든지 변경할 수 있습니다.</SubTitleText>
       <div class="img-modi">
@@ -26,6 +34,6 @@ export default function ProfileSetting() {
       <StyledLabel htmlFor="intro">소개</StyledLabel><br/>
       <StyledInput type="text" id='intro'/>
       <FullBtn>READ ME 시작하기</FullBtn>
-    </div>
+    </ProfileSettingForm>
   )
 }
