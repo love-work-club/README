@@ -1,6 +1,8 @@
 import React from 'react'
+import { FullBtn } from '../../commons/style/Buttons'
 import {ErrorMessage, StyledInput, StyledLabel} from '../../commons/style/InputStyle'
 import {TitleText} from '../../commons/style/TitleTextStyle'
+
 
 
 
@@ -15,7 +17,7 @@ export default function JoinMembership() {
         <StyledLabel htmlFor="userPassword">비밀번호</StyledLabel><br />
         <StyledInput type="text" id='userPassword' placeholder="비밀번호를 설정해 주세요" required/><br/><br/>
         <ErrorMessage>* 비밀번호는 6자 이상이어야 합니다.</ErrorMessage><br />
-        <button>다음</button>
+        <FullBtn>다음</FullBtn>
       </form>
     </div>
   )

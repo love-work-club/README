@@ -1,6 +1,9 @@
 import React from 'react'
 import {ErrorMessage, StyledInput, StyledLabel} from '../../commons/style/InputStyle'
 import {TitleText, SubTitleText} from '../../commons/style/TitleTextStyle'
+import {FullBtn, ImgUploadBtn} from '../../commons/style/Buttons'
+import profileImg from './profileImg.png'
+import uploadBtn from './uploadBtn.png'
 
 
 export default function ProfileSetting() {
@@ -9,10 +12,10 @@ export default function ProfileSetting() {
       <TitleText class="profile">프로필 설정</TitleText>
       <SubTitleText>나중에 언제든지 변경할 수 있습니다.</SubTitleText>
       <div class="img-modi">
-        <img class="profile-img" src="" alt="프로필 화면" />
-        <button class="file-select">
-          <img src="../assets/test_2.png" alt="파일선택"/>
-        </button> 
+        <img class="profile-img" src={profileImg} alt="프로필 화면" />
+        <ImgUploadBtn class="file-select">
+          <img src={uploadBtn} alt="파일선택"/>
+        </ImgUploadBtn>
       </div>
       <StyledLabel htmlFor="userName">사용자 이름</StyledLabel><br/>
       <StyledInput type="text" id='userName' required/><br/>
@@ -22,6 +25,7 @@ export default function ProfileSetting() {
       <ErrorMessage>* 이미 사용 중인 ID입니다.</ErrorMessage><br />
       <StyledLabel htmlFor="intro">소개</StyledLabel><br/>
       <StyledInput type="text" id='intro'/>
+      <FullBtn>READ ME 시작하기</FullBtn>
     </div>
   )
 }

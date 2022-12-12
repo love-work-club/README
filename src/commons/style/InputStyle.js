@@ -6,18 +6,17 @@ const StyledInput = styled.input`
   border-bottom: 1px solid black;
   width: 100%;
   &:focus {
-    outline: none;
+    outline: none; 
   }
 `
 
 const StyledLabel = styled.label`
-  font-size: 12px;
+  font-size: 0.8rem;
 `
 
 const ErrorMessage = styled.span`
-  font-size: 14px;
+  font-size: 0.8rem;
   color: #EB5757;
-  margin-bottom: 10px;
 ` 
 
 export {StyledInput, StyledLabel, ErrorMessage}
