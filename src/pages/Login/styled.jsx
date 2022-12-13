@@ -1,21 +1,23 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const LoginWrapper = styled.div`
+    &.login-wrap {
+        width: 390px;
+        height: 844px;
+        margin: 0 auto;
+        padding: 33px 34px;
+        text-align: center;
+    }
+`;
 
-  .login-wrap {
-    width: 390px;
-    height: 844px;
-    margin: 0 auto;
-    padding: 33px 34px;
-    text-align: center;
-  }
+const TitleText = styled.h2`
+    &.title {
+        font-size: 21px;
+        margin-bottom: 47px;
+    }
+`;
 
-  .title {
-    font-size: 21px;
-    margin-bottom: 47px;
-  }
-
-  .input-form {
+const InputForm = styled.div`
     width: 322px;
     margin: 0 auto;
     display: flex;
@@ -23,50 +25,49 @@ const LoginWrapper = styled.div`
     justify-content: center;
     margin-bottom: 18px;
     text-align: left;
-  }
+`;
 
-  label {
+const Label = styled.label`
     color: #767676;
     font-size: 12px;
-  }
+`;
 
-  input {
+const Input = styled.input`
     height: 34px;
     border: none;
-    border-bottom: 1px solid #DBDBDB;
+    border-bottom: 1px solid #dbdbdb;
     transition: all 0.3s;
-  }
 
-  input:focus {
-    border-color:#362E31;
-    outline: none;
-  }
+    &:focus {
+        border-color: #362e31;
+        outline: none;
+    }
+`;
 
-  .login-btn {
+const LoginBtn = styled.button`
     width: 100%;
     height: 44px;
-    background-color: #D2CBCE;
+    background-color: #d2cbce;
     border-radius: 22px;
     border: none;
     color: #fff;
     cursor: pointer;
     margin: 12px 0 5px;
     transition: all 0.3s;
-  }
 
-  .login-btn:hover {
-    background-color: #362E31;
-  }
+    &:hover {
+        background-color: #362e31;
+    }
 
-  .login-btn:active {
-    background-color: #000;
-  }
+    &:active {
+        background-color: #000;
+    }
+`;
 
-  .email-join-link {
+const EmailJoinLink = styled.a`
     color: #767676;
     font-size: 12px;
     text-decoration: underline;
-  }
 `;
 
-export default LoginWrapper;
+export { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn, EmailJoinLink }
