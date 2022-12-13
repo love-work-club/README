@@ -23,4 +23,5 @@ export const ErrorMessage = styled.span`
     align-self: start;
     margin-top: 5px;
     margin-bottom: 30px;
+    display: none;
 ` 
