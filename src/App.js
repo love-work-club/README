@@ -1,9 +1,10 @@
-import Login from "./pages/Login/Login";
+import Button from './components/atoms/Button/Button';
 
 function App() {
-	return (
-		<Login/>
-	);
+    return (
+        <Button disabled size="large" type={'submit'}>
+            다음
+        </Button>
+    );
 }
-
 export default App;
