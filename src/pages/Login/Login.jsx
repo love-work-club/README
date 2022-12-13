@@ -1,5 +1,7 @@
-// import Button from './components/atoms/Button/Button';
-import { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn, EmailJoinLink } from './pages/Login/Login.styled';
+import React from 'react'
+// import Button from './components/atoms/Button/Button'
+import { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn, EmailJoinLink } from '../Login/styled';
+
 
 function App() {
     // return (
