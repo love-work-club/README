@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
-import {ErrorMessage, StyledInput, StyledLabel} from '../../commons/style/InputStyle'
-import {TitleText, SubTitleText} from '../../commons/style/TitleTextStyle'
-import {FullBtn, ImgUploadBtn} from '../../commons/style/ButtonStyle'
-import {StyledForm} from '../../commons/style/FormStyle'
+import {ErrorMessage, StyledInput, StyledLabel} from './InputStyle'
+import {TitleText, SubTitleText} from './TitleTextStyle'
+import {FullBtn, ImgUploadBtn} from './ButtonStyle'
+import {StyledForm} from './FormStyle'
 import profileImg from '../../assets/profileImg.png'
 import uploadBtn from '../../assets/uploadBtn.png'
 
