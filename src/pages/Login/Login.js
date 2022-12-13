@@ -23,7 +23,7 @@ export default function Login() {
         background-color: #ffffff;
         border-radius: 30px 30px 0 0;
         bottom: 0;
-        padding: 50px 34px 185px 34px;
+        padding: 50px 34px 85px 34px;
         font-size: 14px;
     `;
 
