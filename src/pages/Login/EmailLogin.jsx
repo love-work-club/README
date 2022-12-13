@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../components/atoms/Button/Button';
-import { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn } from '../Login/styled';
+import { LoginWrapper, TitleText, InputForm, Label, Input } from '../Login/styled';
 
 
 function EmailLogin() {
