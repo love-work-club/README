@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '../../components/atoms/Button/Button';
 import { LoginWrapper, TitleText, InputForm, Label, Input } from '../Login/styled';
 
-
 function EmailLogin() {
     const submitHandler = e => {
         e.preventDefault();
@@ -24,7 +23,6 @@ function EmailLogin() {
                     로그인
                 </Button>
             </form>
-
         </LoginWrapper>
     );
 }
