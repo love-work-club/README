@@ -1,10 +1,42 @@
-import reset from 'styled-reset';
 import { createGlobalStyle } from 'styled-components';
+import pretendardRegular from '../../assets/font/Pretendard_Regular.woff2';
+import pretendardMedium from '../../assets/font/Pretendard_Medium.woff2';
+import pretendardBold from '../../assets/font/Pretendard_Bold.woff2';
+import defaultTheme from './themes/default';
 
 const GlobalStyle = createGlobalStyle`
-${reset}
+@font-face {
+    font-family: 'Pretendard_Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Pretendard_Regular'), url(${pretendardRegular}) format('woff2');
+}
+
+@font-face {
+    font-family: 'Pretendard_Medium';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Pretendard_Medium'), url(${pretendardMedium}) format('woff2');
+}
+
+@font-face {
+    font-family: 'Pretendard_Bold';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Pretendard_Bold'), url(${pretendardBold}) format('woff2');
+}
+
+
 * {
     box-sizing: border-box;
+    font-family: 'Pretendard_Regular';
+    font-size: 14px;
+    font-weight: 400;
+}
+
+button {
+    border: none;
+    background-color: ${defaultTheme.palette.white}; 
 }
 `;
 
