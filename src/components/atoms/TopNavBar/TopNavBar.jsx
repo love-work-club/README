@@ -13,7 +13,6 @@ export default function TopNavBar() {
         justify-content: space-between;
         align-items: center;
         box-sizing: border-box;
-        margin-bottom: 20px;
     `;
 
     const BackBtn = styled.button`
@@ -56,29 +55,29 @@ export default function TopNavBar() {
     return (
         <>
             <TopNavBarBasic>
-                <BackBtn>back</BackBtn>
+                <BackBtn>←</BackBtn>
                 <OptionBtn>:</OptionBtn>
             </TopNavBarBasic>
 
             <TopNavBarBasic>
-                <BackBtn>back</BackBtn>
+                <BackBtn>←</BackBtn>
                 <InputUserInfo placeholder="계정 검색" />
             </TopNavBarBasic>
 
             <TopNavBarBasic>
                 <AppTitle>리드미북 피드</AppTitle>
-                <SearchBtn>search</SearchBtn>
+                <SearchBtn>🔍</SearchBtn>
             </TopNavBarBasic>
 
             <TopNavBarBasic>
-                <BackBtn>back</BackBtn>
+                <BackBtn>←</BackBtn>
                 <OptionBtn>저장버튼은 만들어둔거 쓰기</OptionBtn>
             </TopNavBarBasic>
 
             <TopNavBarBasic>
-                <BackBtn>back</BackBtn>
+                <BackBtn>←</BackBtn>
                 <FeedTitle>오늘의 추천 도서</FeedTitle>
-                <OptionBtn>:</OptionBtn>
+                <OptionBtn></OptionBtn>
             </TopNavBarBasic>
         </>
     );
