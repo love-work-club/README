@@ -7,6 +7,7 @@ const theme = {
         disable: '#D2CBCE',
         white: '#FFF',
         gray: '#DBDBDB',
+        gray2: '#C4C4C4',
     },
 
     fontSize: {

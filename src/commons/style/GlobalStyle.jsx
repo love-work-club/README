@@ -27,9 +27,10 @@ const GlobalStyle = createGlobalStyle`
     src: local('Pretendard_Bold'), url(${pretendardBold}) format('woff2');
 }
 
-${reset}
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -39,9 +40,19 @@ body {
 }
 
 button {
+    font-family: 'Pretendard_Regular';
     font-size: inherit;
     border: none;
     background-color: ${defaultTheme.palette.white}; 
+}
+
+input {
+    font-family: 'Pretendard_Regular';
+    font-size: inherit;
+    border: none;
+    &:focus {
+        outline: none;
+    }
 }
 `;
 
