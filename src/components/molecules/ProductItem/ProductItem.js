@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import productImage from '../../../assets/img/choonsikExample.jpg';
 import defaultTheme from '../../../commons/style/themes/default';
 
 const StyledArticle = styled.article`
