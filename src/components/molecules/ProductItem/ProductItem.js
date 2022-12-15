@@ -27,8 +27,7 @@ const StyledStrong = styled.strong`
 export default function ProductItem({ url, children, price }) {
     return (
         <StyledArticle>
-            {/* 임시로 이미지를 불러왔지만 나중을 생각해서 url을 추가해놨습니다.  */}
-            <StyledImg src={productImage} alt="상품 이미지" />
+            <StyledImg src={url} alt="상품 이미지" />
             <TitleDiv>{children}</TitleDiv>
             <StyledStrong>{price}</StyledStrong>
         </StyledArticle>
