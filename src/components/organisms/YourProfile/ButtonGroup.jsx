@@ -6,19 +6,17 @@ import Button from '../../atoms/Button/Button';
 const ButtonDiv = styled.div`
     display: flex;
     justify-content: center;
-    background-color: blue;
-    margin: 0;
 `;
 
 export default function ButtonGroup() {
     return (
         <ButtonDiv>
             <a href="/comment">
-                <img src={FeedComment} alt="" />
+                <img src={FeedComment} alt="" style={{ marginLeft: '91px' }} />
             </a>
             <Button size="medium" children="팔로우" />
             <a href="/profile">
-                <img src={ProfileShare} alt="profileShare" />
+                <img src={ProfileShare} alt="profileShare" style={{ marginRight: '91px' }} />
             </a>
         </ButtonDiv>
     );

@@ -13,6 +13,7 @@ const YourProfileWrapper = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 `;
 
 const CounterDiv = styled.div`
@@ -29,7 +30,11 @@ export default function YourProfile() {
                 <ProfileImg src={ProfileImage} alt="ProfileImg" />
                 <FollowCount count={2920} kind="follow" />
             </CounterDiv>
-            <ProfileDsc username="단발의 최양락" userId="README_Yangrak" userDesc="~~~~~~" />
+            <ProfileDsc
+                username="단발의 최양락"
+                userId="@ README_Yangrak"
+                userDesc="안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요"
+            />
             <ButtonGroup />
         </YourProfileWrapper>
     );
