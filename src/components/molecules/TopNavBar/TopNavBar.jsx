@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
+import IconBack from '../../../assets/icons/icon-back.svg';
+import IconMoreOption from '../../../assets/icons/feed-more-option.svg';
+import IconSearchBtn from '../../../assets/icons/icon-search.svg';
+import Button from '../../atoms/Button/Button';
 
 export default function TopNavBar() {
     const TopNavBarBasic = styled.div`
@@ -17,6 +21,7 @@ export default function TopNavBar() {
 
     const BackBtn = styled.button`
         border: none;
+        margin-right: 14px;
         background-color: transparent;
         cursor: pointer;
     `;
@@ -49,35 +54,51 @@ export default function TopNavBar() {
 
     const FeedTitle = styled.h3`
         flex: auto;
-        font-size: ${defaultTheme.fontSize.sm};
+        font-size: ${defaultTheme.fontSize.m};
     `;
 
     return (
         <>
             <TopNavBarBasic>
-                <BackBtn>←</BackBtn>
-                <OptionBtn>:</OptionBtn>
+                <BackBtn>
+                    <img src={IconBack} alt="" />
+                </BackBtn>
+                <OptionBtn>
+                    <img src={IconMoreOption} alt="" />
+                </OptionBtn>
             </TopNavBarBasic>
 
             <TopNavBarBasic>
-                <BackBtn>←</BackBtn>
+                <BackBtn>
+                    <img src={IconBack} alt="" />
+                </BackBtn>
                 <InputUserInfo placeholder="계정 검색" />
             </TopNavBarBasic>
 
             <TopNavBarBasic>
                 <AppTitle>리드미북 피드</AppTitle>
-                <SearchBtn>🔍</SearchBtn>
+                <SearchBtn>
+                    <img src={IconSearchBtn} alt="" />
+                </SearchBtn>
             </TopNavBarBasic>
 
             <TopNavBarBasic>
-                <BackBtn>←</BackBtn>
-                <OptionBtn>저장버튼은 만들어둔거 쓰기</OptionBtn>
+                <BackBtn>
+                    <img src={IconBack} alt="" />
+                </BackBtn>
+                <Button size="small" type="submit" styled={{}}>
+                    저장
+                </Button>
             </TopNavBarBasic>
 
             <TopNavBarBasic>
-                <BackBtn>←</BackBtn>
+                <BackBtn>
+                    <img src={IconBack} alt="" />
+                </BackBtn>
                 <FeedTitle>오늘의 추천 도서</FeedTitle>
-                <OptionBtn></OptionBtn>
+                <OptionBtn>
+                    <img src={IconMoreOption} alt="" />
+                </OptionBtn>
             </TopNavBarBasic>
         </>
     );
