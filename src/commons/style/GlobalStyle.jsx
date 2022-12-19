@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     src: local('Pretendard_Bold'), url(${pretendardBold}) format('woff2');
 }
 
+${reset}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -53,6 +54,10 @@ input {
     &:focus {
         outline: none;
     }
+}
+
+li {
+    list-style: none;
 }
 `;
 

@@ -8,6 +8,7 @@ const theme = {
         white: '#FFF',
         gray: '#DBDBDB',
         gray2: '#C4C4C4',
+        gray3: '#767676',
     },
 
     fontSize: {
