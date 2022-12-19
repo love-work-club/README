@@ -51,9 +51,9 @@ const StyledButton = styled.button`
         `}
 `;
 
-export default function Button({ disabled, size, onClick, type, children }) {
+export default function Button({ disabled, size, onClick, type, children, className }) {
     return (
-        <StyledButton disabled={disabled} size={size} onClick={onClick} type={type || 'button'}>
+        <StyledButton className={className} disabled={disabled} size={size} onClick={onClick} type={type || 'button'}>
             {children}
         </StyledButton>
     );
