@@ -4,7 +4,7 @@ import ProfileImage from '../../../assets/images/default_profile_user.svg';
 import FollowCount from './FollowCount';
 import ProfileDsc from './ProfileDsc';
 import ProfileImg from './ProfileImg';
-import ButtonGroup from './ButtonGroupYour';
+import ButtonGroupYour from './ButtonGroupYour';
 
 const ProfileYourWrapper = styled.div`
     width: 390px;
@@ -35,7 +35,7 @@ export default function ProfileYourOrg() {
                 userId="@ README_Yangrak"
                 userDesc="안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요"
             />
-            <ButtonGroup />
+            <ButtonGroupYour />
         </ProfileYourWrapper>
     );
 }
