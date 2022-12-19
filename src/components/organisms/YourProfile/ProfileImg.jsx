@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ProfileImgCase = styled.img`
     width: 110px;
-    heigt: 110px;
+    height: 110px;
     border-radius: 50%;
 `;
 
