@@ -3,7 +3,7 @@ import defaultTheme from '../../../commons/style/themes/default';
 
 const FollowDiv = styled.div`
     width: fit-contentet;
-    text-alging: center;
+    text-align: center;
 `;
 
 const StyledCountNum = styled.div`
