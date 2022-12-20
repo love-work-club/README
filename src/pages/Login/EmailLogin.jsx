@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../../components/atoms/Button/Button';
+import { ErrorMessage } from '../Join/InputStyle';
 
 export const LoginWrapper = styled.div`
     &.login-wrap {
@@ -90,6 +91,7 @@ function EmailLogin() {
                 <InputForm>
                     <Label forName="pw">비밀번호</Label>
                     <Input type="password" id="pw" />
+                    <ErrorMessage>* 이메일 또는 비밀번호가 일치하지 않습니다.</ErrorMessage>
                 </InputForm>
                 <Button size="large" type={'submit'}>
                     로그인
