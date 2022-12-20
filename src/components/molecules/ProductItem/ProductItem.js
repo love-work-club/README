@@ -4,6 +4,7 @@ import defaultTheme from '../../../commons/style/themes/default';
 
 const StyledArticle = styled.article`
     width: 140px;
+    margin: 5px;
 `;
 
 const StyledImg = styled.img`
