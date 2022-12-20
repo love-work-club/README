@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login/Login';
-import EmailLogin from './pages/Login/EmailLogin';
+import EmailLogin from './pages/EmailLogin/EmailLogin';
 import Splash from './pages/Splash/Splash';
 import Home from './pages/Home/Home';
 import YourProfile from './pages/Profile/YourProfile';
