@@ -21,7 +21,7 @@ const ProfileSettingForm = styled(StyledForm)`
     }
 `;
 
-function MyProfile() {
+function ModifyProfile() {
     return (
         <>
             <TopNavBarSave />
@@ -65,4 +65,4 @@ function MyProfile() {
     );
 }
 
-export default MyProfile;
+export default ModifyProfile;
