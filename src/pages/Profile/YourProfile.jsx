@@ -14,7 +14,6 @@ export default function YourProfile() {
         <YourProfileWrapper>
             <TopNavBarBasic />
             <ProfileYourOrg />
-            <Empty />
             <OnSale />
             <PostList />
             <BottomNavBarBasic />
