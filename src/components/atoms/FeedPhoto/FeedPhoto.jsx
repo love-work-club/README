@@ -10,11 +10,14 @@ export const FeedPhotoIcon = styled.button`
     margin-top: 2px;
 `;
 
-export default function FeedPhoto() {
+export default function FeedPhoto({ childToParent, isList }) {
     return (
-        <FeedPhotoIcon>
-            <img src={IconFeedPhoto} alt="더보기 버튼" />
-            {/* <img src={IconFeedPhotoOn} alt="더보기 버튼 활성화" /> */}
+        <FeedPhotoIcon
+            onClick={() => {
+                childToParent(false);
+            }}
+        >
+            <img src={!isList ? IconFeedPhotoOn : IconFeedPhoto} alt="더보기 버튼" />
         </FeedPhotoIcon>
     );
 }
