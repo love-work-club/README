@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import YourProfile from './pages/Profile/YourProfile/YourProfile';
 import Chat from './pages/Chat/Chat';
 import MyProfile from './pages/Profile/MyProfile/MyProfile';
+import Followers from './pages/Followers/Followers';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/yourProfile" element={<YourProfile />}></Route>
                     <Route path="/myProfile" element={<MyProfile />}></Route>
+                    <Route path="/myProfile/followers" element={<Followers />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
                 </Routes>
             </BrowserRouter>

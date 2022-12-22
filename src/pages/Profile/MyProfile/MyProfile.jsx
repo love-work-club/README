@@ -12,7 +12,7 @@ export default function MyProfile() {
     return (
         <MyProfileWrapper>
             <TopNavBarBasic />
-            {/* <ProfileMyOrg /> */}
+            <ProfileMyOrg />
             <OnSale />
             <PostList />
             <BottomNavBarBasic />
