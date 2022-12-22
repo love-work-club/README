@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TopNavBarBasic from '../../components/molecules/TopNavBarBasic/TopNavBarBasic';
 import BottomNavBarBasic from '../../components/molecules/BottomNavBarBasic/BottomNavBarBasic';
+import ChatUserProfileimg from '../../assets/images/default_profile_feed.svg';
 
 const Chat = styled.section``;
 const ChatBoard = styled.ul`
@@ -14,6 +15,7 @@ const ChatList = styled.li`
     line-height: 18px;
     display: flex;
     flex-direction: row;
+    cursor: pointer;
     &.newChat::after {
         content: '';
         position: absolute;
@@ -24,13 +26,14 @@ const ChatList = styled.li`
         top: 75px;
     }
 `;
+
 const ChatProfile = styled.img`
+    background-image: url(${ChatUserProfileimg});
     width: 42px;
     height: 42px;
     border-radius: 21px;
     align-self: center;
     flex-grow: 0;
-    background-color: #dbdbdb;
 `;
 const ChatWrap = styled.div`
     display: flex;

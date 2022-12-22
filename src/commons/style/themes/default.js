@@ -3,9 +3,12 @@ const theme = {
         primary: '#362E31',
         secondary: '#D4C8B5',
         active: '#655850',
+        icon: '#C55854',
         disable: '#D2CBCE',
         white: '#FFF',
         gray: '#DBDBDB',
+        gray2: '#C4C4C4',
+        gray3: '#767676',
     },
 
     fontSize: {
