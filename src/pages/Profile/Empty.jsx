@@ -3,5 +3,6 @@ import defaultTheme from '../../commons/style/themes/default';
 
 export const Empty = styled.div`
     background-color: ${defaultTheme.palette.gray};
-    height: 465px;
+    margin-top: 20px;
+    height: 485px;
 `;
