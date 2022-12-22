@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import Button from '../Button/Button';
 
 const UserListItem = styled.li`
-    width: 390px;
     height: 50px;
-    margin: 12px 12px;
+    margin: 16px;
     display: flex;
     background-color: #fff;
 `;
@@ -25,6 +24,7 @@ const UserIntroduction = styled.p`
 `;
 
 const FollowBtn = styled(Button)`
+    min-width: 56px;
     margin: 0;
     && {
         margin-left: auto;
@@ -68,24 +68,16 @@ export default function UserList({ imgSrc, children, intro }) {
         <>
             {followers.length
                 ? followers.map((follower, i) => (
-                      <UserListItem key={i}>
-                          <UserImg src={API_HOST + follower.image} alt="팔로워 리스트 프로필" />
-                          <UserDsc>
-                              <UserNickname>{follower.accountname}</UserNickname>
-                              <UserIntroduction>{follower.intro}</UserIntroduction>
-                          </UserDsc>
-                          <FollowBtn size="small" children="팔로우" />
-                      </UserListItem>
-                  ))
+                    <UserListItem key={i}>
+                        <UserImg src={API_HOST + follower.image} alt="팔로워 리스트 프로필" />
+                        <UserDsc>
+                            <UserNickname>{follower.accountname}</UserNickname>
+                            <UserIntroduction>{follower.intro}</UserIntroduction>
+                        </UserDsc>
+                        <FollowBtn size="small" children="팔로우" />
+                    </UserListItem>
+                ))
                 : null}
-            {/* <UserListItem>
-                <UserImg src={imgSrc} alt="팔로워 리스트 프로필" />
-                <UserDsc>
-                    <UserNickname>{children}</UserNickname>
-                    <UserIntroduction>{intro}</UserIntroduction>
-                </UserDsc>
-                <FollowBtn size="small" children="팔로우" />
-            </UserListItem> */}
         </>
     );
 }
