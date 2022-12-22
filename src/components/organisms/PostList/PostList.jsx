@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import TopNavBarView from '../../components/molecules/TopNavBarView/TopNavBarView';
-import Posts from '../../components/molecules/Posts/Posts';
-import PostImg from './PostImg';
-import { Empty } from './Empty';
+import TopNavBarView from '../../molecules/TopNavBarView/TopNavBarView';
+import Posts from '../../molecules/Posts/Posts';
+import PostImg from '../../molecules/PostImg/PostImg';
+import { Empty } from '../../molecules/Empty/Empty';
 
 const PostListWrapper = styled.div`
     height: 100%;

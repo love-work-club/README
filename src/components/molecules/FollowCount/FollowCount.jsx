@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
 
 const FollowDiv = styled.div`
-    width: fit-contentet;
+    width: fit-content;
     text-align: center;
 `;
 
