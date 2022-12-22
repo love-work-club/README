@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProfileImage from '../../../assets/images/default_profile_user.svg';
-import FollowCount from '../FollowCount';
-import ProfileDsc from '../YourProfile/ProfileDsc';
-import ProfileImg from '../YourProfile/ProfileImg';
+import ProfileImage from '../../../../assets/images/default_profile_user.svg';
+import FollowCount from '../../../molecules/FollowCount/FollowCount';
+import ProfileDsc from '../../../molecules/ProfileDsc/ProfileDsc';
+import ProfileImg from '../../../molecules/ProfileImg/ProfileImg';
 import ButtonGroupMy from '../../../molecules/ButtonGroupMy/ButtonGroupMy';
 
 const ProfileMyWrapper = styled.div`
