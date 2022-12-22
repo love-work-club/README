@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProfileImage from '../../../assets/profileImg.png';
+import ProfileImage from '../../../assets/images/default_profile_user.svg';
 import FollowCount from './FollowCount';
 import ProfileDsc from './ProfileDsc';
 import ProfileImg from './ProfileImg';
-import ButtonGroup from './ButtonGroup';
+import ButtonGroupMy from './ButtonGroupMy';
 
-const YourProfileWrapper = styled.div`
+const ProfileMyWrapper = styled.div`
     width: 390px;
     height: 314px;
     margin: 0 auto;
@@ -22,9 +22,9 @@ const CounterDiv = styled.div`
     align-items: center;
 `;
 
-export default function YourProfile() {
+export default function ProfileMyOrg() {
     return (
-        <YourProfileWrapper>
+        <ProfileMyWrapper>
             <CounterDiv>
                 <FollowCount count={5000} kind="follower" />
                 <ProfileImg src={ProfileImage} alt="ProfileImg" />
@@ -35,7 +35,7 @@ export default function YourProfile() {
                 userId="@ README_Yangrak"
                 userDesc="안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요"
             />
-            <ButtonGroup />
-        </YourProfileWrapper>
+            <ButtonGroupMy />
+        </ProfileMyWrapper>
     );
 }

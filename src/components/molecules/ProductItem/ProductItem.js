@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
 
 const StyledArticle = styled.article`
-    width: 140px;
+    width: 150px;
+    margin: 5px;
 `;
 
 const StyledImg = styled.img`
+    width: 140px;
     height: 90px;
     object-fit: cover;
     border-radius: 8px;
@@ -23,12 +25,12 @@ const StyledStrong = styled.strong`
     padding: 0 2px;
 `;
 
-export default function ProductItem({ url, children, price }) {
+export default function ProductItem({ itemName, price, imgSrc }) {
     return (
         <StyledArticle>
-            <StyledImg src={url} alt="상품 이미지" />
-            <TitleDiv>{children}</TitleDiv>
-            <StyledStrong>{price}</StyledStrong>
+            <StyledImg src={imgSrc} alt="상품 이미지" />
+            <TitleDiv>{itemName}</TitleDiv>
+            <StyledStrong>{price}원</StyledStrong>
         </StyledArticle>
     );
 }
