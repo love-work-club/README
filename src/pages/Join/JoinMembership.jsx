@@ -14,9 +14,10 @@ export default function JoinMembership() {
     const [isWrong, setIsWrong] = useState(false);
     const [msgEmail, setMsgEmail] = useState(''); // 이메일 유효성 검사 메세지
     const [msgPassword, setMsgPassword] = useState(''); // 비밀번호 유효성 검사 메세지
-    const [isEmail, setIsEmail] = useState(true);
-    const [isPassword, setIsPassword] = useState(true);
+    const [isEmail, setIsEmail] = useState(true); // 이메일 형식이 올바른지
+    const [isPassword, setIsPassword] = useState(true); // 비번 형식이 올바른지
 
+    const navigate = useNavigate();
     const URL = 'https://mandarin.api.weniv.co.kr';
 
     // 유저의 로그인 & 비밀번호 데이터
@@ -27,7 +28,32 @@ export default function JoinMembership() {
         },
     };
 
-    const navigate = useNavigate();
+    // email & password가 둘 중 하나라도 비어있으면 버튼 비활성화 관리
+    useEffect(() => {
+        if (email && password) {
+            setIsDisabled(false);
+        } else {
+            setIsDisabled(true);
+        }
+    }, [email, password]);
+
+    // useEffect로 이메일 형식이 맞는지 관리하기
+    useEffect(() => {
+        if (isEmail) {
+            setIsEmail(true);
+        } else {
+            setIsEmail(false);
+        }
+    }, [isEmail, isPassword]);
+
+    // email, password 둘 다 비어있지 않을 때 버튼 활성화하는 함수
+    function checkBtn() {
+        if (email !== '' && password !== '') {
+            setIsDisabled(false);
+        } else {
+            setIsDisabled(true);
+        }
+    }
 
     // 이메일 유효성 검사
     function emailValidation(target) {
@@ -68,28 +94,46 @@ export default function JoinMembership() {
     const handleJoinSubmit = async e => {
         e.preventDefault();
         try {
-            const response = await axios
-                .post(`${URL}/user/emailvalid`, loginData, {
-                    headers: {
-                        'Content-type': 'application/json',
-                    },
-                })
-                .then(res => {
-                    console.log(res.data);
-                });
+            const response = await axios.post(`${URL}/user/emailvalid`, loginData, {
+                headers: {
+                    'Content-type': 'application/json',
+                },
+            });
+
+            const result = response.data;
+
+            console.log(response.data);
+
+            // 통신할 때 유효성 검사
+            if (result.message === '사용 가능한 이메일 입니다.') {
+                if (!isEmail) {
+                    setMsgEmail('잘못된 이메일 형식입니다.');
+                } else if (!isPassword) {
+                    setMsgPassword('비밀번호는 6자 이상이어야 합니다.');
+                } else {
+                    setMsgPassword(result.message);
+                    setIsDisabled(false);
+                    navigate('/join/ProfileSetting', {
+                        state: {
+                            email,
+                            password,
+                        },
+                    });
+                }
+            } else if (result.message === '이미 가입된 이메일 주소 입니다.' || !isEmail || !isPassword) {
+                e.preventDefault();
+                setIsDisabled(true);
+                setIsEmail(false);
+                setMsgPassword(result.message);
+            } else {
+                setIsWrong(true);
+                setIsDisabled(true);
+                setMsgPassword(result.message);
+            }
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
         }
     };
-
-    // email, password 둘다 비어있지 않을 때, 버튼 활성화 하기
-    function checkBtn() {
-        if (email !== '' && password !== '') {
-            setIsDisabled(false);
-        } else {
-            setIsDisabled(true);
-        }
-    }
 
     // id input
     const handleIdInput = e => {
@@ -113,10 +157,10 @@ export default function JoinMembership() {
                 type="text"
                 id="userMail"
                 placeholder="이메일 주소를 입력해 주세요"
-                required
                 onChange={handleIdInput}
                 className={`${!isEmail || isWrong ? 'error' : ''}`}
                 value={email}
+                required
             />
             <ErrorMessage>* 이미 가입된 주소입니다.</ErrorMessage>
             <StyledLabel htmlFor="userPassword">비밀번호</StyledLabel>
@@ -124,10 +168,10 @@ export default function JoinMembership() {
                 type="text"
                 id="userPassword"
                 placeholder="비밀번호를 설정해 주세요"
-                required
                 onChange={handlePasswordInput}
                 className={`${!isPassword || isWrong ? 'error' : ''}`}
                 value={password}
+                required
             />
             <ErrorMessage>* 비밀번호는 6자 이상이어야 합니다.</ErrorMessage>
             <Button
