@@ -23,7 +23,7 @@ export default UserList;
 const UserListItem = styled.li`
     width: 390px;
     height: 50px;
-    margin: 8px 0;
+    margin: 8px 12px;
     display: flex;
     background-color: #fff;
 `;
