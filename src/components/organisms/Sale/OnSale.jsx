@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import ProductItem from '../../components/molecules/ProductItem/ProductItem';
-import defaultTheme from '../../commons/style/themes/default';
+import ProductItem from '../../molecules/ProductItem/ProductItem';
+import defaultTheme from '../../../commons/style/themes/default';
 
 const OnSaleWrapper = styled.div`
     padding: 20px;

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import ProfileImage from '../../../assets/images/default_profile_user.svg';
-import FollowCount from './FollowCount';
-import ProfileDsc from './ProfileDsc';
-import ProfileImg from './ProfileImg';
-import ButtonGroupYour from './ButtonGroupYour';
+import FollowCount from '../../../molecules/FollowCount/FollowCount';
+import ProfileDsc from '../../../molecules/ProfileDsc/ProfileDsc';
+import ProfileImg from '../../../molecules/ProfileImg/ProfileImg';
+import ButtonGroupYour from '../../../molecules/ButtonGroupYour/ButtonGroupYour';
 
 const ProfileYourWrapper = styled.div`
     width: 390px;
