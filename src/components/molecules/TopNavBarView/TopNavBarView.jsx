@@ -8,11 +8,11 @@ const TopNavBarWrapBgModi = styled(TopNavBarWrapBg)`
     justify-content: flex-end;
 `;
 
-export default function TopNavBarView() {
+export default function TopNavBarView({ childToParent, isList }) {
     return (
         <TopNavBarWrapBgModi>
-            <FeedList />
-            <FeedPhoto />
+            <FeedList childToParent={childToParent} isList={isList} />
+            <FeedPhoto childToParent={childToParent} isList={isList} />
         </TopNavBarWrapBgModi>
     );
 }
