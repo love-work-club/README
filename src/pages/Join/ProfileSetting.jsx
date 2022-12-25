@@ -15,6 +15,7 @@ const ProfileImageContainer = styled.div`
     width: 110px;
     height: 110px;
     position: relative;
+    margin-bottom: 30px;
 `;
 
 const ProfileImage = styled.img`
@@ -207,26 +208,35 @@ export default function ProfileSetting() {
                     />
                 </ProfileImageInputBtn>
             </ProfileImageContainer>
-            <StyledLabel htmlFor="userName">사용자 이름</StyledLabel>
-            <StyledInput
-                type="text"
-                id="userName"
-                onChange={handleUserNameInput}
-                className={`${!isUsername ? 'error' : ''}`}
-                required
-            />
-            <StyledLabel htmlFor="userEmail">계정 ID</StyledLabel>
-            <StyledInput
-                type="text"
-                id="userEmail"
-                onChange={handleAccountNameInput}
-                className={`${!isAccountname ? 'error' : ''}`}
-                required
-            />
-            <ErrorMessage>* 영문,숫자,밑줄 및 마침표만 사용할 수 있습니다.</ErrorMessage>
-            <ErrorMessage>* 이미 사용 중인 ID입니다.</ErrorMessage>
-            <StyledLabel htmlFor="intro">소개</StyledLabel>
-            <StyledInput type="text" id="intro" onChange={handleIntroInput} />
+            <StyledLabel htmlFor="userName">
+                사용자 이름
+                <StyledInput
+                    type="text"
+                    id="userName"
+                    onChange={handleUserNameInput}
+                    className={`${!isUsername ? 'error' : ''}`}
+                    required
+                />
+            </StyledLabel>
+
+            <StyledLabel htmlFor="userEmail">
+                계정 ID
+                <StyledInput
+                    type="text"
+                    id="userEmail"
+                    onChange={handleAccountNameInput}
+                    className={`${!isAccountname ? 'error' : ''}`}
+                    required
+                />
+                <ErrorMessage>* 영문,숫자,밑줄 및 마침표만 사용할 수 있습니다.</ErrorMessage>
+                <ErrorMessage>* 이미 사용 중인 ID입니다.</ErrorMessage>
+            </StyledLabel>
+
+            <StyledLabel htmlFor="intro" style={{ marginTop: '10px' }}>
+                소개
+                <StyledInput type="text" id="intro" onChange={handleIntroInput} />
+            </StyledLabel>
+
             <Button size="large" type="submit" className={`${isDisabled ? 'disabled' : ''}`}>
                 READ ME 시작하기
             </Button>

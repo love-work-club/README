@@ -44,7 +44,7 @@ export default function JoinMembership() {
         } else {
             setIsEmail(false);
         }
-    }, [isEmail, isPassword]);
+    }, [isEmail]);
 
     // email, password 둘 다 비어있지 않을 때 버튼 활성화하는 함수
     function checkBtn() {
@@ -100,9 +100,7 @@ export default function JoinMembership() {
                 },
             });
 
-            const result = response.data;
-
-            console.log(response.data);
+            const result = await response.data;
 
             // 통신할 때 유효성 검사
             if (result.message === '사용 가능한 이메일 입니다.') {
@@ -138,15 +136,15 @@ export default function JoinMembership() {
     // id input
     const handleIdInput = e => {
         setEmail(e.target.value);
-        checkBtn();
         emailValidation(e.target.value);
+        checkBtn();
     };
 
     // pw input
     const handlePasswordInput = e => {
         setPassword(e.target.value);
-        checkBtn();
         pwValidation(e.target.value);
+        checkBtn();
     };
 
     return (
