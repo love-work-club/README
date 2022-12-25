@@ -20,8 +20,8 @@ const ProfileImageContainer = styled.div`
 const ProfileImage = styled.img`
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     cursor: pointer;
+    border-radius: 50%;
 `;
 
 const ProfileImageInputBtn = styled.button`
@@ -40,25 +40,23 @@ const ProfileImageInput = styled.input`
 `;
 
 export default function ProfileSetting() {
-    const [userName, setUserName] = useState('');
-    const [accountName, setAccountName] = useState('');
+    const [username, setUsername] = useState('');
+    const [accountname, setAccountname] = useState('');
     const [intro, setIntro] = useState('');
 
     const [isDisabled, setIsDisabled] = useState(true); // 버튼 비활성화
 
-    // const [msgUserName, setMsgUserName] = useState('');
-    const [isUserName, setIsUserName] = useState(true);
-    // const email = location.state.email;
-    // const password = location.state.password;
+    // const [msgUsername, setMsgUsername] = useState('');
+    const [isUsername, setIsUsername] = useState(true);
 
-    // userName, accountName 둘 중 하나라도 비어있으면 버튼 비활성화 관리
+    // username, accountname 둘 중 하나라도 비어있으면 버튼 비활성화 관리
     useEffect(() => {
-        if (userName && accountName) {
+        if (username && accountname) {
             setIsDisabled(false);
         } else {
             setIsDisabled(true);
         }
-    }, [userName, accountName]);
+    }, [username, accountname]);
 
     const location = useLocation();
 
@@ -73,17 +71,17 @@ export default function ProfileSetting() {
 
     const joinData = {
         user: {
-            username: userName,
+            username,
             email,
             password,
-            accountname: accountName,
+            accountname,
             intro,
             image: imgName,
         },
     };
 
-    const [msgAccountName, setMsgAccountName] = useState('');
-    const [isAccountName, setIsAccountName] = useState(true);
+    const [msgAccountname, setMsgAccountname] = useState('');
+    const [isAccountname, setIsAccountname] = useState(true);
     const navigate = useNavigate();
 
     // API 통신 - 리드미 시작하기 버튼
@@ -97,7 +95,7 @@ export default function ProfileSetting() {
                 },
                 body: JSON.stringify({
                     user: {
-                        accountname: accountName,
+                        accountname,
                     },
                 }),
             });
@@ -106,14 +104,14 @@ export default function ProfileSetting() {
             console.log(result);
 
             if (result.message === '이미 가입된 계정ID 입니다.') {
-                setMsgAccountName(result.message);
-                setIsAccountName(false);
+                setMsgAccountname(result.message);
+                setIsAccountname(false);
                 setIsDisabled(true);
             } else if (result.message === '사용 가능한 계정ID 입니다.') {
-                setIsAccountName(true);
+                setIsAccountname(true);
             } else {
-                setMsgAccountName(result.message);
-                setIsAccountName(false);
+                setMsgAccountname(result.message);
+                setIsAccountname(false);
             }
 
             console.log(joinData);
@@ -163,11 +161,11 @@ export default function ProfileSetting() {
     };
 
     const handleUserNameInput = e => {
-        setUserName(e.target.value);
+        setUsername(e.target.value);
     };
 
     const handleAccountNameInput = e => {
-        setAccountName(e.target.value);
+        setAccountname(e.target.value);
     };
 
     const handleIntroInput = e => {
@@ -214,7 +212,7 @@ export default function ProfileSetting() {
                 type="text"
                 id="userName"
                 onChange={handleUserNameInput}
-                className={`${!isUserName ? 'error' : ''}`}
+                className={`${!isUsername ? 'error' : ''}`}
                 required
             />
             <StyledLabel htmlFor="userEmail">계정 ID</StyledLabel>
@@ -222,7 +220,7 @@ export default function ProfileSetting() {
                 type="text"
                 id="userEmail"
                 onChange={handleAccountNameInput}
-                className={`${!isAccountName ? 'error' : ''}`}
+                className={`${!isAccountname ? 'error' : ''}`}
                 required
             />
             <ErrorMessage>* 영문,숫자,밑줄 및 마침표만 사용할 수 있습니다.</ErrorMessage>
