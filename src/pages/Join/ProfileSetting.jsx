@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 import { ErrorMessage, StyledInput, StyledLabel } from './InputStyle';
 import { TitleText, SubTitleText } from './TitleTextStyle';
@@ -20,17 +21,22 @@ const ProfileImage = styled.img`
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    cursor: pointer;
 `;
 
-const ProfileImageInputBtn = styled.button``;
-
-const ProfileImageInput = styled.input`
+const ProfileImageInputBtn = styled.button`
     position: absolute;
-    width: 36px;
-    height: 36px;
     right: 0;
     bottom: 0;
-    background-image: url('../../assets/icons/profile-photo.svg');
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-image: url(${ImageUploadBtn});
+`;
+
+const ProfileImageInput = styled.input`
+    visibility: hidden;
 `;
 
 export default function ProfileSetting() {
@@ -41,7 +47,7 @@ export default function ProfileSetting() {
     const [isDisabled, setIsDisabled] = useState(true); // 버튼 비활성화
 
     // const [msgUserName, setMsgUserName] = useState('');
-    // const [isUserName, setIsUserName] = useState(true);
+    const [isUserName, setIsUserName] = useState(true);
     // const email = location.state.email;
     // const password = location.state.password;
 
@@ -56,8 +62,8 @@ export default function ProfileSetting() {
 
     const location = useLocation();
 
-    const id = location.state.id;
-    const pw = location.state.pw;
+    const email = location.state.email;
+    const password = location.state.password;
 
     const URL = 'https://mandarin.api.weniv.co.kr/';
 
@@ -67,10 +73,10 @@ export default function ProfileSetting() {
 
     const joinData = {
         user: {
-            userName,
-            email: id,
-            password: pw,
-            accountName,
+            username: userName,
+            email,
+            password,
+            accountname: accountName,
             intro,
             image: imgName,
         },
@@ -86,12 +92,18 @@ export default function ProfileSetting() {
         try {
             const response = await fetch(`${URL}user/accountnamevalid`, {
                 method: 'POST',
-                body: JSON.stringify(joinData),
                 headers: {
                     'Content-type': 'application/json',
                 },
+                body: JSON.stringify({
+                    user: {
+                        accountname: accountName,
+                    },
+                }),
             });
             const result = await response.json();
+
+            console.log(result);
 
             if (result.message === '이미 가입된 계정ID 입니다.') {
                 setMsgAccountName(result.message);
@@ -103,6 +115,9 @@ export default function ProfileSetting() {
                 setMsgAccountName(result.message);
                 setIsAccountName(false);
             }
+
+            console.log(joinData);
+
             const res = await fetch(`${URL}user`, {
                 method: 'POST',
                 body: JSON.stringify(joinData),
@@ -147,29 +162,24 @@ export default function ProfileSetting() {
         });
     };
 
-    // const handleUsernameInput = e => {
-    //     setUserName(e.target.value);
-    //     userNameValidation(e.target.value);
-    // };
+    const handleUserNameInput = e => {
+        setUserName(e.target.value);
+    };
 
-    // const handleAccountnameInput = e => {
-    //     setAccountName(e.target.value);
-    //     accountNameValidation(e.target.value);
-    // };
+    const handleAccountNameInput = e => {
+        setAccountName(e.target.value);
+    };
 
     const handleIntroInput = e => {
         setIntro(e.target.value);
-    };
-
-    // useRef로 input이랑 impgUploadBtn 연결
-    const inputClick = () => {
-        imgInput.current.click();
     };
 
     // 이미지업로드 버튼을 클릭했을 때 input이 실행
     const onClickImageUpload = () => {
         imgInput.current.click();
     };
+
+    // console.log(imgName, imageSrc);
 
     return (
         <ProfileSettingForm method="POST" onSubmit={handleJoinSubmit}>
@@ -186,7 +196,7 @@ export default function ProfileSetting() {
                     }
                     onClick={onClickImageUpload}
                 />
-                <ProfileImageInputBtn>
+                <ProfileImageInputBtn type="button" onClick={onClickImageUpload}>
                     <ProfileImageInput
                         type="file"
                         id="imgUpload"
@@ -203,16 +213,16 @@ export default function ProfileSetting() {
             <StyledInput
                 type="text"
                 id="userName"
-                // onChange={handleUserNameInput}
-                // className={`${!isUserName ? 'error' : ''}`}
+                onChange={handleUserNameInput}
+                className={`${!isUserName ? 'error' : ''}`}
                 required
             />
             <StyledLabel htmlFor="userEmail">계정 ID</StyledLabel>
             <StyledInput
                 type="text"
                 id="userEmail"
-                // onChange={handleAccountNameInput}
-                // className={`${!isAccountName ? 'error' : ''}`}
+                onChange={handleAccountNameInput}
+                className={`${!isAccountName ? 'error' : ''}`}
                 required
             />
             <ErrorMessage>* 영문,숫자,밑줄 및 마침표만 사용할 수 있습니다.</ErrorMessage>
