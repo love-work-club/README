@@ -3,6 +3,8 @@ import Login from './pages/Login/Login';
 import EmailLogin from './pages/EmailLogin/EmailLogin';
 import Splash from './pages/Splash/Splash';
 import Home from './pages/Home/Home';
+import JoinMembership from './pages/Join/JoinMembership';
+import ProfileSetting from './pages/Join/ProfileSetting';
 import YourProfile from './pages/Profile/YourProfile';
 import Chat from './pages/Chat/Chat';
 import Posts from './components/molecules/Posts/Posts';
@@ -15,7 +17,8 @@ function App() {
                     <Route path="/" element={<Splash />}></Route>
                     <Route path="/login" element={<Login />}></Route>
                     <Route path="/emailLogin" element={<EmailLogin />}></Route>
-
+                    <Route path="/join" element={<JoinMembership />}></Route>
+                    <Route path="/join/ProfileSetting" element={<ProfileSetting />}></Route>
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/yourprofile" element={<YourProfile />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
