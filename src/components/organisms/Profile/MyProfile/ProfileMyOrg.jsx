@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfileImage from '../../../assets/images/default_profile_user.svg';
-import FollowCount from './FollowCount';
-import ProfileDsc from './ProfileDsc';
-import ProfileImg from './ProfileImg';
-import ButtonGroupMy from './ButtonGroupMy';
+import FollowCount from '../FollowCount';
+import ProfileDsc from '../YourProfile/ProfileDsc';
+import ProfileImg from '../YourProfile/ProfileImg';
+import ButtonGroupMy from '../../../molecules/ButtonGroupMy/ButtonGroupMy';
 
 const ProfileMyWrapper = styled.div`
     width: 390px;
@@ -32,7 +32,7 @@ export default function ProfileMyOrg() {
             </CounterDiv>
             <ProfileDsc
                 username="단발의 최양락"
-                userId="@ README_Yangrak"
+                userId="@ README_Name"
                 userDesc="안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요"
             />
             <ButtonGroupMy />
