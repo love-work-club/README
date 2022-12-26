@@ -4,9 +4,7 @@ import { ReactComponent as ProfileLogo } from '../../../assets/icons/profile_sm.
 import { ReactComponent as HeartIcon } from '../../../assets/icons/icon-heart.svg';
 import { ReactComponent as CommentIcon } from '../../../assets/icons/message-circle.svg';
 import MoreIcon from '../../../assets/icons/feed-more-option.svg';
-
 import defaultTheme from '../../../commons/style/themes/default';
-import BottomDrawer from '../BottomDrawer/BottomDrawer';
 
 const PostList = styled.li`
     width: 100%;
