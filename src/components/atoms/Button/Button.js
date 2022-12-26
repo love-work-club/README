@@ -5,7 +5,7 @@ const StyledButton = styled.button`
     text-align: center;
     margin: 0 auto;
     border: none;
-    background-color: ${defaultTheme.palette.primary};
+    background-color: ${props => props.backgroundColor || defaultTheme.palette.primary};
     color: ${defaultTheme.palette.white};
     cursor: pointer;
     &:active:not(:disabled) {
@@ -51,9 +51,16 @@ const StyledButton = styled.button`
         `}
 `;
 
-export default function Button({ disabled, size, onClick, type, children, className }) {
+export default function Button({ disabled, size, onClick, type, children, className, backgroundColor }) {
     return (
-        <StyledButton className={className} disabled={disabled} size={size} onClick={onClick} type={type || 'button'}>
+        <StyledButton
+            className={className}
+            disabled={disabled}
+            size={size}
+            onClick={onClick}
+            type={type || 'button'}
+            backgroundColor={backgroundColor}
+        >
             {children}
         </StyledButton>
     );
