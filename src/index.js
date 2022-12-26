@@ -4,14 +4,15 @@ import { ThemeProvider } from 'styled-components';
 import theme from './commons/style/themes/default';
 import GlobalStyle from './commons/style/GlobalStyle';
 import App from './App';
+import { AuthContextProvider } from './store/auth-context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-    <div>
+    <AuthContextProvider>
         <ThemeProvider theme={theme}>
             <GlobalStyle />
             <App />
         </ThemeProvider>
-    </div>
+    </AuthContextProvider>
 );
