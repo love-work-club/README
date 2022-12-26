@@ -2,11 +2,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import AuthContext from '../store/auth-context';
 import Login from '../pages/Login/Login';
-import EmailLogin from '../pages/Login/EmailLogin';
+import EmailLogin from '../pages/EmailLogin/EmailLogin';
 import Join from '../pages/Join/JoinMembership';
 import Splash from '../pages/Splash/Splash';
 import Home from '../pages/Home/Home';
-import YourProfile from '../pages/Profile/YourProfile';
+import YourProfile from '../pages/Profile/YourProfile/YourProfile';
 import Chat from '../pages/Chat/Chat';
 import NotFound from '../pages/NotFound/NotFound';
 
@@ -36,7 +36,6 @@ function MainPages() {
                     <Route path="/login" element={<Login />}></Route>
                     <Route path="/login/emailLogin" element={<EmailLogin />}></Route>
                     <Route path="/login/join" element={<Join />}></Route>
-
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/yourprofile" element={<YourProfile />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
