@@ -11,11 +11,14 @@ export const FeedListIcon = styled.button`
     margin-top: 2px;
 `;
 
-export default function FeedList() {
+export default function FeedList({ childToParent, isList }) {
     return (
-        <FeedListIcon>
-            {/* <img src={IconFeedList} alt="리스트 보기 아이콘" /> */}
-            <img src={IconFeedListOn} alt="리스트 보기 아이콘 활성화" />
+        <FeedListIcon
+            onClick={() => {
+                childToParent(true);
+            }}
+        >
+            <img src={isList ? IconFeedListOn : IconFeedList} alt="리스트 보기 아이콘 활성화" />
         </FeedListIcon>
     );
 }

@@ -3,7 +3,7 @@ import { TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
 import BackBtn from '../../atoms/BackBtn/BackBtn';
 import OptionBtn from '../../atoms/OptionBtn/OptionBtn';
 
-function TopNavBarBsic() {
+function TopNavBarBasic() {
     return (
         <TopNavBarWrapBg>
             <BackBtn />
@@ -12,4 +12,4 @@ function TopNavBarBsic() {
     );
 }
 
-export default TopNavBarBsic;
+export default TopNavBarBasic;
