@@ -4,9 +4,10 @@ import EmailLogin from './pages/Login/EmailLogin';
 import Join from './pages/Join/JoinMembership';
 import Splash from './pages/Splash/Splash';
 import Home from './pages/Home/Home';
-import YourProfile from './pages/Profile/YourProfile';
+import YourProfile from './pages/Profile/YourProfile/YourProfile';
 import Chat from './pages/Chat/Chat';
 import NotFound from './pages/NotFound/NotFound';
+
 
 function App() {
     return (

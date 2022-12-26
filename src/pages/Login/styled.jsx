@@ -70,4 +70,4 @@ const EmailJoinLink = styled.a`
     text-decoration: underline;
 `;
 
-export { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn, EmailJoinLink }
+export { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn, EmailJoinLink };
