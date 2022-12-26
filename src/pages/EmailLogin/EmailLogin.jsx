@@ -1,105 +1,118 @@
-import React from 'react';
-import styled from 'styled-components';
+import { useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../../components/atoms/Button/Button';
-import { ErrorMessage } from '../Join/InputStyle';
+import useInput from '../../hooks/use-Input';
+import { LoginWrapper, TitleText, InputForm, Label, Input, ErrorP } from '../Login/styled';
+import AuthContext from '../../store/auth-context';
 
-export const LoginWrapper = styled.div`
-    &.login-wrap {
-        width: 390px;
-        height: 844px;
-        margin: 0 auto;
-        padding: 33px 34px;
-        text-align: center;
-    }
-`;
+export const EmailLogin = props => {
+    const emailInputRef = useRef();
+    const passwordInputRef = useRef();
 
-export const TitleText = styled.h2`
-    &.title {
-        font-size: 21px;
-        margin-bottom: 47px;
-    }
-`;
+    const navigate = useNavigate();
 
-export const InputForm = styled.div`
-    width: 322px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 18px;
-    text-align: left;
-`;
+    const authCtx = useContext(AuthContext);
 
-export const Label = styled.label`
-    color: #767676;
-    font-size: 12px;
-`;
+    const emailRegex =
+        /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
-export const Input = styled.input`
-    height: 34px;
-    border: none;
-    border-bottom: 1px solid #dbdbdb;
-    transition: all 0.3s;
+    // const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 
-    &:focus {
-        border-color: #362e31;
-        outline: none;
-    }
-`;
+    const {
+        value: enteredEmail,
+        isValid: entredEmailIsValid,
+        hasError: enteredEmailHasError,
+        changeHandler: emailChangeHandler,
+        blurHandler: emailBlurHandler,
+        reset: resetEmailInput,
+    } = useInput(value => emailRegex.test(value));
 
-export const LoginBtn = styled.button`
-    width: 100%;
-    height: 44px;
-    background-color: #d2cbce;
-    border-radius: 22px;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    margin: 12px 0 5px;
-    transition: all 0.3s;
+    const {
+        value: enteredPassword,
+        isValid: enteredPasswordIsValid,
+        hasError: enteredPasswordHasError,
+        changeHandler: passwordChangeHandler,
+        blurHandler: passwordBlurHandler,
+        reset: resetPassword,
+    } = useInput(value => value.length >= 6);
 
-    &:hover {
-        background-color: #362e31;
+    let formIsValid = false;
+
+    if (entredEmailIsValid && enteredPasswordIsValid) {
+        formIsValid = true;
     }
 
-    &:active {
-        background-color: #000;
-    }
-`;
-
-export const EmailJoinLink = styled.a`
-    color: #767676;
-    font-size: 12px;
-    text-decoration: underline;
-    display: block;
-    margin-top: 22px;
-`;
-
-function EmailLogin() {
-    const submitHandler = e => {
+    const formSubmitHandler = async e => {
         e.preventDefault();
+
+        if (!entredEmailIsValid || !enteredPasswordIsValid) {
+            return;
+        }
+
+        const enteredEmailValue = emailInputRef.current.value;
+        const enteredPasswordValue = passwordInputRef.current.value;
+
+        const user = {
+            user: {
+                email: enteredEmailValue,
+                password: enteredPasswordValue,
+            },
+        };
+
+        try {
+            await axios
+                .post(`${process.env.REACT_APP_BASE_URL}/user/login`, JSON.stringify(user), {
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                })
+                .then(res => {
+                    authCtx.login(res.data.user.token);
+                    navigate('/home');
+                });
+        } catch (error) {
+            if (error.response.stauts === 404) console.log('its error');
+        }
+
+        resetEmailInput();
+        resetPassword();
     };
 
     return (
         <LoginWrapper className="login-wrap">
             <TitleText className="title">로그인</TitleText>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={formSubmitHandler}>
                 <InputForm>
-                    <Label forName="email">이메일</Label>
-                    <Input type="email" id="email" />
+                    <Label htmlFor="email">이메일</Label>
+                    <Input
+                        type="email"
+                        id="email"
+                        value={enteredEmail}
+                        onBlur={emailBlurHandler}
+                        onChange={emailChangeHandler}
+                        ref={emailInputRef}
+                    />
+                    <div>{enteredEmailHasError && <ErrorP>올바른 이메일 양식으로 입력해주세요.</ErrorP>}</div>
                 </InputForm>
                 <InputForm>
-                    <Label forName="pw">비밀번호</Label>
-                    <Input type="password" id="pw" />
-                    <ErrorMessage>* 이메일 또는 비밀번호가 일치하지 않습니다.</ErrorMessage>
+                    <Label htmlFor="pw">비밀번호</Label>
+                    <Input
+                        type="password"
+                        id="pw"
+                        value={enteredPassword}
+                        onBlur={passwordBlurHandler}
+                        onChange={passwordChangeHandler}
+                        ref={passwordInputRef}
+                    />
+                    <div>{enteredPasswordHasError && <ErrorP>올바른 비밀번호 양식으로 입력해주세요.</ErrorP>}</div>
                 </InputForm>
-                <Button size="large" type={'submit'}>
+                <Button size="large" type={'submit'} disabled={!formIsValid}>
                     로그인
                 </Button>
             </form>
-            <EmailJoinLink href="#">이메일로 회원가입</EmailJoinLink>
         </LoginWrapper>
     );
-}
+};
 
 export default EmailLogin;
