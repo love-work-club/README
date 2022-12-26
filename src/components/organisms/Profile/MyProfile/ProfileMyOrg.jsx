@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfileImage from '../../../assets/images/default_profile_user.svg';
-import FollowCount from './FollowCount';
-import ProfileDsc from './ProfileDsc';
-import ProfileImg from './ProfileImg';
-import ButtonGroupYour from './ButtonGroupYour';
+import FollowCount from '../FollowCount';
+import ProfileDsc from '../YourProfile/ProfileDsc';
+import ProfileImg from '../YourProfile/ProfileImg';
+import ButtonGroupMy from '../../../molecules/ButtonGroupMy/ButtonGroupMy';
 
-const ProfileYourWrapper = styled.div`
+const ProfileMyWrapper = styled.div`
     width: 390px;
     height: 314px;
     margin: 0 auto;
@@ -22,9 +22,9 @@ const CounterDiv = styled.div`
     align-items: center;
 `;
 
-export default function ProfileYourOrg() {
+export default function ProfileMyOrg() {
     return (
-        <ProfileYourWrapper>
+        <ProfileMyWrapper>
             <CounterDiv>
                 <FollowCount count={5000} kind="follower" />
                 <ProfileImg src={ProfileImage} alt="ProfileImg" />
@@ -32,10 +32,10 @@ export default function ProfileYourOrg() {
             </CounterDiv>
             <ProfileDsc
                 username="단발의 최양락"
-                userId="@ README_Yangrak"
+                userId="@ README_Name"
                 userDesc="안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요"
             />
-            <ButtonGroupYour />
-        </ProfileYourWrapper>
+            <ButtonGroupMy />
+        </ProfileMyWrapper>
     );
 }
