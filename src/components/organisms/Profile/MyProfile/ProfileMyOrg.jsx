@@ -45,6 +45,7 @@ export default function ProfileMyOrg() {
                 console.log(res.data.user);
             })
             .then(err => console.log(err));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

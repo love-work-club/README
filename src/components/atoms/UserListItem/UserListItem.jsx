@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
+import AuthContext from '../../../store/auth-context';
 import Button from '../Button/Button';
 
 const UserListItemWrapper = styled.li`
@@ -24,15 +26,12 @@ const UserIntroduction = styled.p`
 `;
 
 const FollowBtn = styled(Button)`
+    background-color: ${props => props.backgroundColor}
     min-width: 56px;
     margin: 0;
     && {
         margin-left: auto;
         align-self: center;
-    }
-
-    &.select {
-        background-color: white;
     }
 `;
 
@@ -43,15 +42,49 @@ const UserDsc = styled.div`
 `;
 
 export default function UserListItem({ follower }) {
-    const API_HOST = 'https://mandarin.api.weniv.co.kr/';
+    // 팔로잉,언팔로잉 기능 구현
+    const API_HOST = process.env.REACT_APP_BASE_URL;
+    const token = useContext(AuthContext).token;
+    const [isFollow, setIsFollow] = useState(follower.isfollow);
+    const followConfig = {
+        method: 'post',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-type': 'application/json',
+        },
+        url: `${API_HOST}/profile/${follower.accountname}/follow`,
+        data: {},
+    };
 
-    // 팔로우 클릭 시 취소
-    const [isFollow, setIsFollow] = useState(follower.isFollow);
-    const [color, setColor] = useState('black');
+    const unfollowConfig = {
+        method: 'delete',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-type': 'application/json',
+        },
+        url: `${API_HOST}/profile/${follower.accountname}/unfollow`,
+        data: {},
+    };
+
+    async function followReq() {
+        try {
+            let res = '';
+
+            if (isFollow) {
+                res = await axios(unfollowConfig);
+            } else {
+                res = await axios(followConfig);
+            }
+
+            console.log(res);
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     return (
         <UserListItemWrapper>
-            <UserImg src={API_HOST + follower.image} alt="팔로워 리스트 프로필" />
+            <UserImg src={`${API_HOST}/${follower.image}`} alt="팔로워 리스트 프로필" />
             <UserDsc>
                 <UserNickname>{follower.accountname}</UserNickname>
                 <UserIntroduction>{follower.intro}</UserIntroduction>
@@ -59,8 +92,10 @@ export default function UserListItem({ follower }) {
             <FollowBtn
                 size="small"
                 children={isFollow ? '취소' : '팔로우'}
+                backgroundColor={isFollow ? defaultTheme.palette.gray : defaultTheme.palette.black}
                 onClick={() => {
                     setIsFollow(!isFollow);
+                    followReq();
                 }}
             />
         </UserListItemWrapper>
