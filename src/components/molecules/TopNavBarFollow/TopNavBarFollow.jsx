@@ -8,16 +8,16 @@ const TopNavBarWrapBgModi = styled(TopNavBarWrapBg)`
     justify-content: flex-start;
 `;
 
-const FollowerList = styled.strong`
+const NavBarTitle = styled.strong`
     font-size: ${defaultTheme.fontSize.base};
     font-weight: bolder;
 `;
 
-export default function TopNavBarFollowers() {
+export default function TopNavBarFollow({ children }) {
     return (
         <TopNavBarWrapBgModi>
             <BackBtn />
-            <FollowerList>Followers</FollowerList>
+            <NavBarTitle>{children}</NavBarTitle>
         </TopNavBarWrapBgModi>
     );
 }
