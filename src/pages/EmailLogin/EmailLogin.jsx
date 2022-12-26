@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../components/atoms/Button/Button';
@@ -7,6 +7,7 @@ import { LoginWrapper, TitleText, InputForm, Label, Input, ErrorP } from '../Log
 import AuthContext from '../../store/auth-context';
 
 export const EmailLogin = props => {
+    const [msg, setMsg] = useState('');
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
 
@@ -17,12 +18,9 @@ export const EmailLogin = props => {
     const emailRegex =
         /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
-    // const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-
     const {
         value: enteredEmail,
         isValid: entredEmailIsValid,
-        hasError: enteredEmailHasError,
         changeHandler: emailChangeHandler,
         blurHandler: emailBlurHandler,
         reset: resetEmailInput,
@@ -31,7 +29,6 @@ export const EmailLogin = props => {
     const {
         value: enteredPassword,
         isValid: enteredPasswordIsValid,
-        hasError: enteredPasswordHasError,
         changeHandler: passwordChangeHandler,
         blurHandler: passwordBlurHandler,
         reset: resetPassword,
@@ -68,11 +65,18 @@ export const EmailLogin = props => {
                     },
                 })
                 .then(res => {
-                    authCtx.login(res.data.user.token);
-                    navigate('/home');
+                    if (res.data.status === 404) {
+                        navigate('/notfound');
+                    }
+                    if (res.data.status === 422) {
+                        setMsg(res.data.message);
+                    } else {
+                        authCtx.login(res.data.user.token);
+                        navigate('/home');
+                    }
                 });
         } catch (error) {
-            if (error.response.stauts === 404) console.log('its error');
+            navigate('/notfound');
         }
 
         resetEmailInput();
@@ -93,7 +97,6 @@ export const EmailLogin = props => {
                         onChange={emailChangeHandler}
                         ref={emailInputRef}
                     />
-                    <div>{enteredEmailHasError && <ErrorP>올바른 이메일 양식으로 입력해주세요.</ErrorP>}</div>
                 </InputForm>
                 <InputForm>
                     <Label htmlFor="pw">비밀번호</Label>
@@ -105,7 +108,7 @@ export const EmailLogin = props => {
                         onChange={passwordChangeHandler}
                         ref={passwordInputRef}
                     />
-                    <div>{enteredPasswordHasError && <ErrorP>올바른 비밀번호 양식으로 입력해주세요.</ErrorP>}</div>
+                    {{ msg } && <ErrorP>{msg}</ErrorP>}
                 </InputForm>
                 <Button size="large" type={'submit'} disabled={!formIsValid}>
                     로그인
