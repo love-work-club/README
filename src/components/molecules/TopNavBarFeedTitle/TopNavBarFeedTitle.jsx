@@ -14,7 +14,7 @@ function TopNavBarFeedTitle() {
     return (
         <TopNavBarWrapBg>
             <BackBtn />
-            <FeedTitle>리액트를 다루는 기술</FeedTitle>
+            <FeedTitle>리듬이</FeedTitle>
             <OptionBtn />
         </TopNavBarWrapBg>
     );
