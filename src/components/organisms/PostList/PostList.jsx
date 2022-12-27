@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import TopNavBarView from '../../molecules/TopNavBarView/TopNavBarView';
 import Posts from '../../molecules/Posts/Posts';
+import AuthContext from '../../../store/auth-context';
 import PostImg from '../../molecules/PostImg/PostImg';
 import { Empty } from '../../molecules/Empty/Empty';
 
@@ -26,13 +27,12 @@ const PhotoWrapper = styled.div`
 export default function PostList() {
     // 상대 게시글 가져오기
     const [posts, setPosts] = useState([]);
-    const API_HOST = 'https://mandarin.api.weniv.co.kr/';
-    const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWM0MjViMTdhZTY2NjU4MWM2NTE4MCIsImV4cCI6MTY3Njc5NTU0OCwiaWF0IjoxNjcxNjExNTQ4fQ.JJiFJ4Zvh_BphSMgWnQIcHv-E8qouG6539f2XJq5QNA';
+    const token = useContext(AuthContext).token;
+    const API_HOST = process.env.REACT_APP_BASE_URL;
 
     const config = {
         method: 'get',
-        url: `${API_HOST}post/dotory/userpost`,
+        url: `${API_HOST}/post/dotory/userpost`,
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-type': 'application/json',
@@ -71,14 +71,14 @@ export default function PostList() {
                                         userId={post.author.accountname}
                                         date={post.createdAt}
                                         children={post.content}
-                                        imgSrc={post.image ? API_HOST + post.image : null}
+                                        imgSrc={post.image ? `${API_HOST}/${post.image}` : null}
                                     />
                                 ))}
                             </PostWrapper>
                         ) : (
                             <PhotoWrapper>
                                 {posts.map((post, i) =>
-                                    post.image ? <PostImg key={i} imgSrc={API_HOST + post.image} /> : null
+                                    post.image ? <PostImg key={i} imgSrc={`${API_HOST}/${post.image}`} /> : null
                                 )}
                             </PhotoWrapper>
                         )}

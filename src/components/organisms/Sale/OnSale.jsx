@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import ProductItem from '../../molecules/ProductItem/ProductItem';
 import defaultTheme from '../../../commons/style/themes/default';
+import AuthContext from '../../../store/auth-context';
 
 const OnSaleWrapper = styled.div`
     padding: 20px;
@@ -28,13 +29,12 @@ const TitleText = styled.h3`
 export default function OnSale() {
     // 상품 리스트 불러오기
     const [products, setProducts] = useState([]);
-    const API_HOST = 'https://mandarin.api.weniv.co.kr/';
-    const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWM0MjViMTdhZTY2NjU4MWM2NTE4MCIsImV4cCI6MTY3Njc4NDU4NiwiaWF0IjoxNjcxNjAwNTg2fQ.-iJYh4ugLMcsAfzft3y2U6DyO2O3MVwYRG3Pq_DePto';
+    const API_HOST = process.env.REACT_APP_BASE_URL;
+    const token = useContext(AuthContext).token;
 
     const config = {
         method: 'get',
-        url: `${API_HOST}product/dotory`,
+        url: `${API_HOST}/product/dotory`,
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-type': 'application/json',
@@ -63,7 +63,7 @@ export default function OnSale() {
                             products.map((product, i) => (
                                 <ProductItem
                                     key={i}
-                                    imgSrc={product.itemImage ? API_HOST + product.itemImage : null}
+                                    imgSrc={product.itemImage ? `${API_HOST}/${product.itemImage}` : null}
                                     price={product.price}
                                     itemName={product.itemName}
                                 />

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import FollowCount from '../../../molecules/FollowCount/FollowCount';
 import ProfileDsc from '../../../molecules/ProfileDsc/ProfileDsc';
 import ProfileImg from '../../../molecules/ProfileImg/ProfileImg';
+import AuthContext from '../../../../store/auth-context';
 import ButtonGroupYour from '../../../molecules/ButtonGroupYour/ButtonGroupYour';
 
 const ProfileYourWrapper = styled.div`
@@ -25,13 +26,12 @@ const CounterDiv = styled.div`
 export default function ProfileYourOrg() {
     // 상대 프로필 가져오기
     const [profile, setProfile] = useState({});
-    const API_HOST = 'https://mandarin.api.weniv.co.kr/';
-    const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWM0MjViMTdhZTY2NjU4MWM2NTE4MCIsImV4cCI6MTY3Njc4NDU4NiwiaWF0IjoxNjcxNjAwNTg2fQ.-iJYh4ugLMcsAfzft3y2U6DyO2O3MVwYRG3Pq_DePto';
+    const API_HOST = process.env.REACT_APP_BASE_URL;
+    const token = useContext(AuthContext).token;
 
     const config = {
         method: 'get',
-        url: `${API_HOST}profile/dotory`,
+        url: `${API_HOST}/profile/dotory`,
         headers: {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ export default function ProfileYourOrg() {
         <ProfileYourWrapper>
             <CounterDiv>
                 <FollowCount count={profile.followerCount} kind="follower" />
-                <ProfileImg src={API_HOST + profile.image} alt="ProfileImg" />
+                <ProfileImg src={`${API_HOST}/${profile.image}`} alt="ProfileImg" />
                 <FollowCount count={profile.followingCount} kind="following" />
             </CounterDiv>
             <ProfileDsc username={profile.username} userId={profile.accountname} userDesc={profile.intro} />
