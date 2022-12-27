@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const PostsWrapper = styled.div`
-    padding: 20px 16px 60px;
+    padding: 60px 16px;
 `;
 
 const PostWrapper = styled.div``;
