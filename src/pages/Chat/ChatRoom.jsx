@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import TopNavBarFeedTitle from '../../components/molecules/TopNavBarFeedTitle/TopNavBarFeedTitle';
 import ChatUserProfileimg from '../../assets/images/default_profile_feed.svg';
@@ -95,12 +95,23 @@ const ReplyInputText = styled.input`
     flex-grow: 1;
 `;
 const ReplySend = styled.button`
-    color: #c4c4c4;
     cursor: pointer;
     flex-grow: 0;
+    color: #c55854;
+    &:disabled {
+        color: #c4c4c4;
+    }
 `;
 
 export default function ChatRooomPage() {
+    const [input, setInput] = useState('');
+    const [isValid, setIsValid] = useState(true);
+
+    const handleCheckValid = event => {
+        setInput(event.target.value);
+        event.target.value ? setIsValid(false) : setIsValid(true);
+    };
+
     return (
         <>
             <TopNavBarFeedTitle />
@@ -130,8 +141,13 @@ export default function ChatRooomPage() {
                 </ChatReply>
                 <Reply>
                     <ReplyInputImage />
-                    <ReplyInputText type="text" placeholder="메세지 입력하기..." />
-                    <ReplySend>전송</ReplySend>
+                    <ReplyInputText
+                        value={input}
+                        onChange={handleCheckValid}
+                        type="text"
+                        placeholder="메세지 입력하기..."
+                    />
+                    <ReplySend disabled={isValid}>전송</ReplySend>
                 </Reply>
             </ChatRoom>
         </>
