@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { ReactComponent as ProfileLogo } from '../../../assets/icons/profile_sm.svg';
 import { ReactComponent as HeartIcon } from '../../../assets/icons/icon-heart.svg';
 import { ReactComponent as CommentIcon } from '../../../assets/icons/message-circle.svg';
+import MoreIcon from '../../../assets/icons/feed-more-option.svg';
 import defaultTheme from '../../../commons/style/themes/default';
 
 const PostList = styled.li`
+    width: 100%;
     display: flex;
     gap: 12px;
     margin-bottom: 30px;
@@ -14,6 +16,7 @@ const PostList = styled.li`
 const ImgProfileLogo = styled.img`
     height: 36px;
     border-radius: 100%;
+    min-width: 36px;
 `;
 
 const PostBox = styled.div`
@@ -25,7 +28,7 @@ const PostBox = styled.div`
 
 const PostWrapper = styled.div`
     display: flex;
-    gap: 16px;
+    justify-content: space-between;
 `;
 
 const PostDiv = styled.div`
@@ -48,6 +51,7 @@ const ContentWrapper = styled.div`
     line-height: 18px;
     display: flex;
     flex-direction: column;
+    padding-top: ${props => (props.imgSrc ? '16px' : 0)};
 `;
 
 const PostImg = styled.img`
@@ -61,18 +65,20 @@ const LikeComment = styled.div`
     display: flex;
 `;
 
-const HeartSvg = styled(HeartIcon)``;
-
-const Count = styled.p`
-    margin-left: 8px;
-    font-size: ${defaultTheme.fontSize.sm};
-    line-height: ${defaultTheme.fontSize.sm};
-    padding: 4px 0;
-    color: ${defaultTheme.palette.gray3};
+const HeartSvg = styled(HeartIcon)`
+    margin-right: 6px;
 `;
 
 const CommentSvg = styled(CommentIcon)`
-    margin: 0 0 0 16px;
+    margin: 0 6px 0 16px;
+`;
+
+const ProfileBadge = styled(ProfileLogo)`
+    min-width: 36px;
+`;
+
+const MoreBtn = styled.button`
+    cursor: pointer;
 `;
 
 const DateDiv = styled.div`
@@ -80,6 +86,14 @@ const DateDiv = styled.div`
     line-height: 12px;
     color: ${defaultTheme.palette.gray3};
     padding-top: 2.5px;
+`;
+
+const Count = styled.p`
+    margin-left: 8px;
+    font-size: ${defaultTheme.fontSize.sm};
+    line-height: ${defaultTheme.fontSize.sm};
+    padding: 4px 0;
+    color: ${defaultTheme.palette.gray3};
 `;
 
 const postDate = date => {
@@ -93,13 +107,16 @@ export default function Posts({ userIcon, nickname, userId, children, date, imgS
     return (
         <>
             <PostList>
-                {userIcon ? <ImgProfileLogo src={userIcon} /> : <ProfileLogo />}
+                {userIcon ? <ImgProfileLogo src={userIcon} /> : <ProfileBadge />}
                 <PostBox>
                     <PostWrapper>
                         <PostDiv>
                             <UserName>{nickname}</UserName>
                             <UserId>{`@${userId}`}</UserId>
                         </PostDiv>
+                        <MoreBtn>
+                            <img src={MoreIcon} alt="더보기" />
+                        </MoreBtn>
                     </PostWrapper>
                     <ContentWrapper>{children}</ContentWrapper>
                     {<PostImg src={imgSrc} />}
@@ -107,7 +124,7 @@ export default function Posts({ userIcon, nickname, userId, children, date, imgS
                         <HeartSvg />
                         <Count>{heartsCount}</Count>
                         <CommentSvg />
-                        <Count>{commentsCount}</Count>
+                        <Count>{heartsCount}</Count>
                     </LikeComment>
                     <DateDiv>{postDate(date)}</DateDiv>
                 </PostBox>
