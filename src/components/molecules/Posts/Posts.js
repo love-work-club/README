@@ -13,6 +13,12 @@ const PostList = styled.li`
     margin-bottom: 30px;
 `;
 
+const ImgProfileLogo = styled.img`
+    height: 36px;
+    border-radius: 100%;
+    min-width: 36px;
+`;
+
 const PostBox = styled.div`
     display: flex;
     flex-direction: column;
@@ -42,10 +48,10 @@ const UserId = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-    padding-top: ${props => (props.imgSrc ? '16px' : 0)};
     line-height: 18px;
     display: flex;
     flex-direction: column;
+    padding-top: ${props => (props.imgSrc ? '16px' : 0)};
 `;
 
 const PostImg = styled.img`
@@ -82,30 +88,45 @@ const DateDiv = styled.div`
     padding-top: 2.5px;
 `;
 
-export default function Posts({ nickname, userId, children, date, imgSrc }) {
+const Count = styled.p`
+    margin-left: 8px;
+    font-size: ${defaultTheme.fontSize.sm};
+    line-height: ${defaultTheme.fontSize.sm};
+    padding: 4px 0;
+    color: ${defaultTheme.palette.gray3};
+`;
+
+const postDate = date => {
+    const newDate = new Date(date);
+    const postedDate = `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일`;
+
+    return postedDate;
+};
+
+export default function Posts({ userIcon, nickname, userId, children, date, imgSrc, heartsCount, commentsCount }) {
     return (
         <>
             <PostList>
-                <ProfileBadge />
+                {userIcon ? <ImgProfileLogo src={userIcon} /> : <ProfileBadge />}
                 <PostBox>
                     <PostWrapper>
                         <PostDiv>
                             <UserName>{nickname}</UserName>
-                            <UserId>{userId}</UserId>
+                            <UserId>{`@${userId}`}</UserId>
                         </PostDiv>
                         <MoreBtn>
                             <img src={MoreIcon} alt="더보기" />
                         </MoreBtn>
                     </PostWrapper>
-                    <ContentWrapper>
-                        {<PostImg src={imgSrc} />}
-                        {children}
-                    </ContentWrapper>
+                    <ContentWrapper>{children}</ContentWrapper>
+                    {<PostImg src={imgSrc} />}
                     <LikeComment>
                         <HeartSvg />
+                        <Count>{heartsCount}</Count>
                         <CommentSvg />
+                        <Count>{heartsCount}</Count>
                     </LikeComment>
-                    <DateDiv>{date}</DateDiv>
+                    <DateDiv>{postDate(date)}</DateDiv>
                 </PostBox>
             </PostList>
         </>
