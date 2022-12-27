@@ -8,6 +8,7 @@ import Splash from '../pages/Splash/Splash';
 import Home from '../pages/Home/Home';
 import YourProfile from '../pages/Profile/YourProfile/YourProfile';
 import Chat from '../pages/Chat/Chat';
+import Search from '../pages/Search/Search';
 import NotFound from '../pages/NotFound/NotFound';
 
 function Pages() {
@@ -39,6 +40,7 @@ function MainPages() {
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/yourprofile" element={<YourProfile />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
+                    <Route path="/search" element={<Search />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>
