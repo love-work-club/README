@@ -5,6 +5,7 @@ import { TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
 import IconSearchBtn from '../../../assets/icons/icon-search.svg';
 
 const AppTitle = styled.h2`
+    font-family: 'Pretendard_Bold';
     font-size: ${defaultTheme.fontSize.lg};
 `;
 

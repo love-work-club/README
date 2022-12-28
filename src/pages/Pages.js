@@ -11,6 +11,7 @@ import MyProfile from '../pages/Profile/MyProfile/MyProfile';
 import Followers from './Followers/Followers';
 import Followings from './Followings/Followings';
 import Chat from '../pages/Chat/Chat';
+import Search from '../pages/Search/Search';
 import NotFound from '../pages/NotFound/NotFound';
 
 function Pages() {
@@ -45,6 +46,7 @@ function MainPages() {
                     <Route path="/followers/:accountName" element={<Followers />}></Route>
                     <Route path="/followings/:accountName" element={<Followings />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
+                    <Route path="/search" element={<Search />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>
