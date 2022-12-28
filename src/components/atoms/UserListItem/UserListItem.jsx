@@ -14,6 +14,8 @@ const UserListItemWrapper = styled.li`
 
 const UserImg = styled.img`
     margin-right: 12px;
+    width: 50px;
+    object-fit: cover;
     border-radius: 70%;
 `;
 
@@ -23,6 +25,7 @@ const UserNickname = styled.strong`
 
 const UserIntroduction = styled.p`
     margin: 6px 12px;
+    max-width: 200px;
 `;
 
 const FollowBtn = styled(Button)`
@@ -46,6 +49,7 @@ export default function UserListItem({ follower }) {
     const API_HOST = process.env.REACT_APP_BASE_URL;
     const token = useContext(AuthContext).token;
     const [isFollow, setIsFollow] = useState(follower.isfollow);
+
     const followConfig = {
         method: 'post',
         headers: {
