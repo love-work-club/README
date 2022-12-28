@@ -26,7 +26,7 @@ const TitleText = styled.h3`
     font-weight: bolder;
 `;
 
-export default function OnSale() {
+export default function OnSale({ accountName, ...props }) {
     // 상품 리스트 불러오기
     const [products, setProducts] = useState([]);
     const API_HOST = process.env.REACT_APP_BASE_URL;
@@ -34,7 +34,7 @@ export default function OnSale() {
 
     const config = {
         method: 'get',
-        url: `${API_HOST}/product/dotory`,
+        url: `${API_HOST}/product/${accountName}`,
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-type': 'application/json',
