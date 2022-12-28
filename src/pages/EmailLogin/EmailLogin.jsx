@@ -71,7 +71,7 @@ export const EmailLogin = props => {
                     if (res.data.status === 422) {
                         setMsg(res.data.message);
                     } else {
-                        authCtx.login(res.data.user.token);
+                        authCtx.login(res.data.user.token, res.data.user.accountname);
                         navigate('/home');
                     }
                 });
