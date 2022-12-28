@@ -12,6 +12,7 @@ export const TopNavBarWrapBg = styled.div`
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    position: fixed;
 `;
 
 function TopNavBarWrap() {
