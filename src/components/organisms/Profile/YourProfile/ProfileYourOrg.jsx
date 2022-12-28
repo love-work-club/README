@@ -23,7 +23,7 @@ const CounterDiv = styled.div`
     align-items: center;
 `;
 
-export default function ProfileYourOrg() {
+export default function ProfileYourOrg({ accountName, ...props }) {
     // 상대 프로필 가져오기
     const [profile, setProfile] = useState({});
     const API_HOST = process.env.REACT_APP_BASE_URL;
@@ -31,7 +31,7 @@ export default function ProfileYourOrg() {
 
     const config = {
         method: 'get',
-        url: `${API_HOST}/profile/dotory`,
+        url: `${API_HOST}/profile/${accountName}`,
         headers: {
             'Content-type': 'application/json',
             Authorization: `Bearer ${token}`,
@@ -53,12 +53,12 @@ export default function ProfileYourOrg() {
     return (
         <ProfileYourWrapper>
             <CounterDiv>
-                <FollowCount count={profile.followerCount} kind="follower" />
+                <FollowCount count={profile.followerCount} kind="followers" accountName={profile.accountname} />
                 <ProfileImg src={`${API_HOST}/${profile.image}`} alt="ProfileImg" />
-                <FollowCount count={profile.followingCount} kind="following" />
+                <FollowCount count={profile.followingCount} kind="followings" accountName={profile.accountname} />
             </CounterDiv>
             <ProfileDsc username={profile.username} userId={profile.accountname} userDesc={profile.intro} />
-            <ButtonGroupYour />
+            <ButtonGroupYour profile={profile} />
         </ProfileYourWrapper>
     );
 }

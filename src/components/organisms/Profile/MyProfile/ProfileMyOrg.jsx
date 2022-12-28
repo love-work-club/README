@@ -51,9 +51,9 @@ export default function ProfileMyOrg() {
     return (
         <ProfileMyWrapper>
             <CounterDiv>
-                <FollowCount count={profile.followerCount} kind="follower" />
+                <FollowCount count={profile.followerCount} kind="followers" accountName={profile.accountname} />
                 <ProfileImg src={`${API_HOST}/${profile.image}`} alt="ProfileImg" />
-                <FollowCount count={profile.followingCount} kind="following" />
+                <FollowCount count={profile.followingCount} kind="followings" accountName={profile.accountname} />
             </CounterDiv>
             <ProfileDsc username={profile.username} userId={profile.accountname} userDesc={profile.intro} />
             <ButtonGroupMy />

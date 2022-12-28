@@ -1,18 +1,20 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import UserListItem from '../UserListItem/UserListItem';
 import AuthContext from '../../../store/auth-context';
 
 export default function UserList({ urlPath }) {
     // 팔로잉/팔로워 리스트 가져오기
+    const { accountName } = useParams();
     const [followers, setFollowers] = useState([]);
     const token = useContext(AuthContext).token;
     const API_HOST = process.env.REACT_APP_BASE_URL;
 
     const config = {
         method: 'get',
-        url: `${API_HOST}/profile/dotory/${urlPath}`,
+        url: `${API_HOST}/profile/${accountName}/${urlPath}`,
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-type': 'application/json',

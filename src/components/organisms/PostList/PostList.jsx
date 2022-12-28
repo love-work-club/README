@@ -24,15 +24,15 @@ const PhotoWrapper = styled.div`
     gap: 8px;
 `;
 
-export default function PostList() {
-    // 상대 게시글 가져오기
+export default function PostList({ accountName, ...props }) {
+    // accountName의 게시글 가져오기
     const [posts, setPosts] = useState([]);
     const token = useContext(AuthContext).token;
     const API_HOST = process.env.REACT_APP_BASE_URL;
 
     const config = {
         method: 'get',
-        url: `${API_HOST}/post/dotory/userpost`,
+        url: `${API_HOST}/post/${accountName}/userpost?limit=200`,
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-type': 'application/json',
