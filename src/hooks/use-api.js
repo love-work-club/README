@@ -15,7 +15,9 @@ const useAxios = ({ method, url, headers = null, body = null }) => {
             data: body,
             headers: headers,
         })
-            .then(res => setResponse(res.data))
+            .then(res => {
+                setResponse(res.data);
+            })
             .catch(err => {
                 navigate('/notfound');
                 setError(err);
@@ -24,7 +26,7 @@ const useAxios = ({ method, url, headers = null, body = null }) => {
 
     useEffect(() => {
         ResData();
-    }, []);
+    }, [ResData]);
 
     return { response, error };
 };
