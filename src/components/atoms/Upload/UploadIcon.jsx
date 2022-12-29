@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
-import IconHome from '../../../assets/icons/nav-home.svg';
+import IconUpload from '../../../assets/icons/nav-upload.svg';
 
-const HomeBtnIcon = styled.button`
+const UploadBtnIcon = styled.button`
     width: 84px;
     display: flex;
     flex-direction: column;
@@ -19,11 +19,11 @@ const MenuDsc = styled.span`
     color: ${defaultTheme.palette.gray3};
 `;
 
-export default function Home() {
+export default function UploadIcon() {
     return (
-        <HomeBtnIcon>
-            <img src={IconHome} alt="뒤로가기 버튼" />
-            <MenuDsc>홈</MenuDsc>
-        </HomeBtnIcon>
+        <UploadBtnIcon>
+            <img src={IconUpload} alt="게시물 작성 버튼" />
+            <MenuDsc>게시물 작성</MenuDsc>
+        </UploadBtnIcon>
     );
 }
