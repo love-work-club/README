@@ -22,7 +22,7 @@ function TopNavBarFeedSearch() {
             <AppTitle>리드미북 피드</AppTitle>
             <Link to="/search">
                 <SearchBtn>
-                    <img src={IconSearchBtn} alt="" />
+                    <img src={IconSearchBtn} alt="검색하기" />
                 </SearchBtn>
             </Link>
         </TopNavBarWrapBg>
