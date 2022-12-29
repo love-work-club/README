@@ -9,6 +9,7 @@ export const TopNavBarHeader = styled.header`
     left: 0;
     padding: 0px 18px;
     border-bottom: 1px solid #dbdbdb;
+    background-color: ${defaultTheme.palette.white};
 `;
 
 export const TopNavBarWrapBg = styled.div`
