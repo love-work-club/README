@@ -2,11 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
 
-// main 태그 역할 - 공통 메인
-// export const MainSection = styled.main`
-//     padding-top: 48px;
-// `;
-
 export const SearchUserUl = styled.ul`
     padding: 66px 0 16px;
     overflow: hidden;
