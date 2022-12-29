@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import defaultTheme from '../../commons/style/themes/default';
 
 const LoginWrapper = styled.div`
     &.login-wrap {
@@ -28,18 +29,18 @@ const InputForm = styled.div`
 `;
 
 const Label = styled.label`
-    color: #767676;
-    font-size: 12px;
+    color: ${defaultTheme.palette.gray3};
+    font-size: ${defaultTheme.fontSize.sm};
 `;
 
 const Input = styled.input`
     height: 34px;
     border: none;
-    border-bottom: 1px solid #dbdbdb;
+    border-bottom: 1px solid ${defaultTheme.palette.gray};
     transition: all 0.3s;
 
     &:focus {
-        border-color: #362e31;
+        border-color: ${defaultTheme.palette.primary};
         outline: none;
     }
 `;
@@ -47,27 +48,33 @@ const Input = styled.input`
 const LoginBtn = styled.button`
     width: 100%;
     height: 44px;
-    background-color: #d2cbce;
+    background-color: ${defaultTheme.palette.disable};
     border-radius: 22px;
     border: none;
-    color: #fff;
+    color: ${defaultTheme.palette.white};
     cursor: pointer;
     margin: 12px 0 5px;
     transition: all 0.3s;
 
     &:hover {
-        background-color: #362e31;
+        background-color: ${defaultTheme.palette.primary};
     }
 
     &:active {
-        background-color: #000;
+        background-color: ${defaultTheme.palette.black};
     }
 `;
 
 const EmailJoinLink = styled.a`
-    color: #767676;
-    font-size: 12px;
+    color: ${defaultTheme.palette.gray3};
+    font-size: ${defaultTheme.fontSize.sm};
     text-decoration: underline;
 `;
 
-export { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn, EmailJoinLink };
+const ErrorP = styled.p`
+    color: ${defaultTheme.palette.gray3};
+    font-size: ${defaultTheme.fontSize.xs};
+    padding-top: 4px;
+`;
+
+export { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn, EmailJoinLink, ErrorP };
