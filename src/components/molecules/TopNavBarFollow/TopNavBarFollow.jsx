@@ -6,6 +6,7 @@ import BackBtn from '../../atoms/BackBtn/BackBtn';
 
 const TopNavBarWrapBgModi = styled(TopNavBarWrapBg)`
     justify-content: flex-start;
+    position: relative;
 `;
 
 const NavBarTitle = styled.strong`

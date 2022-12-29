@@ -11,6 +11,7 @@ import defaultTheme from '../../../commons/style/themes/default';
 const ButtonDiv = styled.div`
     display: flex;
     justify-content: center;
+    margin-block: 15px;
 `;
 
 export default function ButtonGroupYour({ profile, ...props }) {

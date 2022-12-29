@@ -9,7 +9,6 @@ import ButtonGroupYour from '../../../molecules/ButtonGroupYour/ButtonGroupYour'
 
 const ProfileYourWrapper = styled.div`
     width: 390px;
-    padding-top: 30px;
     margin: 0 auto;
     text-align: center;
     display: flex;
@@ -21,6 +20,7 @@ const CounterDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 80px;
 `;
 
 export default function ProfileYourOrg({ accountName, ...props }) {
