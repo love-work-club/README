@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as ProfileLogo } from '../../../assets/icons/profile_sm.svg';
 import { ReactComponent as HeartIcon } from '../../../assets/icons/icon-heart.svg';
 import { ReactComponent as CommentIcon } from '../../../assets/icons/message-circle.svg';
 import MoreIcon from '../../../assets/icons/feed-more-option.svg';
 import defaultTheme from '../../../commons/style/themes/default';
+import Modal from '../Modal/Modal';
 
 const PostList = styled.li`
     width: 100%;
     display: flex;
     gap: 12px;
-    margin-bottom: 30px;
 `;
 
 const ImgProfileLogo = styled.img`
-    height: 36px;
+    height: 42px;
     border-radius: 100%;
-    min-width: 36px;
+    min-width: 42px;
 `;
 
 const PostBox = styled.div`
@@ -79,6 +80,8 @@ const ProfileBadge = styled(ProfileLogo)`
 
 const MoreBtn = styled.button`
     cursor: pointer;
+    position: absolute;
+    right: 16px;
 `;
 
 const DateDiv = styled.div`
@@ -89,13 +92,13 @@ const DateDiv = styled.div`
 `;
 
 const Count = styled.p`
-    margin-left: 8px;
     font-size: ${defaultTheme.fontSize.sm};
     line-height: ${defaultTheme.fontSize.sm};
     padding: 4px 0;
     color: ${defaultTheme.palette.gray3};
 `;
 
+// 얘도 빼서 쓸 예정..
 const postDate = date => {
     const newDate = new Date(date);
     const postedDate = `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일`;
@@ -103,10 +106,39 @@ const postDate = date => {
     return postedDate;
 };
 
-export default function Posts({ userIcon, nickname, userId, children, date, imgSrc, heartsCount, commentsCount }) {
+export default function Posts({
+    id,
+    userIcon,
+    nickname,
+    userId,
+    children,
+    date,
+    imgSrc,
+    heartsCount,
+    commentsCount,
+    onComment,
+}) {
+    const [modal, setModal] = useState(false);
+    const navigate = useNavigate();
+
+    const handleModal = () => {
+        setModal(true);
+    };
+
+    const handleBackdrop = e => {
+        const clicked = e.target.closest('.postmodal');
+
+        if (!clicked) {
+            setModal(false);
+        }
+    };
+
+    const handleDetail = e => navigate(`/post/${id}`);
+
     return (
         <>
-            <PostList>
+            {/* {modal && <Modal onBack={handleBackdrop} onModal="post" />} */}
+            <PostList onClick={handleDetail}>
                 {userIcon ? <ImgProfileLogo src={userIcon} /> : <ProfileBadge />}
                 <PostBox>
                     <PostWrapper>
@@ -114,7 +146,7 @@ export default function Posts({ userIcon, nickname, userId, children, date, imgS
                             <UserName>{nickname}</UserName>
                             <UserId>{`@${userId}`}</UserId>
                         </PostDiv>
-                        <MoreBtn>
+                        <MoreBtn onClick={handleModal}>
                             <img src={MoreIcon} alt="더보기" />
                         </MoreBtn>
                     </PostWrapper>
@@ -123,8 +155,10 @@ export default function Posts({ userIcon, nickname, userId, children, date, imgS
                     <LikeComment>
                         <HeartSvg />
                         <Count>{heartsCount}</Count>
-                        <CommentSvg />
-                        <Count>{heartsCount}</Count>
+                        <div className="commentClick" onClick={onComment}>
+                            <CommentSvg />
+                        </div>
+                        <Count>{commentsCount}</Count>
                     </LikeComment>
                     <DateDiv>{postDate(date)}</DateDiv>
                 </PostBox>
