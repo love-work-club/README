@@ -4,6 +4,7 @@ import AuthContext from '../store/auth-context';
 import Login from '../pages/Login/Login';
 import EmailLogin from '../pages/EmailLogin/EmailLogin';
 import Join from '../pages/Join/JoinMembership';
+import ProfileSetting from '../pages/Join/ProfileSetting';
 import Splash from '../pages/Splash/Splash';
 import Home from '../pages/Home/Home';
 import YourProfile from '../pages/Profile/YourProfile/YourProfile';
@@ -38,6 +39,7 @@ function MainPages() {
                     <Route path="/login" element={<Login />}></Route>
                     <Route path="/login/emailLogin" element={<EmailLogin />}></Route>
                     <Route path="/login/join" element={<Join />}></Route>
+                    <Route path="/login/join/profileSetting" element={<ProfileSetting />}></Route>
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/yourprofile" element={<YourProfile />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
