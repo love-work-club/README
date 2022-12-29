@@ -4,12 +4,7 @@ import AuthContext from '../../../store/auth-context';
 import TopNavBarUserSearch from '../../molecules/TopNavBarUserSearch/TopNavBarUserSearch';
 import SearchUserList from '../../molecules/SearchUserList/SearchUserList';
 
-// 1. 우선 검색한 유저 정보 리스트로 불러오기
-// 2. 필터링해주기
-// 3. 불러온 유저 정보 화면에 뿌려주기
-
 // searchResult 내가 키워드 입력해서 얻어온 유저 데이터를 갖고있을 것이다.
-// 그럼 searchResult가 배열 값 모아두니까 이게 map으로 데이터 뽑아내야하는디 왜 안되지,,?
 function SearchUser() {
     const [searchResult, setSearchResult] = useState([]);
 
@@ -20,8 +15,6 @@ function SearchUser() {
         setTimeout(() => {
             setKeyword(userInput);
         }, 1200);
-        // console.log(keyword);
-        // console.log('여긴가: ', searchResult(keyword));
     };
 
     const searchUserData = async () => {
@@ -35,9 +28,8 @@ function SearchUser() {
                 })
 
                 .then(response => {
-                    // 이곳에서 검색한 결과에 대한 요청을 받아와서 searchResult 에 전달해서 화면에 렌더링해준다.
+                    // 이곳에서 검색한 결과에 대한 요청을 받아와서 searchResult에 전달해서 화면에 렌더링해준다.
                     setSearchResult(response.data);
-                    console.log(response.data);
                 })
                 .catch(error => {
                     if (error.response) {
@@ -63,7 +55,7 @@ function SearchUser() {
         <>
             {/* 내가 인풋창에 keyword 검색하면 username 불러오기 */}
             <TopNavBarUserSearch handleKeyword={handleKeyword} />
-            {/* 검색결과로 username 불러오기 */}
+            {/* 검색결과로 username, accountname 리스트 렌더링하기 */}
             <SearchUserList keyword={keyword} searchResult={searchResult} />
         </>
     );
