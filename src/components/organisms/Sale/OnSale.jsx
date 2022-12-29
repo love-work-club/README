@@ -11,7 +11,7 @@ const OnSaleWrapper = styled.div`
 `;
 
 const ProductItemWrapper = styled.div`
-    width: 100vw;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     overflow: scroll;
