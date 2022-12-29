@@ -5,16 +5,10 @@ import { SearchUserForm, SearchUserInput } from './TopNavBarUserSearchStyle';
 
 function TopNavBarUserSearch({ handleKeyword }) {
     const [keyword, setKeyword] = useState('');
-    // const [searchData, setSearchData] = useState([]);
-    // const AuthCtx = useContext(AuthContext);
 
     const handleInputUserSearch = e => {
         setKeyword(e.target.value);
     };
-
-    // const handleOnClick = () => {
-    //     console.log('나와라');
-    // };
 
     useEffect(() => {
         handleKeyword(keyword);

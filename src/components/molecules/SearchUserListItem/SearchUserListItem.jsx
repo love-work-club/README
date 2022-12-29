@@ -1,18 +1,16 @@
 import React from 'react';
-import {
-    SearchUserLi,
-    SearchUserListInfo,
-    UserProfileName,
-    UserAccountId,
-} from '../SearchUserListSection/SearchUserListSectionStyle';
+import { SearchUserLi, SearchUserListInfo, UserName, UserAccountId } from '../SearchUserList/SearchUserListStyle';
+import defaultProfileImg from '../../../assets/images/default_profile_user_list.svg';
 
-function SearchUserListItem({ searchUserImg, username, accountname }) {
+// name: 유저 네임
+// id: 계정 이름
+function SearchUserListItem({ name, id, image, type }) {
     return (
         <SearchUserLi>
-            <img src={searchUserImg} alt="" />
+            <img src={defaultProfileImg} alt="" />
             <SearchUserListInfo>
-                <UserProfileName>유저 이름: {username}</UserProfileName>
-                <UserAccountId>유저 계정: {accountname}</UserAccountId>
+                <UserName>{name}</UserName>
+                <UserAccountId>{id}</UserAccountId>
             </SearchUserListInfo>
         </SearchUserLi>
     );
