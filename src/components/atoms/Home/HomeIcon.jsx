@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
-import IconChat from '../../../assets/icons/nav-chatting.svg';
+import IconHome from '../../../assets/icons/nav-home.svg';
 
-const ChatBtnIcon = styled.button`
+const HomeBtnIcon = styled.button`
     width: 84px;
     display: flex;
     flex-direction: column;
@@ -16,14 +16,13 @@ const MenuDsc = styled.span`
     align-self: center;
     margin-top: 7px;
     font-size: ${defaultTheme.fontSize.sm};
-    color: ${defaultTheme.palette.gray3};
 `;
 
-export default function Chat() {
+export default function HomeIcon() {
     return (
-        <ChatBtnIcon>
-            <img src={IconChat} alt="채팅 버튼" />
-            <MenuDsc>채팅</MenuDsc>
-        </ChatBtnIcon>
+        <HomeBtnIcon>
+            <img src={IconHome} alt="뒤로가기 버튼" />
+            <MenuDsc>홈</MenuDsc>
+        </HomeBtnIcon>
     );
 }
