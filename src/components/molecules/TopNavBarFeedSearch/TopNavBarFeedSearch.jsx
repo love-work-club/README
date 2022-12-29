@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import defaultTheme from '../../../commons/style/themes/default';
 import { TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
 import IconSearchBtn from '../../../assets/icons/icon-search.svg';
@@ -17,6 +17,11 @@ const SearchBtn = styled.button`
 `;
 
 function TopNavBarFeedSearch() {
+    const navigate = useNavigate();
+    const handleBack = () => {
+        navigate('/');
+    };
+
     return (
         <TopNavBarWrapBg>
             <AppTitle>리드미북 피드</AppTitle>
