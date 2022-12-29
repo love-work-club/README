@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../components/atoms/Button/Button';
 import useInput from '../../hooks/use-Input';
-import { LoginWrapper, TitleText, InputForm, Label, Input, ErrorP } from '../EmailLogin/styled';
+import { LoginWrapper, TitleText, InputForm, Label, Input, ErrorP } from '../Login/styled';
 import AuthContext from '../../store/auth-context';
 
 export const EmailLogin = props => {
