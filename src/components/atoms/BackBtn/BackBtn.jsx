@@ -13,9 +13,12 @@ export const BackBtnIcon = styled.button`
 
 function BackBtn() {
     const navigate = useNavigate();
+    const handleBack = () => {
+        navigate(-1);
+    };
 
     return (
-        <BackBtnIcon onClick={() => navigate(-1)}>
+        <BackBtnIcon onClick={handleBack}>
             <img src={IconBack} alt="뒤로가기 버튼" />
         </BackBtnIcon>
     );
