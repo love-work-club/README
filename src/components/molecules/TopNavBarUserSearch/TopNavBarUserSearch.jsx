@@ -1,25 +1,32 @@
-import React from 'react';
-import styled from 'styled-components';
-import defaultTheme from '../../../commons/style/themes/default';
-import { TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
+import React, { useState, useEffect } from 'react';
 import BackBtn from '../../atoms/BackBtn/BackBtn';
+import { TopNavBarHeader } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
+import { SearchUserForm, SearchUserInput } from './TopNavBarUserSearchStyle';
 
-const InputUserInfo = styled.input`
-    width: 100%;
-    height: 30px;
-    border-radius: 14px;
-    border: none;
-    background-color: #f2f2f2;
-    padding: 8px 16px;
-    font-size: ${defaultTheme.fontSize.sm};
-`;
+function TopNavBarUserSearch({ handleKeyword }) {
+    const [keyword, setKeyword] = useState('');
 
-function TopNavBarUserSearch() {
+    const handleInputUserSearch = e => {
+        setKeyword(e.target.value);
+    };
+
+    useEffect(() => {
+        handleKeyword(keyword);
+    }, [keyword]);
+
     return (
-        <TopNavBarWrapBg>
-            <BackBtn />
-            <InputUserInfo placeholder="계정 검색" />
-        </TopNavBarWrapBg>
+        <TopNavBarHeader>
+            <SearchUserForm>
+                <BackBtn />
+                <SearchUserInput
+                    type="text"
+                    placeholder="계정 검색"
+                    id="keyword"
+                    value={keyword}
+                    onChange={handleInputUserSearch}
+                />
+            </SearchUserForm>
+        </TopNavBarHeader>
     );
 }
 
