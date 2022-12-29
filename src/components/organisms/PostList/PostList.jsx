@@ -45,7 +45,7 @@ export default function PostList({ accountName, ...props }) {
                 setPosts(res.data.post);
                 console.log(res.data.post);
             })
-            .catch(err => console.log(err));
+            .catch(err => console.error(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -71,6 +71,7 @@ export default function PostList({ accountName, ...props }) {
                                         userId={post.author.accountname}
                                         date={post.createdAt}
                                         children={post.content}
+                                        // 이미지가 있는지 없는지 확인 후 있을 때만 보여지게(* 삼항연산자가 없을 경우 이미지가 없는 게시물에도 이미지 액박이 나옴)
                                         imgSrc={post.image ? `${API_HOST}/${post.image}` : null}
                                     />
                                 ))}
