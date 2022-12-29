@@ -111,7 +111,7 @@ export default function JoinMembership() {
                 } else {
                     setMsgPassword(result.message);
                     setIsDisabled(false);
-                    navigate('/join/ProfileSetting', {
+                    navigate('/login/join/ProfileSetting', {
                         state: {
                             email,
                             password,
@@ -163,7 +163,7 @@ export default function JoinMembership() {
             <ErrorMessage>* 이미 가입된 주소입니다.</ErrorMessage>
             <StyledLabel htmlFor="userPassword">비밀번호</StyledLabel>
             <StyledInput
-                type="text"
+                type="password"
                 id="userPassword"
                 placeholder="비밀번호를 설정해 주세요"
                 onChange={handlePasswordInput}
