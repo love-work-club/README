@@ -10,6 +10,7 @@ const theme = {
         gray: '#DBDBDB',
         gray2: '#C4C4C4',
         gray3: '#767676',
+        content: '#333',
     },
 
     fontSize: {
