@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
-import IconUpload from '../../../assets/icons/nav-upload.svg';
+import IconChat from '../../../assets/icons/nav-chatting.svg';
 
-const UploadBtnIcon = styled.button`
+const ChatBtnIcon = styled.button`
     width: 84px;
     display: flex;
     flex-direction: column;
@@ -19,11 +19,11 @@ const MenuDsc = styled.span`
     color: ${defaultTheme.palette.gray3};
 `;
 
-export default function Upload() {
+export default function ChatIcon() {
     return (
-        <UploadBtnIcon>
-            <img src={IconUpload} alt="게시물 작성 버튼" />
-            <MenuDsc>게시물 작성</MenuDsc>
-        </UploadBtnIcon>
+        <ChatBtnIcon>
+            <img src={IconChat} alt="채팅 버튼" />
+            <MenuDsc>채팅</MenuDsc>
+        </ChatBtnIcon>
     );
 }

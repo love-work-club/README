@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import styled from 'styled-components';
 import TopNavBarFeedSearch from '../../components/molecules/TopNavBarFeedSearch/TopNavBarFeedSearch';
 import Posts from '../../components/molecules/Posts/Posts';
 import BottomNavBarBasic from '../../components/molecules/BottomNavBarBasic/BottomNavBarBasic';
 import AuthContext from '../../store/auth-context';
 import InitHomeFeed from '../../components/organisms/InitHomeFeed/InitHomeFeed';
+import useAxios from '../../hooks/use-api';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -14,36 +13,32 @@ const Wrapper = styled.div`
 
 const PostsWrapper = styled.div`
     padding: 60px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 `;
 
 const PostWrapper = styled.div``;
 
 export default function Home() {
     const LoginCtx = useContext(AuthContext);
-    const navigate = useNavigate();
 
     const [homeFeed, setHomeFeed] = useState('');
 
-    useEffect(() => {
-        async function isFollowed() {
-            try {
-                await axios
-                    .get(`${process.env.REACT_APP_BASE_URL}/post/feed/?limit=15&skip=0`, {
-                        headers: {
-                            Authorization: `Bearer ${LoginCtx.token}`,
-                            'Content-type': 'application/json',
-                        },
-                    })
-                    .then(res => {
-                        setHomeFeed(res.data.posts);
-                    });
-            } catch (error) {
-                navigate('/notfound');
-            }
-        }
+    const { response, error } = useAxios({
+        method: 'get',
+        url: `${process.env.REACT_APP_BASE_URL}/post/feed`,
+        headers: {
+            Authorization: `Bearer ${LoginCtx.token}`,
+            'Content-type': 'application/json',
+        },
+    });
 
-        isFollowed();
-    }, [LoginCtx.token]);
+    useEffect(() => {
+        if (response !== null) {
+            setHomeFeed(response.posts);
+        }
+    }, [response]);
 
     return (
         <Wrapper>
@@ -54,6 +49,7 @@ export default function Home() {
                         {homeFeed.map((val, id) => (
                             <Posts
                                 key={id}
+                                id={val.id}
                                 userIcon={val.author.image}
                                 nickname={val.author.username}
                                 userId={val.author.accountname}

@@ -4,9 +4,12 @@ import defaultTheme from '../../../commons/style/themes/default';
 export const PostModalUl = styled.ul`
     width: 390px;
     padding: 36px 0 28px;
-    border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     background-color: ${defaultTheme.palette.white};
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    z-index: 11;
 
     &::after {
         content: '';
