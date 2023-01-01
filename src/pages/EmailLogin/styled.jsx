@@ -16,6 +16,18 @@ const TitleText = styled.h2`
         font-size: 21px;
         margin-bottom: 47px;
     }
+
+    &.profileTitle {
+        font-size: 21px;
+        margin-bottom: 17px;
+    }
+`;
+
+const SubTitleText = styled.p`
+    &.subTitle {
+        font-size: 12px;
+        margin-bottom: 18px;
+    }
 `;
 
 const InputForm = styled.div`
@@ -73,8 +85,36 @@ const EmailJoinLink = styled.a`
 
 const ErrorP = styled.p`
     color: ${defaultTheme.palette.gray3};
+    /* color: #eb5757; */
     font-size: ${defaultTheme.fontSize.xs};
     padding-top: 4px;
 `;
 
-export { LoginWrapper, TitleText, InputForm, Label, Input, LoginBtn, EmailJoinLink, ErrorP };
+// join profileSetting
+const ImageForm = styled.div`
+    width: 110px;
+    height: 110px;
+    position: relative;
+    margin: 0 auto 30px;
+`;
+const ProfileImage = styled.img`
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: pink;
+`;
+
+export {
+    LoginWrapper,
+    TitleText,
+    SubTitleText,
+    InputForm,
+    Label,
+    Input,
+    LoginBtn,
+    EmailJoinLink,
+    ErrorP,
+    ImageForm,
+    ProfileImage,
+};
