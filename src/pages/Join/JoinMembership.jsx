@@ -9,7 +9,7 @@ import AuthContext from '../../store/auth-context.js';
 // 이미 가입되어 있는 이메일인지 확인하기 -> 회원가입 api를 받아와야겠지?
 export const JoinMembership = () => {
     const [msg, setMsg] = useState(''); // 에러메세지
-    const [msgPw, setMsgPw] = useState('비번 6자 이상ㄱㄱ'); // 비밀번호 에러메세지
+    const [msgPw, setMsgPw] = useState('비밀번호는 6자 이상이어야 합니다.'); // 비밀번호 에러메세지
     const emailInputRef = useRef(); // 회원가입용 이메일
     const passwordInputRef = useRef(); // 회원가입용 비밀번호
 
@@ -148,37 +148,3 @@ export const JoinMembership = () => {
 };
 
 export default JoinMembership;
-
-//
-//
-// // 이메일 유효성 검사
-// function emailValidation(target) {
-//     const emailCurrent = target;
-
-//     if (emailCurrent === '') {
-//         setMsgEmail('필수 입력사항을 입력해주세요.'); // 이건 버튼에서 이미 비활성화 처리해서 필요가 없음
-//         setIsEmail(false);
-//     } else if (!emailRegex.test(emailCurrent)) {
-//         setMsgEmail('잘못된 이메일 형식입니다.');
-//         setIsEmail(false);
-//     } else {
-//         setMsgEmail('');
-//         setIsEmail(true);
-//     }
-// }
-
-// // 비밀번호 유효성 검사
-// function pwValidation(target) {
-//     const pwCurrent = target;
-
-//     if (pwCurrent === '') {
-//         setMsgPassword('필수 입력사항을 입력해주세요.');
-//         setIsPassword(false);
-//     } else if (pwCurrent.length < 6) {
-//         setMsgPassword('비밀번호는 6자 이상이어야 합니다.');
-//         setIsPassword(false);
-//     } else {
-//         setMsgPassword('');
-//         setIsPassword(true);
-//     }
-// }
