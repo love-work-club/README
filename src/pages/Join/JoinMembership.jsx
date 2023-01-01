@@ -1,10 +1,9 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/atoms/Button/Button';
 import { LoginWrapper, TitleText, InputForm, Label, Input, ErrorP } from '../EmailLogin/styled';
 import useInput from '../../hooks/use-Input.js';
-import AuthContext from '../../store/auth-context.js';
 
 // 이미 가입되어 있는 이메일인지 확인하기 -> 회원가입 api를 받아와야겠지?
 export const JoinMembership = () => {
@@ -14,8 +13,6 @@ export const JoinMembership = () => {
     const passwordInputRef = useRef(); // 회원가입용 비밀번호
 
     const navigate = useNavigate();
-    const authCtx = useContext(AuthContext);
-    const [isDisabled, setIsDisabled] = useState(true); // 버튼 비활성화
 
     const emailRegex =
         /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
