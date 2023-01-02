@@ -11,7 +11,9 @@ import YourProfile from '../pages/Profile/YourProfile/YourProfile';
 import MyProfile from '../pages/Profile/MyProfile/MyProfile';
 import Followers from './Followers/Followers';
 import Followings from './Followings/Followings';
-import Chat from '../pages/Chat/Chat';
+import Chat from '../pages/Chat/ChatList';
+import ChatRoom from '../pages/Chat/ChatRoom';
+import Upload from './Upload/Upload';
 import AddProductPage from '../pages/AddProduct/AddProduct';
 import Search from '../pages/Search/Search';
 import NotFound from '../pages/NotFound/NotFound';
@@ -50,6 +52,8 @@ function MainPages() {
                     <Route path="/followers/:accountName" element={<Followers />}></Route>
                     <Route path="/followings/:accountName" element={<Followings />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
+                    <Route path="/chat/chattingRoom" element={<ChatRoom />}></Route>
+                    <Route path="/upload" element={<Upload />}></Route>
                     <Route path="/AddProduct" element={<AddProductPage />}></Route>
                     <Route path="/search" element={<Search />}></Route>
                     <Route path="/post/:id" element={<DetailPosts />}></Route>

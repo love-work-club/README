@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import TopNavBarBasic from '../../components/molecules/TopNavBarBasic/TopNavBarBasic';
 import BottomNavBarBasic from '../../components/molecules/BottomNavBarBasic/BottomNavBarBasic';
 import ChatUserProfileimg from '../../assets/images/default_profile_feed.svg';
 
-const Chat = styled.section``;
+const Chat = styled.section`
+    padding-top: 48px;
+`;
+
 const ChatBoard = styled.ul`
     display: flex;
     flex-direction: column;
-    padding: 20px 16px;
+    padding: 0 16px 20px 16px;
 `;
 const ChatList = styled.li`
     font-size: 14px;
@@ -22,7 +26,7 @@ const ChatList = styled.li`
         height: 12px;
         border-radius: 6px;
         background-color: #c55854;
-        top: 75px;
+        top: 56px;
     }
 `;
 const ChatProfile = styled.img`
@@ -58,6 +62,12 @@ const ChatDate = styled.p`
 `;
 
 export default function ChatListPage() {
+    const navigate = useNavigate();
+
+    const handleChatRoom = e => {
+        navigate('/chat/chattingRoom');
+    };
+
     return (
         <>
             <TopNavBarBasic />
@@ -66,7 +76,7 @@ export default function ChatListPage() {
                 <ChatBoard>
                     <ChatList className="newChat">
                         <ChatProfile />
-                        <ChatWrap>
+                        <ChatWrap onClick={handleChatRoom}>
                             <ChatUserName>리듬이</ChatUserName>
                             <ChatPreview>책 주세요</ChatPreview>
                         </ChatWrap>
