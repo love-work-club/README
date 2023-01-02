@@ -8,6 +8,7 @@ import ProfileSetting from '../pages/Join/ProfileSetting';
 import Splash from '../pages/Splash/Splash';
 import Home from '../pages/Home/Home';
 import YourProfile from '../pages/Profile/YourProfile/YourProfile';
+import ModifyProfile from '../pages/ModifyProfile/ModifyProfile';
 import Chat from '../pages/Chat/Chat';
 import Search from '../pages/Search/Search';
 import NotFound from '../pages/NotFound/NotFound';
@@ -42,6 +43,7 @@ function MainPages() {
                     <Route path="/login/join/profileSetting" element={<ProfileSetting />}></Route>
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/yourprofile" element={<YourProfile />}></Route>
+                    <Route path="/modifyProfile" element={<ModifyProfile />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
                     <Route path="/search" element={<Search />}></Route>
                     <Route path="/post/:id" element={<DetailPosts />}></Route>
