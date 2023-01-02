@@ -34,11 +34,13 @@ const ProfileImageUploadInputBtn = styled.input`
     visibility: hidden;
 `;
 
-// 이미지 업로드 시, undefined로 요청되는 부분 수정하기
+// Todo: 전체적으로 코드 정리 및 수정하기
+// Todo: 이미지 업로드 시, undefined로 요청되는 부분 수정하기
+
 export default function ProfileSetting() {
     const [username, setUsername] = useState('');
-    const [accountname, setAccountname] = useState('');
-    const [intro, setIntro] = useState('');
+    const [accountName, setAccountname] = useState('');
+    const [introForm, setIntroForm] = useState('');
 
     const [isDisabled, setIsDisabled] = useState(true); // 버튼 비활성화
 
@@ -47,14 +49,16 @@ export default function ProfileSetting() {
 
     // username, accountname 둘 중 하나라도 비어있으면 버튼 비활성화 관리
     useEffect(() => {
-        if (username && accountname) {
+        if (username && accountName) {
             setIsDisabled(false);
         } else {
             setIsDisabled(true);
         }
-    }, [username, accountname]);
+    }, [username, accountName]);
 
     const location = useLocation();
+
+    console.log(location);
 
     const URL = 'https://mandarin.api.weniv.co.kr/';
 
@@ -62,7 +66,7 @@ export default function ProfileSetting() {
     const [imageSrc, setImageSrc] = useState('');
     const [imgName, setImgName] = useState('');
 
-    // const email1 = location.state.email;
+    // const email = location.state.email;
     // const password = location.state.password;
 
     // const joinData = {
@@ -75,11 +79,24 @@ export default function ProfileSetting() {
     //     },
     // };
 
+    const [id, setId] = useState();
+    const [pw, setPw] = useState();
+
+    useEffect(() => {
+        setId(location.state.email);
+        setPw(location.state.password);
+    }, []);
+
+    console.log(id, pw);
+
     const accountData = {
         user: {
-            accountname,
-            intro,
+            accountname: accountName,
+            username,
+            intro: introForm,
             image: imageSrc,
+            email: id,
+            password: pw,
         },
     };
 
@@ -91,11 +108,19 @@ export default function ProfileSetting() {
     const handleJoinSubmit = async e => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${URL}user/accountnamevalid`, accountData, {
-                headers: {
-                    'Content-type': 'application/json',
+            const response = await axios.post(
+                `${URL}user/accountnamevalid`,
+                {
+                    user: {
+                        accountname: accountName,
+                    },
                 },
-            });
+                {
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                }
+            );
             const result = response.data;
 
             console.log(result);
@@ -118,7 +143,9 @@ export default function ProfileSetting() {
                     'Content-type': 'application/json',
                 },
             });
-            const userResult = await res.json();
+            const userResult = await res.data;
+
+            console.log(userResult);
 
             if (userResult.message === '회원가입 성공') {
                 navigate('/login');
@@ -154,6 +181,8 @@ export default function ProfileSetting() {
         });
     };
 
+    console.log(imageSrc);
+    console.log(imgName);
     const handleUserNameInput = e => {
         setUsername(e.target.value);
     };
@@ -163,7 +192,7 @@ export default function ProfileSetting() {
     };
 
     const handleIntroInput = e => {
-        setIntro(e.target.value);
+        setIntroForm(e.target.value);
     };
 
     // 이미지업로드 버튼을 클릭했을 때 input이 실행
@@ -171,7 +200,7 @@ export default function ProfileSetting() {
         imgInput.current.click();
     };
 
-    console.log(imgName, imageSrc);
+    // console.log(imgName, imageSrc);
 
     return (
         <LoginWrapper className="login-wrap">
