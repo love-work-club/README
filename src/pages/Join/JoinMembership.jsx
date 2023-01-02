@@ -53,6 +53,8 @@ export const JoinMembership = () => {
         const enteredEmailValue = emailInputRef.current.value;
         const enteredPasswordValue = passwordInputRef.current.value;
 
+        console.log(enteredEmailValue);
+
         // 유저의 이메일 & 비밀번호 데이터
         const userJoinData = {
             user: {
@@ -84,8 +86,8 @@ export const JoinMembership = () => {
                             navigate('/login/join/ProfileSetting', {
                                 // 프로필 셋팅 페이지로 이동
                                 state: {
-                                    emailInputRef,
-                                    passwordInputRef,
+                                    email: enteredEmailValue,
+                                    password: enteredPasswordValue,
                                 },
                             });
                         }
