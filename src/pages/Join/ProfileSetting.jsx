@@ -66,19 +66,6 @@ export default function ProfileSetting() {
     const [imageSrc, setImageSrc] = useState('');
     const [imgName, setImgName] = useState('');
 
-    // const email = location.state.email;
-    // const password = location.state.password;
-
-    // const joinData = {
-    //     user: {
-    //         username,
-    //         email1,
-    //         password,
-    //         accountname,
-
-    //     },
-    // };
-
     const [id, setId] = useState();
     const [pw, setPw] = useState();
 
