@@ -65,7 +65,7 @@ export const EmailLogin = props => {
             if (response.status) {
                 setMsg(response.message);
             } else {
-                authCtx.login(response.user.token);
+                authCtx.login(response.user.token, response.user.accountname);
                 navigate('/home');
             }
         }
@@ -78,7 +78,6 @@ export const EmailLogin = props => {
             return;
         }
         ResData();
-
 
         resetEmailInput();
         resetPassword();
