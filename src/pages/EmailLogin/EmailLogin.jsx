@@ -1,10 +1,11 @@
-import { useRef, useContext, useState } from 'react';
+import { useRef, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../../components/atoms/Button/Button';
 import useInput from '../../hooks/use-Input';
 import { LoginWrapper, TitleText, InputForm, Label, Input, ErrorP } from '../EmailLogin/styled';
 import AuthContext from '../../store/auth-context';
+import useAxios from '../../hooks/use-api';
 
 export const EmailLogin = props => {
     const [msg, setMsg] = useState('');
@@ -40,44 +41,44 @@ export const EmailLogin = props => {
         formIsValid = true;
     }
 
-    const formSubmitHandler = async e => {
+    const user = {
+        user: {
+            email: enteredEmail,
+            password: enteredPassword,
+        },
+    };
+
+    const { ResData, response, error } = useAxios({
+        method: 'post',
+        url: `${process.env.REACT_APP_BASE_URL}/user/login`,
+        body: user,
+        headers: {
+            'Content-type': 'application/json',
+        },
+    });
+
+    useEffect(() => {
+        // if (response.status === 422) {
+        //     setMsg(response.message);
+        // }
+        if (response) {
+            if (response.status) {
+                setMsg(response.message);
+            } else {
+                authCtx.login(response.user.token);
+                navigate('/home');
+            }
+        }
+    }, [response]);
+
+    const formSubmitHandler = e => {
         e.preventDefault();
 
         if (!entredEmailIsValid || !enteredPasswordIsValid) {
             return;
         }
+        ResData();
 
-        const enteredEmailValue = emailInputRef.current.value;
-        const enteredPasswordValue = passwordInputRef.current.value;
-
-        const user = {
-            user: {
-                email: enteredEmailValue,
-                password: enteredPasswordValue,
-            },
-        };
-
-        try {
-            await axios
-                .post(`${process.env.REACT_APP_BASE_URL}/user/login`, JSON.stringify(user), {
-                    headers: {
-                        'Content-type': 'application/json',
-                    },
-                })
-                .then(res => {
-                    if (res.data.status === 404) {
-                        navigate('/notfound');
-                    }
-                    if (res.data.status === 422) {
-                        setMsg(res.data.message);
-                    } else {
-                        authCtx.login(res.data.user.token, res.data.user.accountname);
-                        navigate('/home');
-                    }
-                });
-        } catch (error) {
-            navigate('/notfound');
-        }
 
         resetEmailInput();
         resetPassword();

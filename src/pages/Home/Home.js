@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
 import TopNavBarFeedSearch from '../../components/molecules/TopNavBarFeedSearch/TopNavBarFeedSearch';
 import Posts from '../../components/molecules/Posts/Posts';
@@ -25,7 +25,7 @@ export default function Home() {
 
     const [homeFeed, setHomeFeed] = useState('');
 
-    const { response, error } = useAxios({
+    const { ResData, response, error } = useAxios({
         method: 'get',
         url: `${process.env.REACT_APP_BASE_URL}/post/feed`,
         headers: {
@@ -35,6 +35,10 @@ export default function Home() {
     });
 
     useEffect(() => {
+        ResData();
+    }, []);
+
+    useLayoutEffect(() => {
         if (response !== null) {
             setHomeFeed(response.posts);
         }
