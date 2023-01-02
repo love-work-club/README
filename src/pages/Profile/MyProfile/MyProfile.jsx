@@ -18,7 +18,7 @@ export default function MyProfile() {
             <ProfileMyOrg />
             <OnSale accountName={accountName} />
             <PostList accountName={accountName} />
-            <BottomNavBarBasic />
+            <BottomNavBarBasic type="profile" />
         </MyProfileWrapper>
     );
 }
