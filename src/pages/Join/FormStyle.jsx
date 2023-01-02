@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const StyledForm = styled.form`
     width: 390px;
     height: 844px;
@@ -8,4 +7,6 @@ export const StyledForm = styled.form`
     flex-direction: column;
     align-items: center;
     padding: 34px;
-`
+    margin: 0 auto;
+`;
+// 가운데정렬

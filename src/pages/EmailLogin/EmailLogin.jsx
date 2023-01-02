@@ -77,8 +77,8 @@ export const EmailLogin = props => {
         if (!entredEmailIsValid || !enteredPasswordIsValid) {
             return;
         }
-
         ResData();
+
 
         resetEmailInput();
         resetPassword();
