@@ -62,6 +62,7 @@ li {
 
 a {
     text-decoration: none;
+    color: ${defaultTheme.palette.primary};
 }
 `;
 
