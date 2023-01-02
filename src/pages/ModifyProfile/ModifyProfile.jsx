@@ -59,13 +59,13 @@ function ModifyProfile() {
 
     const [msgAccountname, setMsgAccountname] = useState('');
     const [isAccountname, setIsAccountname] = useState(true);
-    // const navigate = useNavigate();
 
     const authCtx = useContext(AuthContext);
     const [data, setData] = useState('');
     const [usernameText, setUsernameText] = useState('');
     const [userId, setUserId] = useState('');
     const [userIntro, setUserIntro] = useState('');
+    const [userImg, setUserImg] = useState('');
 
     useEffect(() => {
         const getData = () => {
@@ -89,6 +89,7 @@ function ModifyProfile() {
             setUsernameText(data.user.username);
             setUserId(data.user.accountname);
             setUserIntro(data.user.intro);
+            setUserImg(data.user.image);
         }
     }, [data]);
     // console.log(data.user.username);
@@ -99,14 +100,14 @@ function ModifyProfile() {
 
         reader.readAsDataURL(fileBlob);
 
-        return new Promise(resolve => {
+        return new Promise(res => {
             reader.onload = async () => {
                 const formdata = new FormData();
 
                 formdata.append('image', fileBlob);
 
                 // 이미지 API 통신
-                const imgres = await axios.post(`${URL}image/uploadfile`, {
+                const imgres = await axios.post(`https://mandarin.api.weniv.co.kr/image/uploadfile`, {
                     body: formdata,
                 });
 
@@ -114,9 +115,14 @@ function ModifyProfile() {
 
                 setImgName(URL + imgdata.filename);
                 setImageSrc(reader.result);
-                resolve();
+                res();
             };
         });
+    };
+
+    // 이미지업로드 버튼을 클릭했을 때 input이 실행
+    const onClickImageUpload = () => {
+        imgInput.current.click();
     };
 
     return (
@@ -124,8 +130,8 @@ function ModifyProfile() {
             <TopNavBarSave />
             <form style={{ margin: '46px auto 0' }}>
                 <ImageForm>
-                    <ProfileImage src={DefaultProfileUserImg} alt="사용자 프로필 사진" />
-                    <ProfileImageInputBtn className="file-select">
+                    <ProfileImage src={userImg || null} id="imagePre" onClick={onClickImageUpload} />
+                    <ProfileImageInputBtn>
                         <ProfileImageUploadInputBtn src={ImageUploadBtn} alt="프로필 업로드 하기" />
                     </ProfileImageInputBtn>
                 </ImageForm>
