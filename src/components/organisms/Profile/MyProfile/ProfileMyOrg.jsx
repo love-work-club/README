@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
-import ProfileImage from '../../../assets/images/default_profile_user.svg';
-import FollowCount from '../FollowCount';
-import ProfileDsc from '../YourProfile/ProfileDsc';
-import ProfileImg from '../YourProfile/ProfileImg';
+import FollowCount from '../../../molecules/FollowCount/FollowCount';
+import ProfileDsc from '../../../molecules/ProfileDsc/ProfileDsc';
+import ProfileImg from '../../../molecules/ProfileImg/ProfileImg';
 import ButtonGroupMy from '../../../molecules/ButtonGroupMy/ButtonGroupMy';
+import AuthContext from '../../../../store/auth-context';
 
 const ProfileMyWrapper = styled.div`
     width: 390px;
-    height: 314px;
     margin: 0 auto;
     text-align: center;
     display: flex;
@@ -20,21 +20,42 @@ const CounterDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 80px;
 `;
 
 export default function ProfileMyOrg() {
+    // 나의 프로필 정보 가져오기
+    const [profile, setProfile] = useState([]);
+    const token = useContext(AuthContext).token;
+    const API_HOST = process.env.REACT_APP_BASE_URL;
+
+    const config = {
+        method: 'get',
+        url: `${API_HOST}/user/myinfo`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-type': 'application/json',
+        },
+    };
+
+    useEffect(() => {
+        axios(config)
+            .then(res => {
+                setProfile(res.data.user);
+                console.log(res.data.user);
+            })
+            .then(err => console.log(err));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <ProfileMyWrapper>
             <CounterDiv>
-                <FollowCount count={5000} kind="follower" />
-                <ProfileImg src={ProfileImage} alt="ProfileImg" />
-                <FollowCount count={2920} kind="follow" />
+                <FollowCount count={profile.followerCount} kind="followers" accountName={profile.accountname} />
+                <ProfileImg src={`${API_HOST}/${profile.image}`} alt="ProfileImg" />
+                <FollowCount count={profile.followingCount} kind="followings" accountName={profile.accountname} />
             </CounterDiv>
-            <ProfileDsc
-                username="단발의 최양락"
-                userId="@ README_Name"
-                userDesc="안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요"
-            />
+            <ProfileDsc username={profile.username} userId={profile.accountname} userDesc={profile.intro} />
             <ButtonGroupMy />
         </ProfileMyWrapper>
     );

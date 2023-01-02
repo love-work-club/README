@@ -1,47 +1,43 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '../Button/Button';
-import UserListDefaultProfile from '../../../../src/assets/user_list_default_profile.png';
+/* eslint-disable no-unused-expressions */
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import UserListItem from '../UserListItem/UserListItem';
+import AuthContext from '../../../store/auth-context';
 
-function UserList({ className }) {
+export default function UserList({ urlPath }) {
+    // 팔로잉/팔로워 리스트 가져오기
+    const { accountName } = useParams();
+    const [followers, setFollowers] = useState([]);
+    const token = useContext(AuthContext).token;
+    const API_HOST = process.env.REACT_APP_BASE_URL;
+
+    const config = {
+        method: 'get',
+        url: `${API_HOST}/profile/${accountName}/${urlPath}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-type': 'application/json',
+        },
+    };
+
+    async function followListReq() {
+        try {
+            const res = await axios(config);
+
+            setFollowers(res.data);
+            console.log(res.data);
+        } catch {
+            err => console.error(err);
+        }
+    }
+
+    useEffect(() => {
+        followListReq();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
-        <UserListItem>
-            <UserImg src={UserListDefaultProfile} alt="유저 리스트 디폴트 프로필" />
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                <UserNickname>애월읍 한라봉 최고 맛집</UserNickname>
-                <UserIntroduction>정성을 다해 농사짓는 한라봉</UserIntroduction>
-            </div>
-            <FollowBtn className={className} size="small">
-                팔로우
-            </FollowBtn>
-        </UserListItem>
+        <>{followers.length ? followers.map((follower, i) => <UserListItem follower={follower} key={i} />) : null}</>
     );
 }
-
-export default UserList;
-
-const UserListItem = styled.li`
-    width: 390px;
-    height: 50px;
-    margin: 8px 0;
-    display: flex;
-    background-color: #fff;
-`;
-
-const UserImg = styled.img`
-    margin-right: 12px;
-`;
-
-const UserNickname = styled.strong``;
-
-const UserIntroduction = styled.p`
-    margin: 0;
-`;
-
-const FollowBtn = styled(Button)`
-    margin: 0;
-    && {
-        margin-left: auto;
-        align-self: center;
-    }
-`;

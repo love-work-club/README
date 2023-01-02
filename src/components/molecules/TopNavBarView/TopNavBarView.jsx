@@ -6,6 +6,7 @@ import FeedPhoto from '../../atoms/FeedPhoto/FeedPhoto';
 
 const TopNavBarWrapBgModi = styled(TopNavBarWrapBg)`
     justify-content: flex-end;
+    position: relative;
 `;
 
 export default function TopNavBarView({ childToParent, isList }) {
