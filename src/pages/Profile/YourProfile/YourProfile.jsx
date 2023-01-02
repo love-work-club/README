@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import ProfileYourOrg from '../../../components/organisms/Profile/YourProfile/ProfileYourOrg';
 import TopNavBarBasic from '../../../components/molecules/TopNavBarBasic/TopNavBarBasic';
@@ -9,12 +10,14 @@ import BottomNavBarBasic from '../../../components/molecules/BottomNavBarBasic/B
 const YourProfileWrapper = styled.div``;
 
 export default function YourProfile() {
+    const { accountName } = useParams();
+
     return (
         <YourProfileWrapper>
             <TopNavBarBasic />
-            <ProfileYourOrg />
-            <OnSale />
-            <PostList />
+            <ProfileYourOrg accountName={accountName} />
+            <OnSale accountName={accountName} />
+            <PostList accountName={accountName} />
             <BottomNavBarBasic />
         </YourProfileWrapper>
     );

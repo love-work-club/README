@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -25,7 +25,7 @@ export default function DetailPosts() {
     const AuthCtx = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const { response, error } = useAxios({
+    const { ResData, response, error } = useAxios({
         method: 'get',
         url: `${process.env.REACT_APP_BASE_URL}/post/${params.id}`,
         headers: {
@@ -57,6 +57,10 @@ export default function DetailPosts() {
             })
             .catch(err => navigate('/notfound'));
     };
+
+    useEffect(() => {
+        ResData();
+    }, []);
 
     useEffect(() => {
         if (response !== null) {

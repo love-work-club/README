@@ -23,10 +23,8 @@ const StyledUserDesc = styled.p`
     font-size: ${defaultTheme.fontSize.base};
     margin-top: 6px;
     margin-bottom: 15px;
-    text-align: justify;
+    text-align: center;
     margin-inline: 20px;
-    // height: 100px;
-    // max-height: 50px;
 `;
 
 export default function ProfileDsc({ username, userId, userDesc, ...props }) {
