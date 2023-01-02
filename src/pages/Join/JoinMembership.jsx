@@ -1,185 +1,150 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/atoms/Button/Button';
-import { ErrorMessage, StyledInput, StyledLabel } from './InputStyle';
-import { StyledForm } from './FormStyle';
-import { TitleText } from './TitleTextStyle';
+import { LoginWrapper, TitleText, InputForm, Label, Input, ErrorP } from '../EmailLogin/styled';
+import useInput from '../../hooks/use-Input.js';
+import AuthContext from '../../store/auth-context.js';
 
-export default function JoinMembership() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const [isDisabled, setIsDisabled] = useState(true); // 버튼 비활성화
-    const [isWrong, setIsWrong] = useState(false);
-    const [msgEmail, setMsgEmail] = useState(''); // 이메일 유효성 검사 메세지
-    const [msgPassword, setMsgPassword] = useState(''); // 비밀번호 유효성 검사 메세지
-    const [isEmail, setIsEmail] = useState(true); // 이메일 형식이 올바른지
-    const [isPassword, setIsPassword] = useState(true); // 비번 형식이 올바른지
+// 이미 가입되어 있는 이메일인지 확인하기 -> 회원가입 api를 받아와야겠지?
+export const JoinMembership = () => {
+    const [msg, setMsg] = useState(''); // 에러메세지
+    const [msgPw, setMsgPw] = useState('비밀번호는 6자 이상이어야 합니다.'); // 비밀번호 에러메세지
+    const emailInputRef = useRef(); // 회원가입용 이메일
+    const passwordInputRef = useRef(); // 회원가입용 비밀번호
 
     const navigate = useNavigate();
-    const URL = 'https://mandarin.api.weniv.co.kr';
+    const authCtx = useContext(AuthContext);
+    const [isDisabled, setIsDisabled] = useState(true); // 버튼 비활성화
 
-    // 유저의 로그인 & 비밀번호 데이터
-    const loginData = {
-        user: {
-            email,
-            password,
-        },
-    };
+    const emailRegex =
+        /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-    // email & password가 둘 중 하나라도 비어있으면 버튼 비활성화 관리
-    useEffect(() => {
-        if (email && password) {
-            setIsDisabled(false);
-        } else {
-            setIsDisabled(true);
-        }
-    }, [email, password]);
+    const {
+        value: enteredEmail, // 인풋에 입력한 email
+        isValid: enteredEmailIsValid, // 이메일 유효성 검사
+        changeHandler: emailChangeHandler, // 인풋 입력 가능하게 해줌
+        blurHandler: emailBlurHandler, // 인풋창 색상변경?
+        reset: resetEmailInput, // 잘못 입력했을 때 리셋해주나?
+    } = useInput(value => emailRegex.test(value));
 
-    // useEffect로 이메일 형식이 맞는지 관리하기
-    useEffect(() => {
-        if (isEmail) {
-            setIsEmail(true);
-        } else {
-            setIsEmail(false);
-        }
-    }, [isEmail]);
+    const {
+        value: enteredPassword,
+        isValid: enteredPasswordIsValid,
+        changeHandler: passwordChangeHandler,
+        blurHandler: passwordBlurHandler,
+        reset: resetPasswordInput,
+    } = useInput(value => value.length >= 6);
 
-    // email, password 둘 다 비어있지 않을 때 버튼 활성화하는 함수
-    function checkBtn() {
-        if (email !== '' && password !== '') {
-            setIsDisabled(false);
-        } else {
-            setIsDisabled(true);
-        }
-    }
+    let formIsValid = false; // form 전송 비활성화
 
-    // 이메일 유효성 검사
-    function emailValidation(target) {
-        const emailRegex =
-            /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-
-        const emailCurrent = target;
-
-        if (emailCurrent === '') {
-            setMsgEmail('필수 입력사항을 입력해주세요.');
-            setIsEmail(false);
-        } else if (!emailRegex.test(emailCurrent)) {
-            setMsgEmail('잘못된 이메일 형식입니다.');
-            setIsEmail(false);
-        } else {
-            setMsgEmail('');
-            setIsEmail(true);
-        }
-    }
-
-    // 비밀번호 유효성 검사
-    function pwValidation(target) {
-        const pwCurrent = target;
-
-        if (pwCurrent === '') {
-            setMsgPassword('필수 입력사항을 입력해주세요.');
-            setIsPassword(false);
-        } else if (pwCurrent.length < 6) {
-            setMsgPassword('비밀번호는 6자 이상이어야 합니다.');
-            setIsPassword(false);
-        } else {
-            setMsgPassword('');
-            setIsPassword(true);
-        }
+    if (enteredEmailIsValid && enteredPasswordIsValid) {
+        formIsValid = true;
     }
 
     // API 통신
-    const handleJoinSubmit = async e => {
+    const formSubmitHandler = async e => {
         e.preventDefault();
-        try {
-            const response = await axios.post(`${URL}/user/emailvalid`, loginData, {
-                headers: {
-                    'Content-type': 'application/json',
-                },
-            });
 
-            const result = await response.data;
-
-            // 통신할 때 유효성 검사
-            if (result.message === '사용 가능한 이메일 입니다.') {
-                if (!isEmail) {
-                    setMsgEmail('잘못된 이메일 형식입니다.');
-                } else if (!isPassword) {
-                    setMsgPassword('비밀번호는 6자 이상이어야 합니다.');
-                } else {
-                    setMsgPassword(result.message);
-                    setIsDisabled(false);
-                    navigate('/login/join/ProfileSetting', {
-                        state: {
-                            email,
-                            password,
-                        },
-                    });
-                }
-            } else if (result.message === '이미 가입된 이메일 주소 입니다.' || !isEmail || !isPassword) {
-                e.preventDefault();
-                setIsDisabled(true);
-                setIsEmail(false);
-                setMsgPassword(result.message);
-            } else {
-                setIsWrong(true);
-                setIsDisabled(true);
-                setMsgPassword(result.message);
-            }
-        } catch (error) {
-            console.error(error.message);
+        // 이 부분은 이메일 또는 비밀번호 입력한 것이 밸리데이션을 통과했는가?
+        if (!enteredEmailIsValid || !enteredPasswordIsValid) {
+            // 둘 중에 false값이 나오면 false를 그대로 리턴
+            return; // 결과 여부를 true or false로 보여주는 것인가?
         }
-    };
 
-    // id input
-    const handleIdInput = e => {
-        setEmail(e.target.value);
-        emailValidation(e.target.value);
-        checkBtn();
-    };
+        // 이메일과 비밀번호의 현재 값을 각각 enteredEmailValue, enteredPasswordValue에 담았음
+        const enteredEmailValue = emailInputRef.current.value;
+        const enteredPasswordValue = passwordInputRef.current.value;
 
-    // pw input
-    const handlePasswordInput = e => {
-        setPassword(e.target.value);
-        pwValidation(e.target.value);
-        checkBtn();
+        // 유저의 이메일 & 비밀번호 데이터
+        const userJoinData = {
+            user: {
+                email: enteredEmailValue,
+                password: enteredPasswordValue,
+            },
+        };
+
+        try {
+            await axios
+                .post(`${process.env.REACT_APP_BASE_URL}/user/emailvalid`, userJoinData, {
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                })
+                .then(res => {
+                    const result = res.data;
+
+                    // 프로필셋팅 페이지로 넘어가게 만들기
+                    if (result.message === '사용 가능한 이메일 입니다.') {
+                        setMsg('* 사용 가능한 이메일 입니다.'); // 입력하는 동안 실시간으로 나왔으면 좋겠다.
+
+                        if (!enteredEmailIsValid) {
+                            setMsg('* 잘못된 이메일 형식입니다.');
+                        } else if (!enteredPasswordIsValid) {
+                            setMsgPw('* 비밀번호는 6자 이상이어야 합니다.');
+                        } else {
+                            setMsg(result.message); // 통과된다.
+                            navigate('/login/join/ProfileSetting', {
+                                // 프로필 셋팅 페이지로 이동
+                                state: {
+                                    emailInputRef,
+                                    passwordInputRef,
+                                },
+                            });
+                        }
+                    } else if (result.message === '이미 가입된 이메일 주소 입니다.') {
+                        setMsg(result.message);
+                    }
+                });
+        } catch (error) {
+            navigate('/notfound');
+        }
+
+        // 다음 버튼 클릭 후에, 인풋 값 비우기
+        resetEmailInput();
+        resetPasswordInput();
     };
 
     return (
-        <StyledForm onSubmit={handleJoinSubmit}>
-            <TitleText style={{ marginBottom: '40px' }}>이메일로 회원가입</TitleText>
-            <StyledLabel htmlFor="userMail">이메일</StyledLabel>
-            <StyledInput
-                type="text"
-                id="userMail"
-                placeholder="이메일 주소를 입력해 주세요"
-                onChange={handleIdInput}
-                className={`${!isEmail || isWrong ? 'error' : ''}`}
-                value={email}
-                required
-            />
-            <ErrorMessage>* 이미 가입된 주소입니다.</ErrorMessage>
-            <StyledLabel htmlFor="userPassword">비밀번호</StyledLabel>
-            <StyledInput
-                type="password"
-                id="userPassword"
-                placeholder="비밀번호를 설정해 주세요"
-                onChange={handlePasswordInput}
-                className={`${!isPassword || isWrong ? 'error' : ''}`}
-                value={password}
-                required
-            />
-            <ErrorMessage>* 비밀번호는 6자 이상이어야 합니다.</ErrorMessage>
-            <Button
-                size="large"
-                disabled={isDisabled ? 'disabled' : ''}
-                className={`${isDisabled ? 'disabled' : ''}`}
-                type="submit"
-            >
-                다음
-            </Button>
-        </StyledForm>
+        <LoginWrapper className="login-wrap">
+            <TitleText className="title">이메일로 회원가입</TitleText>
+            <form onSubmit={formSubmitHandler}>
+                <InputForm>
+                    <Label htmlFor="email">이메일</Label>
+                    <Input
+                        type="email"
+                        id="userMail"
+                        value={enteredEmail}
+                        onBlur={emailBlurHandler}
+                        onChange={emailChangeHandler}
+                        ref={emailInputRef}
+                        placeholder="이메일 주소를 입력해 주세요."
+                        required
+                    />
+                    {{ msg } && <ErrorP>{msg}</ErrorP>}
+                </InputForm>
+
+                <InputForm>
+                    <Label htmlFor="pw">비밀번호</Label>
+                    <Input
+                        type="password"
+                        id="userPassword"
+                        value={enteredPassword}
+                        onBlur={passwordBlurHandler}
+                        onChange={passwordChangeHandler}
+                        ref={passwordInputRef}
+                        placeholder="비밀번호를 설정해 주세요."
+                        required
+                    />
+                    {/* 처음에 에러문구 안보였다가, 입력할 때, 비밀번호가 6자 이상이 아니면 문구를 그대로 두고, 6자 이상이면 사라지게 만들자 */}
+                    {enteredPassword.length >= 1 && enteredPassword.length < 6 ? <ErrorP>{msgPw}</ErrorP> : ''}
+                </InputForm>
+                <Button size="large" type="submit" disabled={!formIsValid}>
+                    다음
+                </Button>
+            </form>
+        </LoginWrapper>
     );
-}
+};
+
+export default JoinMembership;
