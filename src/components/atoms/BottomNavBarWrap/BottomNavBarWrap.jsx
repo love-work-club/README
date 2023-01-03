@@ -8,7 +8,7 @@ export const BottomNavBarWrap = styled.div`
     background-color: ${defaultTheme.palette.white};
     border-top: 1px solid ${defaultTheme.palette.primary};
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
     position: fixed;

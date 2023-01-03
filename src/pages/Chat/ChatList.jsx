@@ -132,7 +132,7 @@ export default function ChatListPage() {
                     </ChatList>
                 </ChatBoard>
             </Chat>
-            <BottomNavBarBasic />
+            <BottomNavBarBasic type="chat" />
         </>
     );
 }

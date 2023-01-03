@@ -71,7 +71,7 @@ export default function Home() {
                     <InitHomeFeed />
                 )}
             </PostWrapper>
-            <BottomNavBarBasic />
+            <BottomNavBarBasic type="home" />
         </Wrapper>
     );
 }
