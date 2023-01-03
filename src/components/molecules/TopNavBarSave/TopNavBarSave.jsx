@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BackBtn from '../../atoms/BackBtn/BackBtn';
 import Button from '../../atoms/Button/Button';
-import { TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
+import { TopNavBarHeader, TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
 
 const SaveBtn = styled(Button)`
     margin: 0;
@@ -10,6 +10,7 @@ const SaveBtn = styled(Button)`
 
 function TopNavBarSave({ disabled, onClick }) {
     return (
+        <TopNavBarHeader>
         <TopNavBarWrapBg>
             <BackBtn>
                 <img src={BackBtn} alt="" />
@@ -18,6 +19,7 @@ function TopNavBarSave({ disabled, onClick }) {
                 저장
             </SaveBtn>
         </TopNavBarWrapBg>
+        </TopNavBarHeader>
     );
 }
 
