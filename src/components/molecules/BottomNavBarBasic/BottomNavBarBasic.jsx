@@ -27,7 +27,7 @@ export default function BottomNavBarBasic() {
             <StyledNavLink to="/upload">
                 <UploadIcon />
             </StyledNavLink>
-            <StyledNavLink to="/yourprofile">
+            <StyledNavLink to="/myprofile">
                 <Profile />
             </StyledNavLink>
         </BottomNavBarWrap>

@@ -8,8 +8,11 @@ import ProfileSetting from '../pages/Join/ProfileSetting';
 import Splash from '../pages/Splash/Splash';
 import Home from '../pages/Home/Home';
 import YourProfile from '../pages/Profile/YourProfile/YourProfile';
-import ModifyProfile from '../pages/ModifyProfile/ModifyProfile';
+import MyProfile from '../pages/Profile/MyProfile/MyProfile';
+import Followers from './Followers/Followers';
+import Followings from './Followings/Followings';
 import Chat from '../pages/Chat/Chat';
+import AddProductPage from '../pages/AddProduct/AddProduct';
 import Search from '../pages/Search/Search';
 import NotFound from '../pages/NotFound/NotFound';
 import DetailPosts from './DetailPosts/DetailPosts';
@@ -42,9 +45,12 @@ function MainPages() {
                     <Route path="/login/join" element={<Join />}></Route>
                     <Route path="/login/join/profileSetting" element={<ProfileSetting />}></Route>
                     <Route path="/home" element={<Home />}></Route>
-                    <Route path="/yourprofile" element={<YourProfile />}></Route>
-                    <Route path="/modifyProfile" element={<ModifyProfile />}></Route>
+                    <Route path="/yourprofile/:accountName" element={<YourProfile />}></Route>
+                    <Route path="/myprofile" element={<MyProfile />}></Route>
+                    <Route path="/followers/:accountName" element={<Followers />}></Route>
+                    <Route path="/followings/:accountName" element={<Followings />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
+                    <Route path="/AddProduct" element={<AddProductPage />}></Route>
                     <Route path="/search" element={<Search />}></Route>
                     <Route path="/post/:id" element={<DetailPosts />}></Route>
                     <Route path="*" element={<NotFound />}></Route>

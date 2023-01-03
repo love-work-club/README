@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import TopNavBarView from '../../molecules/TopNavBarView/TopNavBarView';
 import Posts from '../../molecules/Posts/Posts';
+import AuthContext from '../../../store/auth-context';
 import PostImg from '../../molecules/PostImg/PostImg';
 import { Empty } from '../../molecules/Empty/Empty';
 
@@ -23,16 +24,15 @@ const PhotoWrapper = styled.div`
     gap: 8px;
 `;
 
-export default function PostList() {
-    // 상대 게시글 가져오기
+export default function PostList({ accountName, ...props }) {
+    // accountName의 게시글 가져오기
     const [posts, setPosts] = useState([]);
-    const API_HOST = 'https://mandarin.api.weniv.co.kr/';
-    const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWM0MjViMTdhZTY2NjU4MWM2NTE4MCIsImV4cCI6MTY3Njc5NTU0OCwiaWF0IjoxNjcxNjExNTQ4fQ.JJiFJ4Zvh_BphSMgWnQIcHv-E8qouG6539f2XJq5QNA';
+    const token = useContext(AuthContext).token;
+    const API_HOST = process.env.REACT_APP_BASE_URL;
 
     const config = {
         method: 'get',
-        url: `${API_HOST}post/dotory/userpost`,
+        url: `${API_HOST}/post/${accountName}/userpost?limit=200`,
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-type': 'application/json',
@@ -45,7 +45,7 @@ export default function PostList() {
                 setPosts(res.data.post);
                 console.log(res.data.post);
             })
-            .catch(err => console.log(err));
+            .catch(err => console.error(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -71,14 +71,15 @@ export default function PostList() {
                                         userId={post.author.accountname}
                                         date={post.createdAt}
                                         children={post.content}
-                                        imgSrc={post.image ? API_HOST + post.image : null}
+                                        // 이미지가 있는지 없는지 확인 후 있을 때만 보여지게(* 삼항연산자가 없을 경우 이미지가 없는 게시물에도 이미지 액박이 나옴)
+                                        imgSrc={post.image ? `${API_HOST}/${post.image}` : null}
                                     />
                                 ))}
                             </PostWrapper>
                         ) : (
                             <PhotoWrapper>
                                 {posts.map((post, i) =>
-                                    post.image ? <PostImg key={i} imgSrc={API_HOST + post.image} /> : null
+                                    post.image ? <PostImg key={i} imgSrc={`${API_HOST}/${post.image}`} /> : null
                                 )}
                             </PhotoWrapper>
                         )}

@@ -22,13 +22,9 @@ const useAxios = ({ method, url, headers = null, body = null }) => {
                 navigate('/notfound');
                 setError(err);
             });
-    }, []);
+    }, [body]);
 
-    useEffect(() => {
-        ResData();
-    }, [ResData]);
-
-    return { response, error };
+    return { ResData, response, error };
 };
 
 export default useAxios;
