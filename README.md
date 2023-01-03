@@ -36,7 +36,7 @@
 ### [👨‍💻박태원](https://github.com/taewonnn)
 
 - UI : 회원가입 페이지 / BottomNavBar / Input,Label / Profile
-- 기능 : 프로필, 팔로잉/팔로우 페이지
+- 기능 : MyProfile/YourProfile, 팔로잉/팔로우 페이지
 - 회의록 담당
 
 ### [👩‍💻백승지](https://github.com/baeggoose)
