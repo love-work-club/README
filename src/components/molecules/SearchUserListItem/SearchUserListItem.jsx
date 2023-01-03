@@ -4,9 +4,9 @@ import defaultProfileImg from '../../../assets/images/default_profile_user_list.
 
 // name: 유저 네임
 // id: 계정 이름
-function SearchUserListItem({ name, id, image, type }) {
+function SearchUserListItem({ name, id, image, type, onClick }) {
     return (
-        <SearchUserLi>
+        <SearchUserLi onClick={onClick}>
             <img src={defaultProfileImg} alt="" />
             <SearchUserListInfo>
                 <UserName>{name}</UserName>
