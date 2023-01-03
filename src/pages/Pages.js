@@ -43,9 +43,9 @@ function MainPages() {
                 <Routes>
                     <Route path="/" element={AuthCtx.isLoggedIn ? <Home /> : <Login />}></Route>
                     <Route path="/login" element={<Login />}></Route>
-                    <Route path="/login/emailLogin" element={<EmailLogin />}></Route>
-                    <Route path="/login/join" element={<Join />}></Route>
-                    <Route path="/login/join/profileSetting" element={<ProfileSetting />}></Route>
+                    <Route path="/emailLogin" element={<EmailLogin />}></Route>
+                    <Route path="/join" element={<Join />}></Route>
+                    <Route path="/join/profileSetting" element={<ProfileSetting />}></Route>
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/yourprofile/:accountName" element={<YourProfile />}></Route>
                     <Route path="/myprofile" element={<MyProfile />}></Route>
