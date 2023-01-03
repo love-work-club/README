@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import defaultTheme from '../../../commons/style/themes/default';
 
 export const PostModalUl = styled.ul`
-    width: 390px;
+    width: 100%;
     padding: 36px 0 28px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     background-color: ${defaultTheme.palette.white};
     position: fixed;
     bottom: 0;
+    right: 0;
     z-index: 11;
 
     &::after {

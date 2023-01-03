@@ -42,7 +42,7 @@ export default function ProfileYourOrg({ accountName, ...props }) {
         axios(config)
             .then(res => {
                 setProfile(res.data.profile);
-                console.log(res.data.profile);
+                console.log(res.data);
             })
             .catch(err => {
                 console.log(err);
@@ -54,7 +54,7 @@ export default function ProfileYourOrg({ accountName, ...props }) {
         <ProfileYourWrapper>
             <CounterDiv>
                 <FollowCount count={profile.followerCount} kind="followers" accountName={profile.accountname} />
-                <ProfileImg src={`${API_HOST}/${profile.image}`} alt="ProfileImg" />
+                <ProfileImg src={profile.image} alt="ProfileImg" />
                 <FollowCount count={profile.followingCount} kind="followings" accountName={profile.accountname} />
             </CounterDiv>
             <ProfileDsc username={profile.username} userId={profile.accountname} userDesc={profile.intro} />

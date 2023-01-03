@@ -27,7 +27,7 @@ export default function Home() {
 
     const { ResData, response, error } = useAxios({
         method: 'get',
-        url: `${process.env.REACT_APP_BASE_URL}/post/feed`,
+        url: `${process.env.REACT_APP_BASE_URL}/post/feed/?limit=${parseInt(20, 10)}`,
         headers: {
             Authorization: `Bearer ${LoginCtx.token}`,
             'Content-type': 'application/json',
@@ -41,6 +41,7 @@ export default function Home() {
     useLayoutEffect(() => {
         if (response !== null) {
             setHomeFeed(response.posts);
+            console.log(response.posts);
         }
     }, [response]);
 
@@ -61,6 +62,7 @@ export default function Home() {
                                 date={val.createdAt}
                                 imgSrc={val.image}
                                 heartsCount={val.heartCount}
+                                hearted={val.hearted}
                                 commentsCount={val.comments.length}
                             />
                         ))}
