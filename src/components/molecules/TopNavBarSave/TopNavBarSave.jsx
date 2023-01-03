@@ -8,17 +8,17 @@ const SaveBtn = styled(Button)`
     margin: 0;
 `;
 
-function TopNavBarSave({ className }) {
+function TopNavBarSave({ disabled, onClick }) {
     return (
         <TopNavBarHeader>
-            <TopNavBarWrapBg>
-                <BackBtn>
-                    <img src={BackBtn} alt="" />
-                </BackBtn>
-                <SaveBtn size="small" type="submit">
-                    저장
-                </SaveBtn>
-            </TopNavBarWrapBg>
+        <TopNavBarWrapBg>
+            <BackBtn>
+                <img src={BackBtn} alt="" />
+            </BackBtn>
+            <SaveBtn size="small" type="submit" disabled={!disabled} onClick={onClick}>
+                저장
+            </SaveBtn>
+        </TopNavBarWrapBg>
         </TopNavBarHeader>
     );
 }

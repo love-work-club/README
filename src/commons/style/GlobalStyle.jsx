@@ -62,6 +62,21 @@ li {
 
 a {
     text-decoration: none;
+    color: ${defaultTheme.palette.primary};
+}
+
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none;
+    font-family: 'Pretendard_Regular';
+    font-size: 14px;
 }
 `;
 

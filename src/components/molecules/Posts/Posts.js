@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as ProfileLogo } from '../../../assets/icons/profile_sm.svg';
 import { ReactComponent as HeartIcon } from '../../../assets/icons/icon-heart.svg';
+import { ReactComponent as HeartIconFill } from '../../../assets/icons/icon-heart-fill.svg';
 import { ReactComponent as CommentIcon } from '../../../assets/icons/message-circle.svg';
 import MoreIcon from '../../../assets/icons/feed-more-option.svg';
 import defaultTheme from '../../../commons/style/themes/default';
+import { PostModalList, PostModalUl } from '../../atoms/PostModal/PostModal';
 import Modal from '../Modal/Modal';
 
 const PostList = styled.li`
@@ -17,7 +19,7 @@ const PostList = styled.li`
 const ImgProfileLogo = styled.img`
     height: 42px;
     border-radius: 100%;
-    min-width: 42px;
+    max-width: 42px;
 `;
 
 const PostBox = styled.div`
@@ -57,8 +59,9 @@ const ContentWrapper = styled.div`
 
 const PostImg = styled.img`
     width: 304px;
+    height: 228px;
     border-radius: 10px;
-    object-fit: contain;
+    object-fit: cover;
     visibility: ${props => (props.imgSrc ? true : 'none')};
 `;
 
@@ -67,6 +70,10 @@ const LikeComment = styled.div`
 `;
 
 const HeartSvg = styled(HeartIcon)`
+    margin-right: 6px;
+`;
+
+const HeartFillSvg = styled(HeartIconFill)`
     margin-right: 6px;
 `;
 
@@ -115,9 +122,14 @@ export default function Posts({
     date,
     imgSrc,
     heartsCount,
+    hearted,
     commentsCount,
     onComment,
+    deleteHeart,
+    postHeart,
 }) {
+    const check = useRef();
+    const [isHearted, setIsHearted] = useState(false);
     const [modal, setModal] = useState(false);
     const navigate = useNavigate();
 
@@ -133,10 +145,20 @@ export default function Posts({
         }
     };
 
+    const checked = e => {
+        setModal(false);
+    };
+
     const handleDetail = e => navigate(`/post/${id}`);
 
     return (
         <>
+            {modal && (
+                <PostModalUl className="postmodal">
+                    <PostModalList onClick={checked}>삭제</PostModalList>
+                    <PostModalList onClick={checked}>수정</PostModalList>
+                </PostModalUl>
+            )}
             {/* {modal && <Modal onBack={handleBackdrop} onModal="post" />} */}
             <PostList onClick={handleDetail}>
                 {userIcon ? <ImgProfileLogo src={userIcon} /> : <ProfileBadge />}
@@ -151,9 +173,26 @@ export default function Posts({
                         </MoreBtn>
                     </PostWrapper>
                     <ContentWrapper>{children}</ContentWrapper>
-                    {<PostImg src={imgSrc} />}
+                    {imgSrc && <PostImg src={imgSrc} />}
                     <LikeComment>
-                        <HeartSvg />
+                        {/* {hearted ? (
+                            <div onClick={deleteHeart}>
+                                <HeartFillSvg />
+                            </div>
+                        ) : (
+                            <div onClick={postHeart}>
+                                <HeartSvg />
+                            </div>
+                        )} */}
+                        {isHearted ? (
+                            <div onClick={() => setIsHearted(false)}>
+                                <HeartFillSvg />
+                            </div>
+                        ) : (
+                            <div onClick={() => setIsHearted(true)}>
+                                <HeartSvg />
+                            </div>
+                        )}
                         <Count>{heartsCount}</Count>
                         <div className="commentClick" onClick={onComment}>
                             <CommentSvg />
