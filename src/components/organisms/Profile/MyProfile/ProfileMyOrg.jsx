@@ -42,9 +42,8 @@ export default function ProfileMyOrg() {
         axios(config)
             .then(res => {
                 setProfile(res.data.user);
-                console.log(res.data.user);
             })
-            .then(err => console.log(err));
+            .catch(err => console.log('에러 발생', err));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -52,7 +51,7 @@ export default function ProfileMyOrg() {
         <ProfileMyWrapper>
             <CounterDiv>
                 <FollowCount count={profile.followerCount} kind="followers" accountName={profile.accountname} />
-                <ProfileImg src={`${API_HOST}/${profile.image}`} alt="ProfileImg" />
+                <ProfileImg src={profile.image} alt="ProfileImg" />
                 <FollowCount count={profile.followingCount} kind="followings" accountName={profile.accountname} />
             </CounterDiv>
             <ProfileDsc username={profile.username} userId={profile.accountname} userDesc={profile.intro} />

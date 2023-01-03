@@ -45,7 +45,6 @@ export default function OnSale({ accountName, ...props }) {
         axios(config)
             .then(res => {
                 setProducts(res.data.product);
-                console.log(res.data.product);
             })
             .catch(err => {
                 console.log(err);
