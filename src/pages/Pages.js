@@ -9,6 +9,7 @@ import Splash from '../pages/Splash/Splash';
 import Home from '../pages/Home/Home';
 import YourProfile from '../pages/Profile/YourProfile/YourProfile';
 import MyProfile from '../pages/Profile/MyProfile/MyProfile';
+import ModifyProfile from './ModifyProfile/ModifyProfile';
 import Followers from './Followers/Followers';
 import Followings from './Followings/Followings';
 import Chat from '../pages/Chat/ChatList';
@@ -49,6 +50,7 @@ function MainPages() {
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/yourprofile/:accountName" element={<YourProfile />}></Route>
                     <Route path="/myprofile" element={<MyProfile />}></Route>
+                    <Route path="/modifyProfile" element={<ModifyProfile />}></Route>
                     <Route path="/followers/:accountName" element={<Followers />}></Route>
                     <Route path="/followings/:accountName" element={<Followings />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
