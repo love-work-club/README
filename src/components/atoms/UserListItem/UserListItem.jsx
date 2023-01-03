@@ -88,7 +88,7 @@ export default function UserListItem({ follower }) {
 
     return (
         <UserListItemWrapper>
-            <UserImg src={`${API_HOST}/${follower.image}`} alt="팔로워 리스트 프로필" />
+            <UserImg src={`${follower.image}`} alt="팔로워 리스트 프로필" />
             <UserDsc>
                 <UserNickname>{follower.accountname}</UserNickname>
                 <UserIntroduction>{follower.intro}</UserIntroduction>
