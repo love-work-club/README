@@ -47,9 +47,9 @@
 
 ### [👩‍💻이시현](https://github.com/hey210056)
 
-- UI : ~~~~
-- 기능 : Splash, 로그인, 홈 피드, 게시글, 모달 창 페이지
-- ContextAPI / customHook 구현
+- UI : 피드, 게시글, Splash, modal, 댓글, 버튼
+- 기능 : Splash, 로그인, 홈 피드, 상세 게시글, 댓글, 모달 창 페이지
+- ContextAPI / customHook(유효성 검사, useAxios) 구현 / ESLint, Prettier 
 
 ## 🔍 기능 및 UI
 
