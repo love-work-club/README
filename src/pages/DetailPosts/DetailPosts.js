@@ -44,6 +44,32 @@ export default function DetailPosts() {
     //     },
     // });
 
+    const {
+        ResData: deletedResData,
+        response: deletedRes,
+        error: deletedError,
+    } = useAxios({
+        method: 'delete',
+        url: `${process.env.REACT_APP_BASE_URL}/post/${params.id}/unheart`,
+        headers: {
+            Authorization: `Bearer ${AuthCtx.token}`,
+            'Content-type': 'application/json',
+        },
+    });
+
+    const {
+        ResData: heartedResData,
+        response: heartedRes,
+        error: heartedError,
+    } = useAxios({
+        method: 'post',
+        url: `${process.env.REACT_APP_BASE_URL}/post/${params.id}/heart`,
+        headers: {
+            Authorization: `Bearer ${AuthCtx.token}`,
+            'Content-type': 'application/json',
+        },
+    });
+
     const getComments = async () => {
         await axios
             .get(`${process.env.REACT_APP_BASE_URL}/post/${params.id}/comments`, {
@@ -73,6 +99,18 @@ export default function DetailPosts() {
         setWriteComment(!writeComment);
     };
 
+    const handleDeleteHeart = e => {
+        e.preventDefault();
+        deletedResData();
+        ResData();
+    };
+
+    const handlePostHeart = e => {
+        e.preventDefault();
+        heartedResData();
+        ResData();
+    };
+
     return (
         <>
             <TopNavBarBasic />
@@ -86,6 +124,9 @@ export default function DetailPosts() {
                         children={post.content}
                         date={post.createdAt}
                         imgSrc={post.image}
+                        hearted={post.hearted}
+                        deleteHeart={handleDeleteHeart}
+                        postHeart={handlePostHeart}
                         heartsCount={post.heartCount}
                         commentsCount={post.comments.length}
                         onComment={handleCommentBar}
