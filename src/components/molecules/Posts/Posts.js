@@ -19,7 +19,7 @@ const PostList = styled.li`
 const ImgProfileLogo = styled.img`
     height: 42px;
     border-radius: 100%;
-    min-width: 42px;
+    max-width: 42px;
 `;
 
 const PostBox = styled.div`
