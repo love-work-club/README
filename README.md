@@ -83,7 +83,8 @@
 
 |[채팅방](#채팅)|[로그아웃](#로그아웃)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/112356419/210533117-d41aa0f7-9e17-48da-a21d-c2c8a13f777a.gif" width="250"/> | <img src="" width="250"/> |
+| <img src="https://user-images.githubusercontent.com/112356419/210533117-d41aa0f7-9e17-48da-a21d-c2c8a13f777a.gif" width="250"/> | <img src="https://user-images.githubusercontent.com/76866137/210550205-a8d434ff-83dc-492c-acf1-9b1ef80f7d0e.gif" width="250"/> |
+
 
 ## 📗 프로젝트 구조
 ```
