@@ -94,164 +94,79 @@
  ┣ 📂assets
  ┣ 📂commons
  ┃ ┗ 📂style
- ┃ ┃ ┣ 📂themes
- ┃ ┃ ┃ ┗ 📜default.js
- ┃ ┃ ┗ 📜GlobalStyle.jsx
+ ┃ ┃ ┗ 📂themes
  ┣ 📂components
  ┃ ┣ 📂atoms
  ┃ ┃ ┣ 📂Alert
- ┃ ┃ ┃ ┗ 📜Alert.js
  ┃ ┃ ┣ 📂BackBtn
- ┃ ┃ ┃ ┗ 📜BackBtn.jsx
  ┃ ┃ ┣ 📂BottomNavBarItem
- ┃ ┃ ┃ ┗ 📜BottomNavBarItem.jsx
  ┃ ┃ ┣ 📂BottomNavBarWrap
- ┃ ┃ ┃ ┗ 📜BottomNavBarWrap.jsx
  ┃ ┃ ┣ 📂Button
- ┃ ┃ ┃ ┗ 📜Button.js
  ┃ ┃ ┣ 📂Chat
- ┃ ┃ ┃ ┗ 📜ChatIcon.jsx
  ┃ ┃ ┣ 📂FeedList
- ┃ ┃ ┃ ┗ 📜FeedList.jsx
  ┃ ┃ ┣ 📂FeedPhoto
- ┃ ┃ ┃ ┗ 📜FeedPhoto.jsx
  ┃ ┃ ┣ 📂Home
- ┃ ┃ ┃ ┗ 📜HomeIcon.jsx
  ┃ ┃ ┣ 📂Input
- ┃ ┃ ┃ ┣ 📜Input.jsx
- ┃ ┃ ┃ ┗ 📜style.jsx
  ┃ ┃ ┣ 📂Label
- ┃ ┃ ┃ ┣ 📜Label.jsx
- ┃ ┃ ┃ ┗ 📜style.jsx
  ┃ ┃ ┣ 📂OptionBtn
- ┃ ┃ ┃ ┗ 📜OptionBtn.jsx
  ┃ ┃ ┣ 📂PostModal
- ┃ ┃ ┃ ┗ 📜PostModal.jsx
  ┃ ┃ ┣ 📂Profile
- ┃ ┃ ┃ ┗ 📜Profile.jsx
  ┃ ┃ ┣ 📂TopNavBarWrap
- ┃ ┃ ┃ ┗ 📜TopNavBarWrap.jsx
  ┃ ┃ ┣ 📂Upload
- ┃ ┃ ┃ ┗ 📜UploadIcon.jsx
  ┃ ┃ ┣ 📂UserList
- ┃ ┃ ┃ ┗ 📜UserList.jsx
  ┃ ┃ ┗ 📂UserListItem
- ┃ ┃ ┃ ┗ 📜UserListItem.jsx
  ┃ ┣ 📂molecules
  ┃ ┃ ┣ 📂BottomNavBarBasic
- ┃ ┃ ┃ ┗ 📜BottomNavBarBasic.jsx
  ┃ ┃ ┣ 📂ButtonGroupMy
- ┃ ┃ ┃ ┗ 📜ButtonGroupMy.jsx
  ┃ ┃ ┣ 📂ButtonGroupYour
- ┃ ┃ ┃ ┗ 📜ButtonGroupYour.jsx
  ┃ ┃ ┣ 📂Comment
- ┃ ┃ ┃ ┣ 📜CommentBar.js
- ┃ ┃ ┃ ┗ 📜CommentList.js
  ┃ ┃ ┣ 📂Empty
- ┃ ┃ ┃ ┗ 📜Empty.jsx
  ┃ ┃ ┣ 📂FollowCount
- ┃ ┃ ┃ ┗ 📜FollowCount.jsx
  ┃ ┃ ┣ 📂LabeledInput
- ┃ ┃ ┃ ┣ 📜LabeledInput.js
- ┃ ┃ ┃ ┗ 📜style.jsx
  ┃ ┃ ┣ 📂PostImg
- ┃ ┃ ┃ ┗ 📜PostImg.jsx
  ┃ ┃ ┣ 📂Posts
- ┃ ┃ ┃ ┗ 📜Posts.js
  ┃ ┃ ┣ 📂ProductItem
- ┃ ┃ ┃ ┗ 📜ProductItem.js
  ┃ ┃ ┣ 📂ProfileDsc
- ┃ ┃ ┃ ┗ 📜ProfileDsc.jsx
  ┃ ┃ ┣ 📂ProfileImg
- ┃ ┃ ┃ ┗ 📜ProfileImg.jsx
  ┃ ┃ ┣ 📂SearchUserList
- ┃ ┃ ┃ ┣ 📜SearchUserList.jsx
- ┃ ┃ ┃ ┗ 📜SearchUserListStyle.jsx
  ┃ ┃ ┣ 📂SearchUserListItem
- ┃ ┃ ┃ ┗ 📜SearchUserListItem.jsx
  ┃ ┃ ┣ 📂TopNavBarBasic
- ┃ ┃ ┃ ┗ 📜TopNavBarBasic.jsx
  ┃ ┃ ┣ 📂TopNavBarFeedSearch
- ┃ ┃ ┃ ┗ 📜TopNavBarFeedSearch.jsx
  ┃ ┃ ┣ 📂TopNavBarFeedTitle
- ┃ ┃ ┃ ┗ 📜TopNavBarFeedTitle.jsx
  ┃ ┃ ┣ 📂TopNavBarFollow
- ┃ ┃ ┃ ┗ 📜TopNavBarFollow.jsx
  ┃ ┃ ┣ 📂TopNavBarSave
- ┃ ┃ ┃ ┗ 📜TopNavBarSave.jsx
  ┃ ┃ ┣ 📂TopNavBarUserSearch
- ┃ ┃ ┃ ┣ 📜TopNavBarUserSearch.jsx
- ┃ ┃ ┃ ┗ 📜TopNavBarUserSearchStyle.jsx
- ┃ ┃ ┣ 📂TopNavBarView
- ┃ ┃ ┃ ┗ 📜TopNavBarView.jsx
- ┃ ┃ ┗ 📜.DS_Store
+ ┃ ┃ ┗ 📂TopNavBarView
  ┃ ┣ 📂organisms
  ┃ ┃ ┣ 📂InitHomeFeed
- ┃ ┃ ┃ ┗ 📜InitHomeFeed.js
  ┃ ┃ ┣ 📂PostList
- ┃ ┃ ┃ ┗ 📜PostList.jsx
  ┃ ┃ ┣ 📂Profile
  ┃ ┃ ┃ ┣ 📂MyProfile
- ┃ ┃ ┃ ┃ ┗ 📜ProfileMyOrg.jsx
  ┃ ┃ ┃ ┗ 📂YourProfile
- ┃ ┃ ┃ ┃ ┗ 📜ProfileYourOrg.jsx
  ┃ ┃ ┣ 📂Sale
- ┃ ┃ ┃ ┗ 📜OnSale.jsx
- ┃ ┃ ┗ 📂SearchUser
- ┃ ┃ ┃ ┗ 📜SearchUser.jsx
- ┃ ┗ 📜.DS_Store
+ ┃ ┗ ┗ 📂SearchUser
  ┣ 📂config
- ┃ ┗ 📜config.js
  ┣ 📂hooks
- ┃ ┣ 📜use-Input.js
- ┃ ┗ 📜use-api.js
  ┣ 📂pages
  ┃ ┣ 📂AddProduct
- ┃ ┃ ┗ 📜AddProduct.jsx
  ┃ ┣ 📂Chat
- ┃ ┃ ┣ 📜Chat.js
- ┃ ┃ ┣ 📜ChatList.jsx
- ┃ ┃ ┗ 📜ChatRoom.jsx
  ┃ ┣ 📂DetailPosts
- ┃ ┃ ┗ 📜DetailPosts.js
  ┃ ┣ 📂EmailLogin
- ┃ ┃ ┣ 📜EmailLogin.jsx
- ┃ ┃ ┗ 📜styled.jsx
  ┃ ┣ 📂Followers
- ┃ ┃ ┗ 📜Followers.jsx
  ┃ ┣ 📂Followings
- ┃ ┃ ┗ 📜Followings.jsx
  ┃ ┣ 📂Home
- ┃ ┃ ┗ 📜Home.js
  ┃ ┣ 📂Join
- ┃ ┃ ┣ 📜ButtonStyle.jsx
- ┃ ┃ ┣ 📜FormStyle.jsx
- ┃ ┃ ┣ 📜InputStyle.jsx
- ┃ ┃ ┣ 📜JoinMembership.jsx
- ┃ ┃ ┣ 📜ProfileSetting.jsx
- ┃ ┃ ┗ 📜TitleTextStyle.jsx
  ┃ ┣ 📂Login
- ┃ ┃ ┗ 📜Login.js
  ┃ ┣ 📂ModifyProfile
- ┃ ┃ ┗ 📜ModifyProfile.jsx
  ┃ ┣ 📂NotFound
- ┃ ┃ ┗ 📜NotFound.js
  ┃ ┣ 📂Profile
  ┃ ┃ ┣ 📂MyProfile
- ┃ ┃ ┃ ┗ 📜MyProfile.jsx
  ┃ ┃ ┗ 📂YourProfile
- ┃ ┃ ┃ ┗ 📜YourProfile.jsx
  ┃ ┣ 📂Search
- ┃ ┃ ┗ 📜Search.jsx
  ┃ ┣ 📂Splash
- ┃ ┃ ┗ 📜Splash.js
  ┃ ┣ 📂Upload
- ┃ ┃ ┗ 📜Upload.js
- ┃ ┣ 📜.DS_Store
  ┃ ┗ 📜Pages.js
  ┣ 📂store
- ┃ ┗ 📜auth-context.js
- ┣ 📜.DS_Store
  ┣ 📜App.js
  ┗ 📜index.js
 ```
