@@ -1,4 +1,4 @@
-# README
+# 📚 READ.ME
 
 ## 책으로 소통하는 SNS형 오픈 마켓 팀 프로젝트
 
@@ -51,29 +51,33 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환 / 판매할 �
 
 ## :triangular_flag_on_post:기술 스택 & 협업 전략
 
-### 기술 스택
+### ✨ 기술 스택
 
-- **Front-End**  
+**Front-End**  
 
 `React` `Styled-Component` `JavaScript` `HTML/CSS`
 
-- **Back-End**  
+**Back-End**  
 
 `제공된 API 사용`
 
-- **협업 관리**  
+**협업 관리**  
 
 `Git` `Github` `Github Issues` [`Notion`](https://han.gl/gjHkk) [`Figma`](https://han.gl/IqxvJ)
 
-### 협업 전략
+<br>
+
+### ✨ 협업 전략
 
 **Git-flow**  
 
-[연습용 Repo](https://github.com/love-work-club/hihi)
+- [연습용 Repo](https://github.com/love-work-club/hihi)
 
-#### 깃 커밋 / 코드 컨벤션
+<br>
 
-**커밋 컨벤션**  
+### ✨ 깃 커밋 / 코드 컨벤션
+
+#### 커밋 컨벤션
 
 - **Feat**: 새로운 기능을 추가할 경우
 - **Add** : 코드 추가 (어떠한 기능 내에 기능을 더 추가할 때)
@@ -87,7 +91,9 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환 / 판매할 �
 - **Refactor**: 코드 리팩토링
 - **Comment**: 필요한 주석 추가 및 변경
 
-### 코드 컨벤션
+
+
+#### 코드 컨벤션
 -   Camel case로 작성한다.
 -   rfc 자동완성을 이용하여 작성한다.
 
