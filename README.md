@@ -310,7 +310,7 @@ export default SearchUserList;
 
 <br>
 
-## 📗 프로젝트 구조
+## 📂 폴더 구조
 ```
 📦src
  ┣ 📂assets
