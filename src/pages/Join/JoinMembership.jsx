@@ -83,7 +83,7 @@ export const JoinMembership = () => {
                             setMsgPw('* 비밀번호는 6자 이상이어야 합니다.');
                         } else {
                             setMsg(result.message); // 통과된다.
-                            navigate('/login/join/ProfileSetting', {
+                            navigate('/join/profileSetting', {
                                 // 프로필 셋팅 페이지로 이동
                                 state: {
                                     email: enteredEmailValue,
