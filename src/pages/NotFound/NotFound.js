@@ -26,9 +26,11 @@ const NotFoundH1 = styled.h1`
 
 export default function NotFound() {
     return (
-        <Wrapper>
-            <NotFoundImg src={Logo} alt="Not Found" />
-            <NotFoundH1>Not Found</NotFoundH1>
-        </Wrapper>
+        <>
+            <Wrapper>
+                <NotFoundImg src={Logo} alt="Not Found" />
+                <NotFoundH1>Not Found</NotFoundH1>
+            </Wrapper>
+        </>
     );
 }
