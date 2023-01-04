@@ -25,7 +25,7 @@ const UploadInput = styled.textarea`
 const UploadBtn = styled.label`
     height: 50px;
     min-width: 50px;
-    position: sticky;
+    position: fixed;
     bottom: 20px;
     left: calc(100vw - 70px);
     border-radius: 100%;
@@ -65,7 +65,7 @@ export default function Upload() {
     const imgUrlLists = [];
 
     const handleInput = e => {
-        setInput(e.target.value.trim());
+        setInput(e.target.value);
     };
 
     if (input !== '') {
@@ -169,7 +169,7 @@ export default function Upload() {
 
     return (
         <>
-            <TopNavBarSave disabled={disabled} onClick={onClick} />
+            <TopNavBarSave disabled={!disabled} onClick={onClick} />
             <UploadWrap>
                 <UploadPost onSubmit={handleSubmit}>
                     <UploadInput value={input} onChange={handleInput} />
