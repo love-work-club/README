@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `;
 
 const PostsWrapper = styled.div`
-    padding: 60px 16px;
+    padding: 10px 16px 60px 16px;
     display: flex;
     flex-direction: column;
     gap: 30px;

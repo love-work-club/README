@@ -15,11 +15,11 @@ const ProfileMyWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
 `;
+
 const CounterDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding-top: 30px;
 `;
 
 export default function ProfileMyOrg() {
@@ -38,7 +38,7 @@ export default function ProfileMyOrg() {
     };
 
     useEffect(() => {
-        axios(config)
+        axios({ config })
             .then(res => {
                 setProfile(res.data.user);
             })

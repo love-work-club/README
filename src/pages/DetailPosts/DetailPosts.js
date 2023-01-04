@@ -12,7 +12,7 @@ import CommentList from '../../components/molecules/Comment/CommentList';
 const PostLists = styled.div`
     width: 100%;
     margin: 0 auto;
-    padding: 60px 16px 20px 16px;
+    padding: 12px 16px 20px 16px;
 `;
 
 const CommentsList = styled.ul``;
