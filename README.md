@@ -115,7 +115,7 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 | <img src="https://user-images.githubusercontent.com/112356419/210536639-ca4ba838-0015-4182-82c1-93f1abaf4c53.gif" width="250"/> |
 
 ## 💍 핵심 코드 소개  
-유효성 검사 커스텀 훅을 만들어서 재사용성을 높였습니다.
+- 유효성 검사 커스텀 훅을 만들어서 재사용성을 높였습니다.
 ```js
 // useInput.jsx
 const useInput = validator => {
@@ -162,7 +162,8 @@ const useInput = validator => {
         reset: resetEmailInput,
     } = useInput(value => emailRegex.test(value));
 ```
-API 통신 커스텀 훅을 만들어서 재사용성을 높였습니다.
+
+- API 통신 커스텀 훅을 만들어서 재사용성을 높였습니다.
 ```js
 // useApi.jsx
 const useAxios = ({ method, url, headers = null, body = null }) => {
@@ -199,6 +200,87 @@ const useAxios = ({ method, url, headers = null, body = null }) => {
             'Content-type': 'application/json',
         },
     });
+```
+
+- 유저의 accountname을 API로 받아와서 화면에 렌더링 해준다.
+```js
+// searchResult 내가 키워드 입력해서 얻어온 유저 데이터를 갖고있을 것이다.
+function SearchUser() {
+    const [searchResult, setSearchResult] = useState([]);
+
+    const [keyword, setKeyword] = useState('');
+    const token = useContext(AuthContext).token;
+
+    const handleKeyword = userInput => {
+        setTimeout(() => {
+            setKeyword(userInput);
+        }, 1200);
+    };
+
+    const searchUserData = async () => {
+        if (keyword !== '') {
+            await axios
+                .get(`https://mandarin.api.weniv.co.kr/user/searchuser/?keyword=${keyword}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-type': 'application/json',
+                    },
+                })
+
+                .then(response => {
+                    // 이곳에서 검색한 결과에 대한 요청을 받아와서 searchResult에 전달해서 화면에 렌더링해준다.
+                    setSearchResult(response.data);
+                })
+                .catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
+                });
+        }
+    };
+
+    // searchUserData가 내가 keyword 입력할 때마다 서버로부터 해당 검색 키워드와 일치하는 유저 데이터를 받아온다.
+    useEffect(() => {
+        searchUserData(keyword);
+    }, [keyword]);
+
+    return (
+        <>
+            {/* 내가 인풋창에 keyword 검색하면 username 불러오기 */}
+            <TopNavBarUserSearch handleKeyword={handleKeyword} />
+            {/* 검색결과로 username, accountname 리스트 렌더링하기 */}
+            <SearchUserList keyword={keyword} searchResult={searchResult} />
+        </>
+    );
+}
+```
+
+```js
+function SearchUserList({ searchResult }) {
+    const navigate = useNavigate();
+
+    return (
+        <SearchUserUl>
+            {searchResult.map((user, index) => (
+                <SearchUserListItem
+                    key={index}
+                    name={user.username}
+                    id={`@${user.accountname}`}
+                    onClick={() => navigate(`/yourprofile/${user.accountname}`)}
+                />
+            ))}
+        </SearchUserUl>
+    );
+}
+
+export default SearchUserList;
 ```
 
 
