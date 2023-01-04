@@ -113,7 +113,7 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 
 |[채팅방](#채팅)|[로그아웃](#로그아웃)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/112356419/210533117-d41aa0f7-9e17-48da-a21d-c2c8a13f777a.gif" width="250"/> | <img src="https://user-images.githubusercontent.com/76866137/210551516-1501b0d8-0b70-4071-a461-653ee33ad422.gif" width="250"/> |
+| <img src="https://user-images.githubusercontent.com/112356419/210533117-d41aa0f7-9e17-48da-a21d-c2c8a13f777a.gif" width="250"/> | <img src="https://user-images.githubusercontent.com/91003855/210577281-f3b5f4f0-8edf-475e-bc5a-16e8e7bcfea6.gif" width="250"/> |
 
 |[404페이지](#404페이지)|
 | :------------------------------------------------------------------: |
