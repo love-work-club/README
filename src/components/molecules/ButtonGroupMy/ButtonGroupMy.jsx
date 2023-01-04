@@ -17,8 +17,6 @@ const ButtonCustom = styled(Button)`
 `;
 
 export default function ButtonGroupMy() {
-    const navigate = useNavigate();
-
     return (
         <ButtonDiv>
             <Link to="/modifyprofile">
