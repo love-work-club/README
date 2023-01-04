@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../atoms/Button/Button';
 import defaultTheme from '../../../commons/style/themes/default';
@@ -18,8 +19,12 @@ const ButtonCustom = styled(Button)`
 export default function ButtonGroupMy() {
     return (
         <ButtonDiv>
-            <ButtonCustom size="medium" children="프로필 수정" />
-            <ButtonCustom size="medium" children="상품등록" />
+            <Link to="/modifyprofile">
+                <ButtonCustom size="medium" children="프로필 수정" />
+            </Link>
+            <Link to="/AddProduct">
+                <ButtonCustom size="medium" children="상품등록" />
+            </Link>
         </ButtonDiv>
     );
 }
