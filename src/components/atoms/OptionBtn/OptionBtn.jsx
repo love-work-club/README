@@ -33,7 +33,7 @@ function OptionBtn() {
         e.stopPropagation();
         setModal(true);
         AuthCtx.logout();
-        navigate('/');
+        navigate('/login');
         console.log(e.target);
     };
 
