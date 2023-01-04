@@ -47,7 +47,7 @@ function OptionBtn() {
     };
 
     const checked = e => {
-        setModal(false);
+        setModal(true);
     };
 
     return (
@@ -56,11 +56,11 @@ function OptionBtn() {
                 <>
                     <BackDrop onClick={handleBackdrop} />
                     <PostModalUl className="postmodal">
-                        <PostModalList onClick={checked}>로그아웃</PostModalList>
+                        <PostModalList onClick={logoutHandler}>로그아웃</PostModalList>
                     </PostModalUl>
                 </>
             )}
-            <OptionBtnIcon onClick={logoutHandler}>
+            <OptionBtnIcon onClick={checked}>
                 <img src={IconMoreOption} alt="더보기 버튼" />
             </OptionBtnIcon>
         </>
