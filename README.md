@@ -190,6 +190,7 @@ const useAxios = ({ method, url, headers = null, body = null }) => {
 };
 ```
 ```js
+    // EmailLogin.jsx
     const { ResData, response, error } = useAxios({
         method: 'post',
         url: `${process.env.REACT_APP_BASE_URL}/user/login`,
