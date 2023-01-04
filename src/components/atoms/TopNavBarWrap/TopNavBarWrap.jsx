@@ -8,7 +8,6 @@ export const TopNavBarHeader = styled.header`
     top: 0;
     left: 0;
     padding: 0px 18px;
-    border-bottom: 1px solid #dbdbdb;
     background-color: ${defaultTheme.palette.white};
     position: fixed;
     z-index: 10;
@@ -19,6 +18,7 @@ export const TopNavBarWrapBg = styled.div`
     height: 48px;
     padding: 10px 20px 8px;
     background-color: ${defaultTheme.palette.white};
+    border-bottom: 1px solid ${defaultTheme.palette.gray};
     display: flex;
     justify-content: space-between;
     align-items: center;
