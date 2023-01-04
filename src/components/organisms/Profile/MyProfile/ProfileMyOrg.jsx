@@ -15,11 +15,11 @@ const ProfileMyWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
 `;
-
 const CounterDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+`;
 
 export default function ProfileMyOrg() {
     // 나의 프로필 정보 가져오기
