@@ -20,6 +20,24 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 | <img width="180" alt="minji_profile_img" src="https://avatars.githubusercontent.com/u/91003855?v=4"> | <img width="180" alt="taewon_profile_img" src="https://avatars.githubusercontent.com/u/112356419?v=4"> | <img width="180" alt="baeggoose_jeon_profile_img" src="https://avatars.githubusercontent.com/u/105825302?v=4"> | <img width="180" alt="sihyeon_profile_img" src="https://avatars.githubusercontent.com/u/76866137?v=4"> |
 |**GitHub**: [minzyee](https://github.com/minzyee)|**GitHub**: [taewonnn](https://github.com/taewonnn)|**GitHub**: [baeggoose](https://github.com/baeggoose)|**GitHub**: [hey210056](https://github.com/hey210056)|
 
+## 🔍 담당
+### [👩김민지](https://github.com/minzyee)
+- UI :  상단 내비게이션, 프로필 셋팅 및 수정, 모달, 검색 페이지
+- 기능 : 회원가입 및 프로필 셋팅, 프로필 수정, 검색
+- 디자인 담당, 프로젝트 아이디어
+### [🧑박태원](https://github.com/taewonnn)
+- UI : 회원가입 페이지 / BottomNavBar / Input,Label / Profile
+- 기능 : 프로필 페이지(상대방 프로필 / 나의 프로필), 팔로우 팔로잉 목록 페이지, 팔로우 팔로우 기능
+- 회의록 담당
+### [👩‍🦰백승지](https://github.com/baeggoose)
+- UI : 채팅 / 채팅룸 페이지
+- 기능 : 상품 등록 페이지
+- 디자인 기획 / 회의록 담당
+### [👧이시현](https://github.com/hey210056)
+- UI : 피드, 게시글, Splash, modal, 댓글, 버튼
+- 기능 : Splash, 로그인, 홈 피드, 상세 게시글, 댓글, 모달 창 페이지
+- 기능 구현 담당, ContextAPI / ESLint, Prettier 
+
 ## :triangular_flag_on_post:기술 스택 & 협업 전략
 
 ### 기술 스택
@@ -95,6 +113,12 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 |[404페이지](#404페이지)|
 | :------------------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/112356419/210536639-ca4ba838-0015-4182-82c1-93f1abaf4c53.gif" width="250"/> |
+
+## 💍 핵심 코드 소개  
+유효성 검사를 커스텀 훅을 만들어서 재사용성을 줄였습니다.
+```js
+
+```
 
 
 
