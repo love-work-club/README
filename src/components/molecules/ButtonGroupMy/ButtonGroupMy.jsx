@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../atoms/Button/Button';
 import defaultTheme from '../../../commons/style/themes/default';
@@ -16,10 +17,12 @@ const ButtonCustom = styled(Button)`
 `;
 
 export default function ButtonGroupMy() {
+    const navigate = useNavigate();
+
     return (
         <ButtonDiv>
-            <ButtonCustom size="medium" children="프로필 수정" />
-            <ButtonCustom size="medium" children="상품등록" />
+            <ButtonCustom size="medium" children="프로필 수정" onClick={() => navigate('/modifyProfile')} />
+            <ButtonCustom size="medium" children="상품등록" onClick={() => navigate('/AddProduct')} />
         </ButtonDiv>
     );
 }
