@@ -4,15 +4,20 @@
 
 
 ## 📌개요
-멋쟁이 사자처럼 프론트엔드스쿨 3기 팀 프로젝트입니다.
-Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 있는 SNS입니다.
-상품을 등록하지 않아도 일상을 공유하며 즐거운 SNS 활동을 할 수 있습니다. 글과 사진과 함께 게시물을 작성하여 자신의 일상을 공유할 수 있습니다.
+멋쟁이 사자처럼 프론트엔드스쿨 3기 팀 프로젝트입니다.  
+Read.me 서비스는 읽은 책의 내용을 공유하며, 교환 / 판매할 수 있는 SNS입니다.  
+상품을 등록하지 않아도 일상을 공유하며 즐거운 SNS 활동을 할 수 있습니다.  
+글과 사진과 함께 게시물을 작성하여 자신의 일상을 공유할 수 있습니다.
+
+<br>
 
 ## 🗓 일정
 
 ### 기간 : 2022. 12. 09.(금) ~ 2023. 01. 04.(수)
 
 주간 회의 진행 및 데일리 스크럼 진행  :link:[회의록](https://han.gl/FlzeL)
+
+<br>
 
 ## 👨‍👩‍👧‍👧팀원
 
@@ -21,7 +26,7 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 | <img width="180" alt="minji_profile_img" src="https://avatars.githubusercontent.com/u/91003855?v=4"> | <img width="180" alt="taewon_profile_img" src="https://avatars.githubusercontent.com/u/112356419?v=4"> | <img width="180" alt="baeggoose_jeon_profile_img" src="https://avatars.githubusercontent.com/u/105825302?v=4"> | <img width="180" alt="sihyeon_profile_img" src="https://avatars.githubusercontent.com/u/76866137?v=4"> |
 |**GitHub**: [minzyee](https://github.com/minzyee)|**GitHub**: [taewonnn](https://github.com/taewonnn)|**GitHub**: [baeggoose](https://github.com/baeggoose)|**GitHub**: [hey210056](https://github.com/hey210056)|
 
-
+<br>
 
 ## 🔍 담당
 ### [👩김민지](https://github.com/minzyee)
@@ -42,6 +47,7 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 - 기능 구현 담당, ContextAPI / ESLint, Prettier 
 
 
+<br>
 
 ## :triangular_flag_on_post:기술 스택 & 협업 전략
 
@@ -85,6 +91,8 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 -   Camel case로 작성한다.
 -   rfc 자동완성을 이용하여 작성한다.
 
+<br>
+
 ## 🔍 기능 및 UI
 
 |[splash](#splash)|[로그인](#로그인)|
@@ -118,6 +126,8 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 |[404페이지](#404페이지)|
 | :------------------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/112356419/210536639-ca4ba838-0015-4182-82c1-93f1abaf4c53.gif" width="250"/> |
+
+<br>
 
 ## 💍 핵심 코드 소개  
 - 유효성 검사 커스텀 훅을 만들어서 재사용성을 높였습니다.
@@ -168,6 +178,8 @@ const useInput = validator => {
     } = useInput(value => emailRegex.test(value));
 ```
 
+<br>
+
 - API 통신 커스텀 훅을 만들어서 재사용성을 높였습니다.
 ```js
 // useApi.jsx
@@ -207,7 +219,9 @@ const useAxios = ({ method, url, headers = null, body = null }) => {
     });
 ```
 
-- 유저의 accountname을 API로 받아와서 화면에 렌더링 해준다.
+<br>
+
+- 입력한 username 또는 accountname을 API로 요청하여 받아와서 화면에 렌더링 해줍니다.
 ```js
 // searchResult 내가 키워드 입력해서 얻어온 유저 데이터를 갖고있을 것이다.
 function SearchUser() {
@@ -288,7 +302,7 @@ function SearchUserList({ searchResult }) {
 export default SearchUserList;
 ```
 
-
+<br>
 
 ## 📗 프로젝트 구조
 ```
