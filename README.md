@@ -2,6 +2,7 @@
 
 ## 책으로 소통하는 SNS형 오픈 마켓 팀 프로젝트
 
+
 ## 📌개요
 멋쟁이 사자처럼 프론트엔드스쿨 3기 팀 프로젝트입니다.
 Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 있는 SNS입니다.
@@ -20,6 +21,8 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 | <img width="180" alt="minji_profile_img" src="https://avatars.githubusercontent.com/u/91003855?v=4"> | <img width="180" alt="taewon_profile_img" src="https://avatars.githubusercontent.com/u/112356419?v=4"> | <img width="180" alt="baeggoose_jeon_profile_img" src="https://avatars.githubusercontent.com/u/105825302?v=4"> | <img width="180" alt="sihyeon_profile_img" src="https://avatars.githubusercontent.com/u/76866137?v=4"> |
 |**GitHub**: [minzyee](https://github.com/minzyee)|**GitHub**: [taewonnn](https://github.com/taewonnn)|**GitHub**: [baeggoose](https://github.com/baeggoose)|**GitHub**: [hey210056](https://github.com/hey210056)|
 
+
+
 ## 🔍 담당
 ### [👩김민지](https://github.com/minzyee)
 - UI :  상단 내비게이션, 프로필 셋팅 및 수정, 모달, 검색 페이지
@@ -37,6 +40,8 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 - UI : 피드, 게시글, Splash, modal, 댓글, 버튼
 - 기능 : Splash, 로그인, 홈 피드, 상세 게시글, 댓글, 모달 창 페이지
 - 기능 구현 담당, ContextAPI / ESLint, Prettier 
+
+
 
 ## :triangular_flag_on_post:기술 스택 & 협업 전략
 
