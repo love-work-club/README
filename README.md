@@ -115,9 +115,89 @@ Read.me 서비스는 읽은 책의 내용을 공유하며, 교환/판매할 수 
 | <img src="https://user-images.githubusercontent.com/112356419/210536639-ca4ba838-0015-4182-82c1-93f1abaf4c53.gif" width="250"/> |
 
 ## 💍 핵심 코드 소개  
-유효성 검사를 커스텀 훅을 만들어서 재사용성을 줄였습니다.
+유효성 검사 커스텀 훅을 만들어서 재사용성을 높였습니다.
 ```js
+// useInput.jsx
+const useInput = validator => {
+    const [enteredValue, setEnteredValue] = useState('');
+    const [isTouched, setIsTouched] = useState(false);
 
+    const valueIsValid = validator(enteredValue);
+    const hasError = !valueIsValid && isTouched;
+
+    const changeHandler = e => {
+        setEnteredValue(e.target.value);
+    };
+
+    const blurHandler = e => {
+        setIsTouched(true);
+    };
+
+    const reset = () => {
+        setEnteredValue('');
+        setIsTouched(false);
+    };
+
+    return {
+        value: enteredValue,
+        isValid: valueIsValid,
+        hasError,
+        changeHandler,
+        blurHandler,
+        reset,
+    };
+};
+```
+
+```js
+// EmailLogin.jsx
+    const emailRegex =
+        /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+
+    const {
+        value: enteredEmail,
+        isValid: entredEmailIsValid,
+        changeHandler: emailChangeHandler,
+        blurHandler: emailBlurHandler,
+        reset: resetEmailInput,
+    } = useInput(value => emailRegex.test(value));
+```
+API 통신 커스텀 훅을 만들어서 재사용성을 높였습니다.
+```js
+// useApi.jsx
+const useAxios = ({ method, url, headers = null, body = null }) => {
+    const [response, setResponse] = useState(null);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const ResData = useCallback(async () => {
+        await axios({
+            method: method,
+            url: url,
+            data: body,
+            headers: headers,
+        })
+            .then(res => {
+                setResponse(res.data);
+            })
+            .catch(err => {
+                navigate('/notfound');
+                setError(err);
+            });
+    }, [body]);
+
+    return { ResData, response, error };
+};
+```
+```js
+    const { ResData, response, error } = useAxios({
+        method: 'post',
+        url: `${process.env.REACT_APP_BASE_URL}/user/login`,
+        body: user,
+        headers: {
+            'Content-type': 'application/json',
+        },
+    });
 ```
 
 
