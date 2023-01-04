@@ -16,7 +16,7 @@ function TopNavBarSave({ disabled, onClick, handleJoinSubmit }) {
                     <img src={BackBtn} alt="" />
                 </BackBtn>
                 {/* disabled={!disabled} */}
-                <SaveBtn size="small" type="button" onClick={handleJoinSubmit}>
+                <SaveBtn size="small" type="button" onClick={handleJoinSubmit} disabled={disabled}>
                     저장
                 </SaveBtn>
             </TopNavBarWrapBg>
