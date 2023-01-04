@@ -5,9 +5,7 @@ import TopNavBarBasic from '../../components/molecules/TopNavBarBasic/TopNavBarB
 import BottomNavBarBasic from '../../components/molecules/BottomNavBarBasic/BottomNavBarBasic';
 import ChatUserProfileimg from '../../assets/images/default_profile_feed.svg';
 
-const Chat = styled.section`
-    padding-top: 48px;
-`;
+const Chat = styled.section``;
 
 const ChatBoard = styled.ul`
     display: flex;
