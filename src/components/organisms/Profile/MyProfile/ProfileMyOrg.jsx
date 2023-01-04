@@ -9,7 +9,7 @@ import AuthContext from '../../../../store/auth-context';
 
 const ProfileMyWrapper = styled.div`
     width: 390px;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     text-align: center;
     display: flex;
     flex-direction: column;
