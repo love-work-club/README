@@ -31,6 +31,7 @@ const Img = styled.img`
 const Strong = styled.strong`
     font-size: 42px;
     color: #362e31;
+    font-family: 'Pretendard_Bold';
 `;
 
 export default function Splash() {
