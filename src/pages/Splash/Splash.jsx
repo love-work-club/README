@@ -7,10 +7,25 @@ const SplashWrap = styled.div`
     justify-content: center;
     align-items: center;
     height: 100vh;
+    opacity: 0;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+    -webkit-animation: fadeIn 2s 1s infinite linear;
 `;
 
 const H1 = styled.h1`
     margin-bottom: 30px;
+`;
+
+const Img = styled.img`
+    width: 100%;
 `;
 
 const Strong = styled.strong`
@@ -18,14 +33,12 @@ const Strong = styled.strong`
     color: #362e31;
 `;
 
-const Img = styled.img``;
-
 export default function Splash() {
     return (
         <>
-            <SplashWrap>
+            <SplashWrap className="fadeIn">
                 <H1>
-                    <img src={SplashLogo} />
+                    <Img src={SplashLogo} />
                 </H1>
                 <Strong>READ.ME</Strong>
             </SplashWrap>
