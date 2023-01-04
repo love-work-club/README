@@ -2,29 +2,22 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import { ErrorMessage, StyledInput, StyledLabel } from './InputStyle';
-import { TitleText, SubTitleText } from './TitleTextStyle';
-import { StyledForm } from './FormStyle';
+import {
+    LoginWrapper,
+    TitleText,
+    SubTitleText,
+    InputForm,
+    Label,
+    Input,
+    ErrorP,
+    ImageForm,
+    ProfileImage,
+} from '../EmailLogin/styled';
 import Button from '../../components/atoms/Button/Button';
-import defaultProfileUser from '../../assets/images/default_profile_user.svg';
 import ImageUploadBtn from '../../assets/icons/profile-photo.svg';
+// import DefaultProfileUserImg from '../../assets/images/default_profile_user.svg';
 
-const ProfileSettingForm = styled(StyledForm)``;
-
-const ProfileImageContainer = styled.div`
-    width: 110px;
-    height: 110px;
-    position: relative;
-    margin-bottom: 30px;
-`;
-
-const ProfileImage = styled.img`
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    border-radius: 50%;
-`;
-
+// 사진 업로드 버튼
 const ProfileImageInputBtn = styled.button`
     position: absolute;
     right: 0;
@@ -36,14 +29,18 @@ const ProfileImageInputBtn = styled.button`
     background-image: url(${ImageUploadBtn});
 `;
 
-const ProfileImageInput = styled.input`
+// 사진 업로드 버튼 - 인풋(글자 안보이게 처리)
+const ProfileImageUploadInputBtn = styled.input`
     visibility: hidden;
 `;
 
+// Todo: 전체적으로 코드 정리 및 수정하기
+// Todo: 이미지 업로드 시, undefined로 요청되는 부분 수정하기
+
 export default function ProfileSetting() {
     const [username, setUsername] = useState('');
-    const [accountname, setAccountname] = useState('');
-    const [intro, setIntro] = useState('');
+    const [accountName, setAccountname] = useState('');
+    const [introForm, setIntroForm] = useState('');
 
     const [isDisabled, setIsDisabled] = useState(true); // 버튼 비활성화
 
@@ -52,17 +49,16 @@ export default function ProfileSetting() {
 
     // username, accountname 둘 중 하나라도 비어있으면 버튼 비활성화 관리
     useEffect(() => {
-        if (username && accountname) {
+        if (username && accountName) {
             setIsDisabled(false);
         } else {
             setIsDisabled(true);
         }
-    }, [username, accountname]);
+    }, [username, accountName]);
 
     const location = useLocation();
 
-    const email = location.state.email;
-    const password = location.state.password;
+    console.log(location);
 
     const URL = 'https://mandarin.api.weniv.co.kr/';
 
@@ -70,14 +66,24 @@ export default function ProfileSetting() {
     const [imageSrc, setImageSrc] = useState('');
     const [imgName, setImgName] = useState('');
 
-    const joinData = {
+    const [id, setId] = useState();
+    const [pw, setPw] = useState();
+
+    useEffect(() => {
+        setId(location.state.email);
+        setPw(location.state.password);
+    }, []);
+
+    console.log(id, pw);
+
+    const accountData = {
         user: {
+            accountname: accountName,
             username,
-            email,
-            password,
-            accountname,
-            intro,
-            image: imgName,
+            intro: introForm,
+            image: imageSrc,
+            email: id,
+            password: pw,
         },
     };
 
@@ -89,18 +95,20 @@ export default function ProfileSetting() {
     const handleJoinSubmit = async e => {
         e.preventDefault();
         try {
-            const response = await fetch(`${URL}user/accountnamevalid`, {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
+            const response = await axios.post(
+                `${URL}user/accountnamevalid`,
+                {
                     user: {
-                        accountname,
+                        accountname: accountName,
                     },
-                }),
-            });
-            const result = await response.json();
+                },
+                {
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                }
+            );
+            const result = response.data;
 
             console.log(result);
 
@@ -115,16 +123,16 @@ export default function ProfileSetting() {
                 setIsAccountname(false);
             }
 
-            console.log(joinData);
+            console.log(accountData);
 
-            const res = await fetch(`${URL}user`, {
-                method: 'POST',
-                body: JSON.stringify(joinData),
+            const res = await axios.post(`${URL}user`, accountData, {
                 headers: {
                     'Content-type': 'application/json',
                 },
             });
-            const userResult = await res.json();
+            const userResult = await res.data;
+
+            console.log(userResult);
 
             if (userResult.message === '회원가입 성공') {
                 navigate('/login');
@@ -147,12 +155,11 @@ export default function ProfileSetting() {
                 formdata.append('image', fileBlob);
 
                 // 이미지 API 통신
-                const imgres = await fetch(`${URL}image/uploadfile`, {
-                    method: 'POST',
+                const imgres = await axios.post(`${URL}image/uploadfile`, {
                     body: formdata,
                 });
 
-                const imgdata = await imgres.json();
+                const imgdata = await imgres.data;
 
                 setImgName(URL + imgdata.filename);
                 setImageSrc(reader.result);
@@ -161,6 +168,8 @@ export default function ProfileSetting() {
         });
     };
 
+    console.log(imageSrc);
+    console.log(imgName);
     const handleUserNameInput = e => {
         setUsername(e.target.value);
     };
@@ -170,7 +179,7 @@ export default function ProfileSetting() {
     };
 
     const handleIntroInput = e => {
-        setIntro(e.target.value);
+        setIntroForm(e.target.value);
     };
 
     // 이미지업로드 버튼을 클릭했을 때 input이 실행
@@ -181,65 +190,66 @@ export default function ProfileSetting() {
     // console.log(imgName, imageSrc);
 
     return (
-        <ProfileSettingForm method="POST" onSubmit={handleJoinSubmit}>
-            <TitleText>프로필 설정</TitleText>
-            <SubTitleText>나중에 언제든지 변경할 수 있습니다.</SubTitleText>
-            <ProfileImageContainer>
-                <ProfileImage
-                    src={imageSrc}
-                    id="imagePre"
-                    style={
-                        imageSrc
-                            ? { backgroundImage: `url(${imageSrc})` }
-                            : { backgroundImage: `url(${defaultProfileUser})` }
-                    }
-                    onClick={onClickImageUpload}
-                />
-                <ProfileImageInputBtn type="button" onClick={onClickImageUpload}>
-                    <ProfileImageInput
-                        type="file"
-                        id="imgUpload"
-                        accept="image/*"
-                        onChange={e => {
-                            encodeFileToBase64(e.target.files[0]);
-                        }}
-                        name="file"
-                        ref={imgInput}
+        <LoginWrapper className="login-wrap">
+            <TitleText className="profileTitle">프로필 설정</TitleText>
+            <SubTitleText className="subTitle">나중에 언제든지 변경할 수 있습니다.</SubTitleText>
+            <form onSubmit={handleJoinSubmit}>
+                <ImageForm>
+                    <ProfileImage src={imageSrc || null} id="imagePre" onClick={onClickImageUpload} />
+                    <ProfileImageInputBtn type="button" onClick={onClickImageUpload}>
+                        <ProfileImageUploadInputBtn
+                            type="file"
+                            id="imgUpload"
+                            accept="image/*"
+                            onChange={e => {
+                                encodeFileToBase64(e.target.files[0]);
+                            }}
+                            name="file"
+                            ref={imgInput}
+                        />
+                    </ProfileImageInputBtn>
+                </ImageForm>
+
+                <InputForm htmlFor="userName">
+                    <Label>사용자 이름</Label>
+                    <Input
+                        type="text"
+                        id="userName"
+                        onChange={handleUserNameInput}
+                        className={`${!isUsername ? 'error' : ''}`}
+                        placeholder="2~10자 이내여야 합니다."
+                        required
                     />
-                </ProfileImageInputBtn>
-            </ProfileImageContainer>
-            <StyledLabel htmlFor="userName">
-                사용자 이름
-                <StyledInput
-                    type="text"
-                    id="userName"
-                    onChange={handleUserNameInput}
-                    className={`${!isUsername ? 'error' : ''}`}
-                    required
-                />
-            </StyledLabel>
+                </InputForm>
 
-            <StyledLabel htmlFor="userEmail">
-                계정 ID
-                <StyledInput
-                    type="text"
-                    id="userEmail"
-                    onChange={handleAccountNameInput}
-                    className={`${!isAccountname ? 'error' : ''}`}
-                    required
-                />
-                <ErrorMessage>* 영문,숫자,밑줄 및 마침표만 사용할 수 있습니다.</ErrorMessage>
-                <ErrorMessage>* 이미 사용 중인 ID입니다.</ErrorMessage>
-            </StyledLabel>
+                <InputForm htmlFor="userEmail">
+                    <Label>계정 ID</Label>
+                    <Input
+                        type="text"
+                        id="userEmail"
+                        onChange={handleAccountNameInput}
+                        className={`${!isAccountname ? 'error' : ''}`}
+                        placeholder="영문, 숫자, 특수문자(.), (_)만 사용 가능합니다."
+                        required
+                    />
+                    {/* <ErrorP>* 영문,숫자,밑줄 및 마침표만 사용할 수 있습니다.</ErrorP> */}
+                    {/* <ErrorP>* 이미 사용 중인 ID입니다.</ErrorP> */}
+                </InputForm>
 
-            <StyledLabel htmlFor="intro" style={{ marginTop: '10px' }}>
-                소개
-                <StyledInput type="text" id="intro" onChange={handleIntroInput} />
-            </StyledLabel>
+                <InputForm style={{ marginBottom: '30px' }}>
+                    <Label htmlFor="intro">소개</Label>
+                    <Input
+                        type="text"
+                        id="intro"
+                        onChange={handleIntroInput}
+                        placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
+                    />
+                </InputForm>
 
-            <Button size="large" type="submit" className={`${isDisabled ? 'disabled' : ''}`}>
-                READ ME 시작하기
-            </Button>
-        </ProfileSettingForm>
+                <Button size="large" type="submit" className={`${isDisabled ? 'disabled' : ''}`}>
+                    READ ME 시작하기
+                </Button>
+            </form>
+        </LoginWrapper>
     );
 }

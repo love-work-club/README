@@ -29,14 +29,14 @@
 ## 🔍 담당
 ### [👩‍💻김민지](https://github.com/minzyee)
 
-- UI :  ~~~~
-- 기능 : 회원가입 페이지 , 검색
+- UI :  상단 내비게이션, 프로필 셋팅 및 수정, 모달, 검색 페이지
+- 기능 : 회원가입 및 프로필 셋팅, 프로필 수정, 검색
 - 디자인 담당
 
 ### [👨‍💻박태원](https://github.com/taewonnn)
 
 - UI : 회원가입 페이지 / BottomNavBar / Input,Label / Profile
-- 기능 : 프로필, 팔로잉/팔로우 페이지
+- 기능 : MyProfile/YourProfile, 팔로잉/팔로우 페이지
 - 회의록 담당
 
 ### [👩‍💻백승지](https://github.com/baeggoose)
@@ -47,15 +47,15 @@
 
 ### [👩‍💻이시현](https://github.com/hey210056)
 
-- UI : ~~~~
-- 기능 : Splash, 로그인, 홈 피드, 게시글, 모달 창 페이지
-- ContextAPI / customHook 구현
+- UI : 피드, 게시글, Splash, modal, 댓글, 버튼
+- 기능 : Splash, 로그인, 홈 피드, 상세 게시글, 댓글, 모달 창 페이지
+- ContextAPI / customHook(유효성 검사, useAxios) 구현 / ESLint, Prettier 
 
 ## 🔍 기능 및 UI
 
 |[splash](#splash)|[로그인](#로그인)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
-| <img src="" width="250"/> | <img src="" width="250"/> |
+| <img src="" width="250"/> | <img src="https://user-images.githubusercontent.com/112356419/210474373-26cd6ab0-de6c-43a7-864e-1a215a22d917.gif" width="250"/> |
 
 |[회원가입](#회원가입)|[프로필 설정](#회원가입)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
@@ -63,15 +63,15 @@
 
 |[홈 피드](#홈피드)|[검색](#검색)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
-| <img src="" width="250"/> | <img src="" width="250"/> |
+| <img src="https://user-images.githubusercontent.com/112356419/210474324-8ba276bc-4654-4949-8b15-fcaf8ef8b98d.gif" width="250"/> | <img src="" width="250"/> |
 
 |[게시물 등록](#게시물등록)|[게시물 상세](#게시물상세)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
-| <img src="" width="250"/> | <img src="" width="250"/> |
+| <img src="" width="250"/> | <img src="https://user-images.githubusercontent.com/112356419/210474433-0b6548b8-ccc5-4338-aeeb-545448ac31d9.gif" width="250"/> |
 
 |[나의 프로필](#나의프로필)|[상대 프로필](#상대프로필)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
-| <img src="" width="250"/> | <img src="" width="250"/> |
+| <img src="https://user-images.githubusercontent.com/112356419/210474399-5eb00773-68ee-4108-94f0-385e3c710e66.gif" width="250"/> | <img src="https://user-images.githubusercontent.com/112356419/210474475-ef23fa31-7d61-4bf5-9407-eb56eb86e876.gif" width="250"/> |
 
 |[판매 상품 등록](#판매상품등록)|[사용자 프로필 수정](#사용자프로필수정)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
@@ -79,15 +79,274 @@
 
 |[좋아요](#좋아요)|[팔로우/언팔로우](#팔로우_언팔로우)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
-| <img src="" width="250"/> | <img src="" width="250"/> |
+| <img src="" width="250"/> | <img src="https://user-images.githubusercontent.com/112356419/210474210-f5b0d390-ca92-4783-acfe-7d055294904f.gif" width="250"/> |
 
 |[채팅방](#채팅)|[로그아웃](#로그아웃)|
 | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
-| <img src="" width="250"/> | <img src="" width="250"/> |
+| <img src="https://user-images.githubusercontent.com/112356419/210474176-5c421850-b64a-47d8-a6e6-e51a8f6568eb.gif" width="250"/> | <img src="" width="250"/> |
 
 ## 📗 프로젝트 구조
-
-
+```
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📂font
+ ┃ ┃ ┣ 📜Pretendard_Bold.woff2
+ ┃ ┃ ┣ 📜Pretendard_Medium.woff2
+ ┃ ┃ ┗ 📜Pretendard_Regular.woff2
+ ┃ ┣ 📂icons
+ ┃ ┃ ┣ 📜feed-comment.png
+ ┃ ┃ ┣ 📜feed-comment.svg
+ ┃ ┃ ┣ 📜feed-like.png
+ ┃ ┃ ┣ 📜feed-like.svg
+ ┃ ┃ ┣ 📜feed-list-on.png
+ ┃ ┃ ┣ 📜feed-list-on.svg
+ ┃ ┃ ┣ 📜feed-list.png
+ ┃ ┃ ┣ 📜feed-list.svg
+ ┃ ┃ ┣ 📜feed-more-option.png
+ ┃ ┃ ┣ 📜feed-more-option.svg
+ ┃ ┃ ┣ 📜feed-photo-on.png
+ ┃ ┃ ┣ 📜feed-photo-on.svg
+ ┃ ┃ ┣ 📜feed-photo.png
+ ┃ ┃ ┣ 📜feed-photo.svg
+ ┃ ┃ ┣ 📜feed-upload-photo.png
+ ┃ ┃ ┣ 📜feed-upload-photo.svg
+ ┃ ┃ ┣ 📜icon-back.png
+ ┃ ┃ ┣ 📜icon-back.svg
+ ┃ ┃ ┣ 📜icon-heart-fill.svg
+ ┃ ┃ ┣ 📜icon-heart.svg
+ ┃ ┃ ┣ 📜icon-search.png
+ ┃ ┃ ┣ 📜icon-search.svg
+ ┃ ┃ ┣ 📜message-btn.svg
+ ┃ ┃ ┣ 📜message-circle.svg
+ ┃ ┃ ┣ 📜nav-chatting-on.png
+ ┃ ┃ ┣ 📜nav-chatting-on.svg
+ ┃ ┃ ┣ 📜nav-chatting.png
+ ┃ ┃ ┣ 📜nav-chatting.svg
+ ┃ ┃ ┣ 📜nav-home-on.png
+ ┃ ┃ ┣ 📜nav-home-on.svg
+ ┃ ┃ ┣ 📜nav-home.png
+ ┃ ┃ ┣ 📜nav-home.svg
+ ┃ ┃ ┣ 📜nav-profile-on.png
+ ┃ ┃ ┣ 📜nav-profile-on.svg
+ ┃ ┃ ┣ 📜nav-profile.png
+ ┃ ┃ ┣ 📜nav-profile.svg
+ ┃ ┃ ┣ 📜nav-upload-on.png
+ ┃ ┃ ┣ 📜nav-upload-on.svg
+ ┃ ┃ ┣ 📜nav-upload.png
+ ┃ ┃ ┣ 📜nav-upload.svg
+ ┃ ┃ ┣ 📜profile-photo.png
+ ┃ ┃ ┣ 📜profile-photo.svg
+ ┃ ┃ ┣ 📜profile-share.png
+ ┃ ┃ ┣ 📜profile-share.svg
+ ┃ ┃ ┣ 📜profile_big.svg
+ ┃ ┃ ┣ 📜profile_sm.svg
+ ┃ ┃ ┣ 📜share-btn.svg
+ ┃ ┃ ┣ 📜sns-facebook.png
+ ┃ ┃ ┣ 📜sns-facebook.svg
+ ┃ ┃ ┣ 📜sns-google.png
+ ┃ ┃ ┣ 📜sns-google.svg
+ ┃ ┃ ┣ 📜sns-kakao.png
+ ┃ ┃ ┗ 📜sns-kakao.svg
+ ┃ ┣ 📂images
+ ┃ ┃ ┣ 📜chat-img.png
+ ┃ ┃ ┣ 📜chat-img.svg
+ ┃ ┃ ┣ 📜chat-upload-photo.svg
+ ┃ ┃ ┣ 📜comment-profile.png
+ ┃ ┃ ┣ 📜comment-profile.svg
+ ┃ ┃ ┣ 📜default-profile.png
+ ┃ ┃ ┣ 📜default-profile.svg
+ ┃ ┃ ┣ 📜default_profile_comment.svg
+ ┃ ┃ ┣ 📜default_profile_feed.svg
+ ┃ ┃ ┣ 📜default_profile_user.svg
+ ┃ ┃ ┣ 📜default_profile_user_list.svg
+ ┃ ┃ ┣ 📜feed-img-gallery.png
+ ┃ ┃ ┣ 📜feed-img-gallery.svg
+ ┃ ┃ ┣ 📜feed-img.png
+ ┃ ┃ ┣ 📜feed-img.svg
+ ┃ ┃ ┣ 📜feed-profile-default.png
+ ┃ ┃ ┣ 📜feed-profile-default.svg
+ ┃ ┃ ┣ 📜feed-profile.png
+ ┃ ┃ ┣ 📜feed-profile.svg
+ ┃ ┃ ┣ 📜post-img-mult.png
+ ┃ ┃ ┣ 📜post-img-mult.svg
+ ┃ ┃ ┣ 📜post-img.png
+ ┃ ┃ ┣ 📜post-img.svg
+ ┃ ┃ ┣ 📜selling-img.png
+ ┃ ┃ ┗ 📜selling-img.svg
+ ┃ ┣ 📂logo
+ ┃ ┃ ┣ 📜404.png
+ ┃ ┃ ┣ 📜README_black.png
+ ┃ ┃ ┣ 📜README_black_fill.png
+ ┃ ┃ ┣ 📜README_color.png
+ ┃ ┃ ┣ 📜readme.png
+ ┃ ┃ ┗ 📜splash.png
+ ┃ ┣ 📜.DS_Store
+ ┃ ┣ 📜profileImg.png
+ ┃ ┣ 📜uploadBtn.png
+ ┃ ┗ 📜user_list_default_profile.png
+ ┣ 📂commons
+ ┃ ┗ 📂style
+ ┃ ┃ ┣ 📂themes
+ ┃ ┃ ┃ ┗ 📜default.js
+ ┃ ┃ ┗ 📜GlobalStyle.jsx
+ ┣ 📂components
+ ┃ ┣ 📂atoms
+ ┃ ┃ ┣ 📂Alert
+ ┃ ┃ ┃ ┗ 📜Alert.js
+ ┃ ┃ ┣ 📂BackBtn
+ ┃ ┃ ┃ ┗ 📜BackBtn.jsx
+ ┃ ┃ ┣ 📂BottomNavBarItem
+ ┃ ┃ ┃ ┗ 📜BottomNavBarItem.jsx
+ ┃ ┃ ┣ 📂BottomNavBarWrap
+ ┃ ┃ ┃ ┗ 📜BottomNavBarWrap.jsx
+ ┃ ┃ ┣ 📂Button
+ ┃ ┃ ┃ ┗ 📜Button.js
+ ┃ ┃ ┣ 📂Chat
+ ┃ ┃ ┃ ┗ 📜ChatIcon.jsx
+ ┃ ┃ ┣ 📂FeedList
+ ┃ ┃ ┃ ┗ 📜FeedList.jsx
+ ┃ ┃ ┣ 📂FeedPhoto
+ ┃ ┃ ┃ ┗ 📜FeedPhoto.jsx
+ ┃ ┃ ┣ 📂Home
+ ┃ ┃ ┃ ┗ 📜HomeIcon.jsx
+ ┃ ┃ ┣ 📂Input
+ ┃ ┃ ┃ ┣ 📜Input.jsx
+ ┃ ┃ ┃ ┗ 📜style.jsx
+ ┃ ┃ ┣ 📂Label
+ ┃ ┃ ┃ ┣ 📜Label.jsx
+ ┃ ┃ ┃ ┗ 📜style.jsx
+ ┃ ┃ ┣ 📂OptionBtn
+ ┃ ┃ ┃ ┗ 📜OptionBtn.jsx
+ ┃ ┃ ┣ 📂PostModal
+ ┃ ┃ ┃ ┗ 📜PostModal.jsx
+ ┃ ┃ ┣ 📂Profile
+ ┃ ┃ ┃ ┗ 📜Profile.jsx
+ ┃ ┃ ┣ 📂TopNavBarWrap
+ ┃ ┃ ┃ ┗ 📜TopNavBarWrap.jsx
+ ┃ ┃ ┣ 📂Upload
+ ┃ ┃ ┃ ┗ 📜UploadIcon.jsx
+ ┃ ┃ ┣ 📂UserList
+ ┃ ┃ ┃ ┗ 📜UserList.jsx
+ ┃ ┃ ┗ 📂UserListItem
+ ┃ ┃ ┃ ┗ 📜UserListItem.jsx
+ ┃ ┣ 📂molecules
+ ┃ ┃ ┣ 📂BottomNavBarBasic
+ ┃ ┃ ┃ ┗ 📜BottomNavBarBasic.jsx
+ ┃ ┃ ┣ 📂ButtonGroupMy
+ ┃ ┃ ┃ ┗ 📜ButtonGroupMy.jsx
+ ┃ ┃ ┣ 📂ButtonGroupYour
+ ┃ ┃ ┃ ┗ 📜ButtonGroupYour.jsx
+ ┃ ┃ ┣ 📂Comment
+ ┃ ┃ ┃ ┣ 📜CommentBar.js
+ ┃ ┃ ┃ ┗ 📜CommentList.js
+ ┃ ┃ ┣ 📂Empty
+ ┃ ┃ ┃ ┗ 📜Empty.jsx
+ ┃ ┃ ┣ 📂FollowCount
+ ┃ ┃ ┃ ┗ 📜FollowCount.jsx
+ ┃ ┃ ┣ 📂LabeledInput
+ ┃ ┃ ┃ ┣ 📜LabeledInput.js
+ ┃ ┃ ┃ ┗ 📜style.jsx
+ ┃ ┃ ┣ 📂PostImg
+ ┃ ┃ ┃ ┗ 📜PostImg.jsx
+ ┃ ┃ ┣ 📂Posts
+ ┃ ┃ ┃ ┗ 📜Posts.js
+ ┃ ┃ ┣ 📂ProductItem
+ ┃ ┃ ┃ ┗ 📜ProductItem.js
+ ┃ ┃ ┣ 📂ProfileDsc
+ ┃ ┃ ┃ ┗ 📜ProfileDsc.jsx
+ ┃ ┃ ┣ 📂ProfileImg
+ ┃ ┃ ┃ ┗ 📜ProfileImg.jsx
+ ┃ ┃ ┣ 📂SearchUserList
+ ┃ ┃ ┃ ┣ 📜SearchUserList.jsx
+ ┃ ┃ ┃ ┗ 📜SearchUserListStyle.jsx
+ ┃ ┃ ┣ 📂SearchUserListItem
+ ┃ ┃ ┃ ┗ 📜SearchUserListItem.jsx
+ ┃ ┃ ┣ 📂TopNavBarBasic
+ ┃ ┃ ┃ ┗ 📜TopNavBarBasic.jsx
+ ┃ ┃ ┣ 📂TopNavBarFeedSearch
+ ┃ ┃ ┃ ┗ 📜TopNavBarFeedSearch.jsx
+ ┃ ┃ ┣ 📂TopNavBarFeedTitle
+ ┃ ┃ ┃ ┗ 📜TopNavBarFeedTitle.jsx
+ ┃ ┃ ┣ 📂TopNavBarFollow
+ ┃ ┃ ┃ ┗ 📜TopNavBarFollow.jsx
+ ┃ ┃ ┣ 📂TopNavBarSave
+ ┃ ┃ ┃ ┗ 📜TopNavBarSave.jsx
+ ┃ ┃ ┣ 📂TopNavBarUserSearch
+ ┃ ┃ ┃ ┣ 📜TopNavBarUserSearch.jsx
+ ┃ ┃ ┃ ┗ 📜TopNavBarUserSearchStyle.jsx
+ ┃ ┃ ┣ 📂TopNavBarView
+ ┃ ┃ ┃ ┗ 📜TopNavBarView.jsx
+ ┃ ┃ ┗ 📜.DS_Store
+ ┃ ┣ 📂organisms
+ ┃ ┃ ┣ 📂InitHomeFeed
+ ┃ ┃ ┃ ┗ 📜InitHomeFeed.js
+ ┃ ┃ ┣ 📂PostList
+ ┃ ┃ ┃ ┗ 📜PostList.jsx
+ ┃ ┃ ┣ 📂Profile
+ ┃ ┃ ┃ ┣ 📂MyProfile
+ ┃ ┃ ┃ ┃ ┗ 📜ProfileMyOrg.jsx
+ ┃ ┃ ┃ ┗ 📂YourProfile
+ ┃ ┃ ┃ ┃ ┗ 📜ProfileYourOrg.jsx
+ ┃ ┃ ┣ 📂Sale
+ ┃ ┃ ┃ ┗ 📜OnSale.jsx
+ ┃ ┃ ┗ 📂SearchUser
+ ┃ ┃ ┃ ┗ 📜SearchUser.jsx
+ ┃ ┗ 📜.DS_Store
+ ┣ 📂config
+ ┃ ┗ 📜config.js
+ ┣ 📂hooks
+ ┃ ┣ 📜use-Input.js
+ ┃ ┗ 📜use-api.js
+ ┣ 📂pages
+ ┃ ┣ 📂AddProduct
+ ┃ ┃ ┗ 📜AddProduct.jsx
+ ┃ ┣ 📂Chat
+ ┃ ┃ ┣ 📜Chat.js
+ ┃ ┃ ┣ 📜ChatList.jsx
+ ┃ ┃ ┗ 📜ChatRoom.jsx
+ ┃ ┣ 📂DetailPosts
+ ┃ ┃ ┗ 📜DetailPosts.js
+ ┃ ┣ 📂EmailLogin
+ ┃ ┃ ┣ 📜EmailLogin.jsx
+ ┃ ┃ ┗ 📜styled.jsx
+ ┃ ┣ 📂Followers
+ ┃ ┃ ┗ 📜Followers.jsx
+ ┃ ┣ 📂Followings
+ ┃ ┃ ┗ 📜Followings.jsx
+ ┃ ┣ 📂Home
+ ┃ ┃ ┗ 📜Home.js
+ ┃ ┣ 📂Join
+ ┃ ┃ ┣ 📜ButtonStyle.jsx
+ ┃ ┃ ┣ 📜FormStyle.jsx
+ ┃ ┃ ┣ 📜InputStyle.jsx
+ ┃ ┃ ┣ 📜JoinMembership.jsx
+ ┃ ┃ ┣ 📜ProfileSetting.jsx
+ ┃ ┃ ┗ 📜TitleTextStyle.jsx
+ ┃ ┣ 📂Login
+ ┃ ┃ ┗ 📜Login.js
+ ┃ ┣ 📂ModifyProfile
+ ┃ ┃ ┗ 📜ModifyProfile.jsx
+ ┃ ┣ 📂NotFound
+ ┃ ┃ ┗ 📜NotFound.js
+ ┃ ┣ 📂Profile
+ ┃ ┃ ┣ 📂MyProfile
+ ┃ ┃ ┃ ┗ 📜MyProfile.jsx
+ ┃ ┃ ┗ 📂YourProfile
+ ┃ ┃ ┃ ┗ 📜YourProfile.jsx
+ ┃ ┣ 📂Search
+ ┃ ┃ ┗ 📜Search.jsx
+ ┃ ┣ 📂Splash
+ ┃ ┃ ┗ 📜Splash.js
+ ┃ ┣ 📂Upload
+ ┃ ┃ ┗ 📜Upload.js
+ ┃ ┣ 📜.DS_Store
+ ┃ ┗ 📜Pages.js
+ ┣ 📂store
+ ┃ ┗ 📜auth-context.js
+ ┣ 📜.DS_Store
+ ┣ 📜App.js
+ ┗ 📜index.js
+```
 ## 📝 깃 커밋 / 코드 컨벤션
 
 ### 커밋 컨벤션

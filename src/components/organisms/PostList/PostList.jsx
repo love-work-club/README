@@ -9,6 +9,7 @@ import { Empty } from '../../molecules/Empty/Empty';
 
 const PostListWrapper = styled.div`
     height: 100%;
+    padding-bottom: 60px;
 `;
 
 const PostWrapper = styled.div`

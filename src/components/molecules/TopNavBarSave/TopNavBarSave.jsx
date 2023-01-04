@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import BackBtn from '../../atoms/BackBtn/BackBtn';
 import Button from '../../atoms/Button/Button';
-import { TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
+import { TopNavBarHeader, TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
 
 const SaveBtn = styled(Button)`
     margin: 0;
 `;
 
-function TopNavBarSave({ disabled, onClick }) {
+function TopNavBarSave({ disabled, onClick, handleJoinSubmit }) {
     return (
-        <TopNavBarWrapBg>
-            <BackBtn>
-                <img src={BackBtn} alt="" />
-            </BackBtn>
-            <SaveBtn size="small" type="submit" disabled={!disabled} onClick={onClick}>
-                저장
-            </SaveBtn>
-        </TopNavBarWrapBg>
+        <TopNavBarHeader>
+            <TopNavBarWrapBg>
+                <BackBtn>
+                    <img src={BackBtn} alt="" />
+                </BackBtn>
+                {/* disabled={!disabled} */}
+                <SaveBtn size="small" type="button" onClick={handleJoinSubmit}>
+                    저장
+                </SaveBtn>
+            </TopNavBarWrapBg>
+        </TopNavBarHeader>
     );
 }
 
