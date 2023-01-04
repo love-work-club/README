@@ -20,7 +20,7 @@ const CounterDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 50px;
+    padding-top: 30px;
 `;
 
 export default function ProfileMyOrg() {
