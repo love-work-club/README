@@ -6,7 +6,7 @@ export const BottomNavBarWrap = styled.div`
     height: 60px;
     padding: 10px 10px;
     background-color: ${defaultTheme.palette.white};
-    border-top: 1px solid ${defaultTheme.palette.primary};
+    border-top: 1px solid ${defaultTheme.palette.gray};
     display: flex;
     justify-content: space-around;
     align-items: center;
