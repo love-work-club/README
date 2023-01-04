@@ -10,6 +10,18 @@ import defaultTheme from '../../../commons/style/themes/default';
 import { PostModalList, PostModalUl } from '../../atoms/PostModal/PostModal';
 import Modal from '../Modal/Modal';
 
+const BackDrop = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background-color: black;
+    opacity: 0.4;
+    background: (0, 0, 0, 0.75);
+`;
+
 const PostList = styled.li`
     width: 100%;
     display: flex;
@@ -138,6 +150,7 @@ export default function Posts({
     };
 
     const handleBackdrop = e => {
+        e.stopPropagation();
         const clicked = e.target.closest('.postmodal');
 
         if (!clicked) {
@@ -154,10 +167,13 @@ export default function Posts({
     return (
         <>
             {modal && (
-                <PostModalUl className="postmodal">
-                    <PostModalList onClick={checked}>삭제</PostModalList>
-                    <PostModalList onClick={checked}>수정</PostModalList>
-                </PostModalUl>
+                <>
+                    <BackDrop onClick={handleBackdrop} />
+                    <PostModalUl className="postmodal">
+                        <PostModalList onClick={checked}>삭제</PostModalList>
+                        <PostModalList onClick={checked}>수정</PostModalList>
+                    </PostModalUl>
+                </>
             )}
             {/* {modal && <Modal onBack={handleBackdrop} onModal="post" />} */}
             <PostList onClick={handleDetail}>
