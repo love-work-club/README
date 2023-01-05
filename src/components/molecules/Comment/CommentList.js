@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { ReactComponent as ProfileLogo } from '../../../assets/icons/profile_sm.svg';
 import MoreIcon from '../../../assets/icons/feed-more-option.svg';
 import defaultTheme from '../../../commons/style/themes/default';
-import Modal from '../Modal/Modal';
 
 const CommentsWrap = styled.li`
     display: flex;

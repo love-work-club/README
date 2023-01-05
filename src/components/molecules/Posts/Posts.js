@@ -8,7 +8,6 @@ import { ReactComponent as CommentIcon } from '../../../assets/icons/message-cir
 import MoreIcon from '../../../assets/icons/feed-more-option.svg';
 import defaultTheme from '../../../commons/style/themes/default';
 import { PostModalList, PostModalUl } from '../../atoms/PostModal/PostModal';
-import Modal from '../Modal/Modal';
 
 const BackDrop = styled.div`
     position: fixed;
