@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import defaultTheme from '../../commons/style/themes/default';
+import DefaultImg from '../../assets/images/README_join.png';
 
 const LoginWrapper = styled.div`
     &.login-wrap {
@@ -84,8 +85,8 @@ const EmailJoinLink = styled.a`
 `;
 
 const ErrorP = styled.p`
-    color: ${defaultTheme.palette.gray3};
-    /* color: #eb5757; */
+    /* color: ${defaultTheme.palette.gray3}; */
+    color: #eb5757;
     font-size: ${defaultTheme.fontSize.xs};
     padding-top: 4px;
 `;
@@ -96,13 +97,17 @@ const ImageForm = styled.div`
     height: 110px;
     position: relative;
     margin: 0 auto 30px;
+    border-radius: 50%;
+    border: 1px solid ${defaultTheme.palette.gray};
+    background-image: url(${DefaultImg});
+    background-repeat: no-repeat;
+    background-position: center center;
 `;
 const ProfileImage = styled.img`
     width: 100%;
     height: 100%;
     cursor: pointer;
     border-radius: 50%;
-    background-color: pink;
 `;
 
 export {
