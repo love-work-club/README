@@ -149,7 +149,7 @@
 
 <br>
 
-## 💍 코드 설명과 기능구현
+## 💍 핵심 코드
 - formik이나 react-hook-form 라이브러리 대신 유효성 검사 커스텀 훅을 만들어서 재사용성을 높였습니다. 
 - 사용된 곳: 이메일 로그인 / 회원가입 / 프로필 셋팅 페이지
 ```js
@@ -240,88 +240,6 @@ const useAxios = ({ method, url, headers = null, body = null }) => {
     });
 ```
 
-<br>
-
-- 입력한 username 또는 accountname을 API로 요청하여 받아와서 화면에 렌더링 해줍니다.
-```js
-// searchResult 내가 키워드 입력해서 얻어온 유저 데이터를 갖고있을 것이다.
-function SearchUser() {
-    const [searchResult, setSearchResult] = useState([]);
-
-    const [keyword, setKeyword] = useState('');
-    const token = useContext(AuthContext).token;
-
-    const handleKeyword = userInput => {
-        setTimeout(() => {
-            setKeyword(userInput);
-        }, 1200);
-    };
-
-    const searchUserData = async () => {
-        if (keyword !== '') {
-            await axios
-                .get(`https://mandarin.api.weniv.co.kr/user/searchuser/?keyword=${keyword}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-type': 'application/json',
-                    },
-                })
-
-                .then(response => {
-                    // 이곳에서 검색한 결과에 대한 요청을 받아와서 searchResult에 전달해서 화면에 렌더링해준다.
-                    setSearchResult(response.data);
-                })
-                .catch(error => {
-                    if (error.response) {
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                    } else if (error.request) {
-                        console.log(error.request);
-                    } else {
-                        console.log('Error', error.message);
-                    }
-                    console.log(error.config);
-                });
-        }
-    };
-
-    // searchUserData가 내가 keyword 입력할 때마다 서버로부터 해당 검색 키워드와 일치하는 유저 데이터를 받아온다.
-    useEffect(() => {
-        searchUserData(keyword);
-    }, [keyword]);
-
-    return (
-        <>
-            {/* 내가 인풋창에 keyword 검색하면 username 불러오기 */}
-            <TopNavBarUserSearch handleKeyword={handleKeyword} />
-            {/* 검색결과로 username, accountname 리스트 렌더링하기 */}
-            <SearchUserList keyword={keyword} searchResult={searchResult} />
-        </>
-    );
-}
-```
-
-```js
-function SearchUserList({ searchResult }) {
-    const navigate = useNavigate();
-
-    return (
-        <SearchUserUl>
-            {searchResult.map((user, index) => (
-                <SearchUserListItem
-                    key={index}
-                    name={user.username}
-                    id={`@${user.accountname}`}
-                    onClick={() => navigate(`/yourprofile/${user.accountname}`)}
-                />
-            ))}
-        </SearchUserUl>
-    );
-}
-
-export default SearchUserList;
-```
 
 <br>
 
