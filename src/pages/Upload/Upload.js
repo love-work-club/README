@@ -140,7 +140,7 @@ export default function Upload() {
     //     body: formData,
     // });
 
-    const onClick = async e => {
+    const handleJoinSubmit = async e => {
         e.preventDefault();
 
         const res = uploadImg();
@@ -169,11 +169,14 @@ export default function Upload() {
 
     return (
         <>
-            <TopNavBarSave disabled={!disabled} onClick={onClick} />
+            <TopNavBarSave disabled={!disabled} handleJoinSubmit={handleJoinSubmit} />
             <UploadWrap>
                 <UploadPost onSubmit={handleSubmit}>
                     <UploadInput value={input} onChange={handleInput} />
-                    {showImgs && showImgs.map((image, id) => <UploadPostImg src={image} alt={`${image}-${id}`} />)}
+                    {showImgs &&
+                        showImgs.map((image, id) => (
+                            <UploadPostImg key={`${image}-${id}`} src={image} alt={`${image}-${id}`} />
+                        ))}
                 </UploadPost>
                 <UploadInputBtn id="input-file" type="file" accept="image/*" onChange={handleImg} ref={imgRef} />
                 <UploadBtn htmlFor="input-file">
