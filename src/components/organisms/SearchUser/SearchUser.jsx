@@ -11,10 +11,27 @@ function SearchUser() {
     const [keyword, setKeyword] = useState('');
     const token = useContext(AuthContext).token;
 
+    const [timer, setTimer] = useState(0); // 디바운싱 타이머
+
     const handleKeyword = userInput => {
-        setTimeout(() => {
-            setKeyword(userInput);
-        }, 1200);
+        // 검색한 키워드에 대한 디바운싱 처리
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        const newTimer = setTimeout(async () => {
+            try {
+                await setKeyword(userInput);
+            } catch (e) {
+                console.log('error', e);
+            }
+        }, 800);
+
+        setTimer(newTimer);
+
+        // if (event.keyCode === 13) {
+        //     event.preventDefault();
+        // }
     };
 
     const searchUserData = async () => {
@@ -30,6 +47,7 @@ function SearchUser() {
                 .then(response => {
                     // 이곳에서 검색한 결과에 대한 요청을 받아와서 searchResult에 전달해서 화면에 렌더링해준다.
                     setSearchResult(response.data);
+                    console.log(response.data);
                 })
                 .catch(error => {
                     if (error.response) {
