@@ -9,7 +9,7 @@ import { AuthContextProvider } from './store/auth-context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-    <AuthContextProvider>
+    <AuthContextProvider basename={process.env.PUBLIC_URL}>
         <ThemeProvider theme={theme}>
             <GlobalStyle />
             <App />
