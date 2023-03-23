@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TopNavBarWrapBg } from '../../atoms/TopNavBarWrap/TopNavBarWrap';
 import BackBtn from '../../atoms/BackBtn/BackBtn';
 import OptionBtn from '../../atoms/OptionBtn/OptionBtn';

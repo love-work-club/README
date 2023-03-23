@@ -27,7 +27,7 @@ export default function Home() {
 
     const { ResData, response, error } = useAxios({
         method: 'get',
-        url: `${process.env.REACT_APP_BASE_URL}/post/feed/?limit=${parseInt(20, 10)}`,
+        url: `${process.env.REACT_APP_BASE_URL}/post/feed/?limit=10`,
         headers: {
             Authorization: `Bearer ${LoginCtx.token}`,
             'Content-type': 'application/json',
@@ -35,6 +35,10 @@ export default function Home() {
     });
 
     useEffect(() => {
+        const obeserver = new IntersectionObserver(entries => {
+            console.log('하하', entries[0]);
+        });
+
         ResData();
     }, []);
 

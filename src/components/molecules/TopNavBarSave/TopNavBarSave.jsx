@@ -8,14 +8,13 @@ const SaveBtn = styled(Button)`
     margin: 0;
 `;
 
-function TopNavBarSave({ disabled, onClick, handleJoinSubmit }) {
+function TopNavBarSave({ disabled, onClick, handleJoinSubmit, handleSubmitPost }) {
     return (
         <TopNavBarHeader>
             <TopNavBarWrapBg>
                 <BackBtn>
                     <img src={BackBtn} alt="" />
                 </BackBtn>
-                {/* disabled={!disabled} */}
                 <SaveBtn size="small" type="button" onClick={handleJoinSubmit} disabled={disabled}>
                     저장
                 </SaveBtn>

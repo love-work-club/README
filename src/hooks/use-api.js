@@ -1,6 +1,6 @@
 /* eslint-disable object-shorthand */
 import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const useAxios = ({ method, url, headers = null, body = null }) => {
