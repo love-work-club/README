@@ -42,23 +42,23 @@ function MainPages() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/README" element={AuthCtx.isLoggedIn ? <Home /> : <Login />}></Route>
-                    <Route path="/README/login" element={<Login />}></Route>
-                    <Route path="/README/emailLogin" element={<EmailLogin />}></Route>
-                    <Route path="/README/join" element={<Join />}></Route>
-                    <Route path="/README/join/profileSetting" element={<ProfileSetting />}></Route>
-                    <Route path="/README/home" element={<Home />}></Route>
-                    <Route path="/README/yourprofile/:accountName" element={<YourProfile />}></Route>
-                    <Route path="/README/myprofile" element={<MyProfile />}></Route>
-                    <Route path="/README/modifyProfile" element={<ModifyProfile />}></Route>
-                    <Route path="/README/followers/:accountName" element={<Followers />}></Route>
-                    <Route path="/README/followings/:accountName" element={<Followings />}></Route>
-                    <Route path="/README/chat" element={<Chat />}></Route>
-                    <Route path="/README/chat/chattingRoom" element={<ChatRoom />}></Route>
-                    <Route path="/README/upload" element={<Upload />}></Route>
-                    <Route path="/README/AddProduct" element={<AddProductPage />}></Route>
-                    <Route path="/README/search" element={<Search />}></Route>
-                    <Route path="/README/post/:id" element={<DetailPosts />}></Route>
+                    <Route path="/" element={AuthCtx.isLoggedIn ? <Home /> : <Login />}></Route>
+                    <Route path="/login" element={<Login />}></Route>
+                    <Route path="/emailLogin" element={<EmailLogin />}></Route>
+                    <Route path="/join" element={<Join />}></Route>
+                    <Route path="/join/profileSetting" element={<ProfileSetting />}></Route>
+                    <Route path="/home" element={<Home />}></Route>
+                    <Route path="/yourprofile/:accountName" element={<YourProfile />}></Route>
+                    <Route path="/myprofile" element={<MyProfile />}></Route>
+                    <Route path="/modifyProfile" element={<ModifyProfile />}></Route>
+                    <Route path="/followers/:accountName" element={<Followers />}></Route>
+                    <Route path="/followings/:accountName" element={<Followings />}></Route>
+                    <Route path="/chat" element={<Chat />}></Route>
+                    <Route path="/chat/chattingRoom" element={<ChatRoom />}></Route>
+                    <Route path="/upload" element={<Upload />}></Route>
+                    <Route path="/AddProduct" element={<AddProductPage />}></Route>
+                    <Route path="/search" element={<Search />}></Route>
+                    <Route path="/post/:id" element={<DetailPosts />}></Route>
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
             </BrowserRouter>
