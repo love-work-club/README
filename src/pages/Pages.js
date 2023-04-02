@@ -40,7 +40,7 @@ function MainPages() {
 
     return (
         <>
-            <BrowserRouter>
+            <BrowserRouter basename="/README">
                 <Routes>
                     <Route path="/" element={AuthCtx.isLoggedIn ? <Home /> : <Login />}></Route>
                     <Route path="/login" element={<Login />}></Route>
